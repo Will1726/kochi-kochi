@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Kochi Kochi | Pastelería Artesanal</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="description"
-          content="Kochi Kochi - Pastelería artesanal creada para convertir momentos especiales en dulces recuerdos.">
+    <meta
+        name="description"
+        content="Kochi Kochi Bakery - El postre te lo dice."
+    >
+
+    <meta
+        name="theme-color"
+        content="#f6a8b8"
+    >
+
+    <title>Kochi Kochi | Bakery</title>
+
+
+    <!-- =========================================================
+         FUENTES
+    ========================================================== -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-          rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         ICONOS
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <!-- =========================================================
+         ESTILOS
+    ========================================================== -->
 
     <style>
 
-        :root {
-            --rosa-claro: #fff3f5;
-            --rosa: #f5c8d1;
-            --rosa-medio: #e99aaa;
-            --rosa-oscuro: #b95f73;
-            --texto: #4b3037;
-            --blanco: #ffffff;
-            --crema: #fffaf8;
-            --gris: #806c71;
+        /* =====================================================
+           VARIABLES
+        ====================================================== */
 
-            --serif: "Cormorant Garamond", serif;
-            --sans: "Montserrat", sans-serif;
+        :root {
+
+            --rosa: #f5a6b7;
+            --rosa-claro: #ffe3e8;
+            --rosa-suave: #fff3f5;
+            --rosa-oscuro: #d97891;
+
+            --crema: #fffaf7;
+            --blanco: #ffffff;
+
+            --texto: #40373a;
+            --texto-suave: #77696d;
+
+            --borde: rgba(70, 45, 50, .10);
+
+            --sombra:
+                0 20px 50px rgba(80, 40, 50, .10);
+
+            --sombra-suave:
+                0 10px 30px rgba(80, 40, 50, .07);
+
+            --transicion:
+                .35s cubic-bezier(.22,.61,.36,1);
+
         }
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
 
         * {
             margin: 0;
@@ -40,1702 +98,4213 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
-            background: var(--blanco);
+
+            font-family: "Montserrat", sans-serif;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fffafa 0%,
+                    #fff6f7 50%,
+                    #fffaf8 100%
+                );
+
             color: var(--texto);
-            font-family: var(--sans);
+
             overflow-x: hidden;
         }
 
-        ::selection {
-            background: var(--rosa-medio);
-            color: white;
-        }
 
-        /* =========================================
-           LOADER
-        ========================================= */
-
-        .loader {
-            position: fixed;
-            inset: 0;
-            background: var(--rosa-claro);
-            z-index: 99999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: opacity .8s ease, visibility .8s ease;
-        }
-
-        .loader.oculto {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-contenido {
-            text-align: center;
-        }
-
-        .loader-logo {
-            font-family: var(--serif);
-            font-size: 55px;
-            color: var(--rosa-oscuro);
-            letter-spacing: 5px;
-            animation: respirar 1.5s infinite ease-in-out;
-        }
-
-        .loader-linea {
-            width: 80px;
-            height: 2px;
-            background: var(--rosa-medio);
-            margin: 15px auto;
-        }
-
-        .loader p {
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        }
-
-        @keyframes respirar {
-            50% {
-                opacity: .45;
-                transform: scale(.96);
-            }
-        }
-
-        /* =========================================
-           NAVBAR
-        ========================================= */
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 76px;
-            background: rgba(255,255,255,.94);
-            backdrop-filter: blur(15px);
-            z-index: 5000;
-            border-bottom: 1px solid rgba(185,95,115,.08);
-            transition: .3s ease;
-        }
-
-        header.scrolled {
-            box-shadow: 0 8px 30px rgba(100,50,60,.08);
-        }
-
-        .nav {
-            max-width: 1400px;
-            height: 100%;
-            margin: auto;
-            padding: 0 40px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: var(--serif);
-            font-size: 29px;
-            font-weight: 600;
-            color: var(--rosa-oscuro);
-            text-decoration: none;
-            letter-spacing: 3px;
-            white-space: nowrap;
-        }
-
-        .logo span {
-            display: block;
-            font-family: var(--sans);
-            font-size: 7px;
-            letter-spacing: 4px;
-            text-align: center;
-            margin-top: -5px;
-            color: #98747c;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            position: relative;
-            text-decoration: none;
-            color: #60454b;
-            font-size: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1.4px;
-            transition: .3s ease;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -8px;
-            width: 0;
-            height: 1px;
-            background: var(--rosa-oscuro);
-            transform: translateX(-50%);
-            transition: .3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--rosa-oscuro);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-icon {
-            display: flex;
-            gap: 17px;
-        }
-
-        .nav-icon button {
-            width: 38px;
-            height: 38px;
-            border: 1px solid #efd8dd;
-            border-radius: 50%;
-            background: white;
-            color: var(--rosa-oscuro);
-            cursor: pointer;
-            transition: .3s ease;
-        }
-
-        .nav-icon button:hover {
-            background: var(--rosa-oscuro);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .menu-btn {
-            display: none;
-            border: none;
-            background: none;
-            font-size: 23px;
-            color: var(--rosa-oscuro);
-            cursor: pointer;
-        }
-
-        /* =========================================
-           HERO
-        ========================================= */
-
-        .hero {
-            min-height: 100vh;
-            padding-top: 76px;
-            background: var(--rosa-claro);
-
-            display: grid;
-            grid-template-columns: 48% 52%;
+        body.no-scroll {
             overflow: hidden;
         }
 
-        .hero-texto {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 70px 8vw;
-            position: relative;
-            z-index: 2;
-        }
 
-        .mini-titulo {
-            color: var(--rosa-oscuro);
-            font-size: 10px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-            font-size: clamp(60px, 7vw, 105px);
-            font-weight: 500;
-            line-height: .88;
-            color: #3f292f;
-        }
-
-        .hero h1 span {
+        img {
+            max-width: 100%;
             display: block;
-            color: var(--rosa-oscuro);
-            font-style: italic;
         }
 
-        .hero-descripcion {
-            max-width: 500px;
-            margin-top: 30px;
-            color: var(--gris);
-            line-height: 1.9;
-            font-size: 13px;
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
         }
 
-        .hero-botones {
-            display: flex;
-            gap: 14px;
-            margin-top: 35px;
-        }
 
-        .btn {
-            padding: 15px 28px;
+        a {
+            color: inherit;
             text-decoration: none;
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            transition: .3s ease;
-            cursor: pointer;
         }
 
-        .btn-principal {
-            background: var(--rosa-oscuro);
+
+        ::selection {
+            background: var(--rosa);
             color: white;
         }
 
-        .btn-principal:hover {
-            background: #974b60;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(185,95,115,.2);
+
+
+        /* =====================================================
+           SCROLLBAR
+        ====================================================== */
+
+        ::-webkit-scrollbar {
+            width: 9px;
         }
 
-        .btn-secundario {
-            border: 1px solid #cfa6af;
-            color: var(--rosa-oscuro);
+        ::-webkit-scrollbar-track {
+            background: #fff0f3;
         }
 
-        .btn-secundario:hover {
-            background: white;
-            transform: translateY(-3px);
+        ::-webkit-scrollbar-thumb {
+            background: #e9a0b1;
+            border-radius: 20px;
         }
 
-        .hero-imagen {
-            position: relative;
-            min-height: 700px;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97891;
         }
 
-        .hero-imagen::before {
+
+
+        /* =====================================================
+           INTRO
+        ====================================================== */
+
+        .intro {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 99999;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255,255,255,.65),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(255,255,255,.45),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f3a4b6,
+                    #e88fa5
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            transition:
+                opacity .9s ease,
+                visibility .9s ease;
+        }
+
+
+        .intro.hidden {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            pointer-events: none;
+        }
+
+
+        .intro::before {
+
             content: "";
+
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: #f8d7de;
+
+            width: 600px;
+            height: 600px;
+
             border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+
+            background:
+                rgba(255,255,255,.13);
+
+            top: -250px;
+            right: -200px;
+
+            animation:
+                introBubble 8s infinite alternate ease-in-out;
         }
 
-        .hero-imagen img {
+
+        .intro::after {
+
+            content: "";
+
             position: absolute;
-            width: 88%;
-            height: 88%;
-            object-fit: cover;
-            right: 0;
-            top: 6%;
-            border-radius: 48% 0 0 48%;
-            animation: aparecerImagen 1.5s ease forwards;
+
+            width: 450px;
+            height: 450px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.10);
+
+            bottom: -200px;
+            left: -150px;
+
+            animation:
+                introBubble 10s infinite alternate-reverse ease-in-out;
         }
 
-        @keyframes aparecerImagen {
+
+        @keyframes introBubble {
+
             from {
-                opacity: 0;
-                transform: translateX(80px);
+                transform: scale(1) translate(0,0);
             }
 
             to {
-                opacity: 1;
-                transform: translateX(0);
+                transform: scale(1.2) translate(40px,-30px);
             }
+
         }
 
-        .hero-flotante {
-            position: absolute;
-            bottom: 13%;
-            left: 4%;
-            background: rgba(255,255,255,.95);
-            padding: 20px 25px;
-            box-shadow: 0 15px 40px rgba(70,40,50,.12);
-            animation: flotar 4s infinite ease-in-out;
-        }
 
-        .hero-flotante strong {
-            display: block;
-            font-family: var(--serif);
-            font-size: 23px;
-            color: var(--rosa-oscuro);
-        }
+        .intro-card {
 
-        .hero-flotante small {
-            font-size: 9px;
-            letter-spacing: 1px;
-            color: var(--gris);
-        }
+            position: relative;
 
-        @keyframes flotar {
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+            z-index: 3;
 
-        /* =========================================
-           INTRO
-        ========================================= */
+            width: min(90%, 620px);
 
-        .intro {
-            padding: 130px 8%;
             text-align: center;
-            background: white;
+
+            padding: 50px 30px;
+
+            color: white;
+
+            animation:
+                introCard .9s ease both;
         }
 
-        .seccion-mini {
-            font-size: 9px;
+
+        @keyframes introCard {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(40px)
+                    scale(.94);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        .intro-logo {
+
+            width: 170px;
+            height: 170px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            box-shadow:
+                0 20px 50px rgba(70,30,40,.18);
+
+            border:
+                7px solid rgba(255,255,255,.7);
+
+            animation:
+                logoFloat 3s infinite ease-in-out;
+        }
+
+
+        @keyframes logoFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-8px)
+                    rotate(2deg);
+            }
+
+        }
+
+
+        .intro-small {
+
+            font-size: 11px;
+
+            letter-spacing: 5px;
+
             text-transform: uppercase;
+
+            margin-bottom: 10px;
+
+            opacity: .9;
+        }
+
+
+        .intro-title {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(55px, 10vw, 100px);
+
+            font-weight: 600;
+
+            line-height: .85;
+
+            letter-spacing: 5px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .intro-slogan {
+
+            font-size: 13px;
+
             letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 35px;
+        }
+
+
+        .enter-button {
+
+            border: none;
+
+            background: white;
+
+            color: #d97891;
+
+            padding: 16px 34px;
+
+            border-radius: 50px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            cursor: pointer;
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+
+        .enter-button:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.03);
+
+            box-shadow:
+                0 15px 35px rgba(70,30,40,.18);
+        }
+
+
+        .enter-button i {
+            margin-left: 8px;
+        }
+
+
+        .intro-note {
+
+            font-size: 10px;
+
+            margin-top: 18px;
+
+            opacity: .7;
+        }
+
+
+
+        /* =====================================================
+           DECORACIÓN
+        ====================================================== */
+
+        .decor {
+
+            position: absolute;
+
+            pointer-events: none;
+
+            opacity: .35;
+
+            font-size: 25px;
+
+            color: white;
+
+            animation:
+                decorFloat 5s infinite ease-in-out;
+        }
+
+
+        .decor.one {
+            top: 15%;
+            left: 10%;
+        }
+
+        .decor.two {
+            top: 25%;
+            right: 12%;
+            animation-delay: 1s;
+        }
+
+        .decor.three {
+            bottom: 18%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+
+        .decor.four {
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 3s;
+        }
+
+
+        @keyframes decorFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-15px)
+                    rotate(15deg);
+            }
+
+        }
+
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+
+            height: 86px;
+
+            z-index: 5000;
+
+            background:
+                rgba(255,250,248,.88);
+
+            backdrop-filter:
+                blur(16px);
+
+            -webkit-backdrop-filter:
+                blur(16px);
+
+            border-bottom:
+                1px solid rgba(80,50,55,.07);
+
+            transition:
+                var(--transicion);
+        }
+
+
+        header.scrolled {
+
+            height: 72px;
+
+            background:
+                rgba(255,255,255,.95);
+
+            box-shadow:
+                0 10px 30px rgba(60,30,40,.06);
+        }
+
+
+        .nav-container {
+
+            width:
+                min(1200px, 92%);
+
+            height: 100%;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 28px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            color: #4a3c40;
+        }
+
+
+        .logo img {
+
+            width: 47px;
+            height: 47px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+        }
+
+
+        nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+        }
+
+
+        nav a {
+
+            position: relative;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            color: #5d5154;
+
+            transition:
+                color .3s ease;
+        }
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: -7px;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--rosa);
+
+            transition:
+                width .3s ease;
+        }
+
+
+        nav a:hover {
+
             color: var(--rosa-oscuro);
+        }
+
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+
+        .mobile-button {
+
+            display: none;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 22px;
+
+            color: #4d4144;
+
+            cursor: pointer;
+        }
+
+
+
+        /* =====================================================
+           HERO
+        ====================================================== */
+
+        .hero {
+
+            min-height: 100vh;
+
+            padding-top: 86px;
+
+            position: relative;
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #fff5f6,
+                    #ffe8ec
+                );
+        }
+
+
+        .hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 550px;
+            height: 550px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(245,166,183,.16);
+
+            top: -200px;
+            right: -130px;
+        }
+
+
+        .hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(245,166,183,.12);
+
+            bottom: -160px;
+            left: -100px;
+        }
+
+
+        .hero-container {
+
+            width:
+                min(1200px, 92%);
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 60px;
+
+            align-items: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .hero-content {
+
+            animation:
+                heroText 1s .3s both;
+        }
+
+
+        @keyframes heroText {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateX(-40px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+
+            }
+
+        }
+
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: var(--rosa-oscuro);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
             margin-bottom: 18px;
         }
 
-        .titulo-seccion {
-            font-family: var(--serif);
-            font-size: clamp(40px, 5vw, 64px);
-            line-height: .95;
+
+        .eyebrow span {
+
+            width: 35px;
+
+            height: 1px;
+
+            background: var(--rosa-oscuro);
+        }
+
+
+        .hero h1 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(65px, 8vw, 105px);
+
             font-weight: 500;
-            color: #432c32;
+
+            line-height: .84;
+
+            letter-spacing: -2px;
+
+            color: #3f3438;
+
+            margin-bottom: 25px;
         }
 
-        .intro-texto {
-            max-width: 700px;
-            margin: 25px auto 0;
-            font-size: 12px;
-            line-height: 2;
-            color: var(--gris);
+
+        .hero h1 em {
+
+            display: block;
+
+            color: var(--rosa-oscuro);
+
+            font-style: normal;
         }
 
-        /* =========================================
-           CARACTERISTICAS
-        ========================================= */
 
-        .caracteristicas {
-            max-width: 1100px;
-            margin: 60px auto 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
+        .hero-description {
+
+            max-width: 510px;
+
+            color: var(--texto-suave);
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            margin-bottom: 30px;
         }
 
-        .caracteristica {
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 15px 25px;
+
+            border-radius: 50px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            transition:
+                var(--transicion);
+        }
+
+
+        .btn-primary {
+
+            background: #d97891;
+
+            color: white;
+
+            box-shadow:
+                0 10px 25px rgba(217,120,145,.22);
+        }
+
+
+        .btn-primary:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 15px 35px rgba(217,120,145,.30);
+        }
+
+
+        .btn-outline {
+
+            border:
+                1px solid #d9a6b1;
+
+            color: #a05d70;
+
+            background:
+                rgba(255,255,255,.5);
+        }
+
+
+        .btn-outline:hover {
+
+            background: white;
+
+            transform:
+                translateY(-4px);
+        }
+
+
+        .hero-image {
+
+            position: relative;
+
+            animation:
+                heroImage 1.2s .2s both;
+        }
+
+
+        @keyframes heroImage {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateX(40px)
+                    scale(.94);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        .hero-image-box {
+
+            width: 100%;
+
+            aspect-ratio: 1 / 1;
+
+            border-radius:
+                50% 50% 10% 50%;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f9bac7,
+                    #ffe5e9
+                );
+
+            box-shadow:
+                30px 30px 70px rgba(70,40,50,.12);
+
+            position: relative;
+        }
+
+
+        .hero-image-box::before {
+
+            content: "K";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 280px;
+
+            color:
+                rgba(255,255,255,.38);
+
+            z-index: 1;
+        }
+
+
+        .cake-illustration {
+
+            position: absolute;
+
+            width: 55%;
+
+            height: 45%;
+
+            left: 23%;
+
+            bottom: 19%;
+
+            z-index: 2;
+        }
+
+
+        .cake-bottom {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 48%;
+
+            bottom: 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fff,
+                    #ffe1e6
+                );
+
+            border-radius:
+                10px 10px 25px 25px;
+
+            box-shadow:
+                0 20px 30px rgba(80,40,50,.12);
+        }
+
+
+        .cake-top {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 30%;
+
+            top: 25%;
+
+            border-radius: 50%;
+
+            background:
+                #fff8f7;
+
+            box-shadow:
+                inset 0 -8px 0 rgba(220,150,165,.18);
+        }
+
+
+        .cake-cream {
+
+            position: absolute;
+
+            width: 100%;
+
+            height: 25%;
+
+            top: 36%;
+
+            border-radius: 50%;
+
+            background: #fff;
+
+            z-index: 3;
+        }
+
+
+        .cherry {
+
+            position: absolute;
+
+            width: 28px;
+            height: 28px;
+
+            border-radius: 50%;
+
+            background: #d97891;
+
+            top: 3%;
+
+            left: 48%;
+
+            z-index: 5;
+
+            box-shadow:
+                0 5px 10px rgba(80,30,40,.15);
+        }
+
+
+        .cherry::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 20px;
+            height: 10px;
+
+            border-top:
+                3px solid #66805e;
+
+            border-radius: 50%;
+
+            top: -6px;
+            left: 10px;
+
+            transform:
+                rotate(-25deg);
+        }
+
+
+        .floating-heart {
+
+            position: absolute;
+
+            color: #d97891;
+
+            font-size: 22px;
+
+            animation:
+                heartFloat 4s infinite ease-in-out;
+        }
+
+
+        .heart-one {
+            top: 15%;
+            left: 12%;
+        }
+
+
+        .heart-two {
+            bottom: 15%;
+            right: 10%;
+            animation-delay: 1s;
+        }
+
+
+        @keyframes heartFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-12px)
+                    rotate(10deg);
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SLOGAN
+        ====================================================== */
+
+        .slogan {
+
+            padding:
+                100px 20px;
+
             text-align: center;
+
+            background: #fff;
         }
 
-        .caracteristica-icono {
+
+        .slogan-small {
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 5px;
+
+            color: var(--rosa-oscuro);
+
+            margin-bottom: 18px;
+        }
+
+
+        .slogan h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(48px, 7vw, 82px);
+
+            font-weight: 500;
+
+            line-height: .9;
+
+            color: #403438;
+        }
+
+
+        .slogan h2 span {
+
+            color: var(--rosa-oscuro);
+
+            font-style: italic;
+        }
+
+
+
+        /* =====================================================
+           SECCIÓN GENÉRICA
+        ====================================================== */
+
+        .section {
+
+            padding:
+                110px 0;
+        }
+
+
+        .section-container {
+
+            width:
+                min(1150px, 92%);
+
+            margin: auto;
+        }
+
+
+        .section-header {
+
+            text-align: center;
+
+            max-width: 650px;
+
+            margin:
+                0 auto 55px;
+        }
+
+
+        .section-label {
+
+            font-size: 10px;
+
+            color: var(--rosa-oscuro);
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+
+        .section-title {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(45px, 6vw, 70px);
+
+            font-weight: 500;
+
+            line-height: .95;
+
+            margin-bottom: 18px;
+
+            color: #413539;
+        }
+
+
+        .section-text {
+
+            font-size: 13px;
+
+            line-height: 1.9;
+
+            color: var(--texto-suave);
+        }
+
+
+
+        /* =====================================================
+           CARDS
+        ====================================================== */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .feature-card {
+
+            background: white;
+
+            padding: 40px 30px;
+
+            text-align: center;
+
+            border:
+                1px solid var(--borde);
+
+            border-radius: 25px;
+
+            box-shadow:
+                var(--sombra-suave);
+
+            transition:
+                var(--transicion);
+        }
+
+
+        .feature-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                var(--sombra);
+        }
+
+
+        .feature-icon {
+
             width: 65px;
             height: 65px;
-            margin: auto;
-            border-radius: 50%;
-            background: var(--rosa-claro);
+
+            margin: 0 auto 22px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
-            color: var(--rosa-oscuro);
-            font-size: 20px;
-            margin-bottom: 20px;
+
+            border-radius: 50%;
+
+            background:
+                var(--rosa-suave);
+
+            color:
+                var(--rosa-oscuro);
+
+            font-size: 23px;
         }
 
-        .caracteristica h3 {
-            font-family: var(--serif);
-            font-size: 24px;
+
+        .feature-card h3 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 28px;
+
             margin-bottom: 10px;
         }
 
-        .caracteristica p {
-            font-size: 11px;
-            color: var(--gris);
+
+        .feature-card p {
+
+            font-size: 12px;
+
             line-height: 1.8;
+
+            color: var(--texto-suave);
         }
 
-        /* =========================================
+
+
+        /* =====================================================
            PRODUCTOS
-        ========================================= */
+        ====================================================== */
 
-        .productos {
-            background: var(--rosa-claro);
-            padding: 120px 7%;
-        }
+        .products {
 
-        .encabezado-productos {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            margin-bottom: 55px;
-        }
-
-        .encabezado-productos .titulo-seccion {
-            max-width: 600px;
-        }
-
-        .productos-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 22px;
         }
 
-        .producto {
+
+        .product {
+
             background: white;
+
+            border-radius: 20px;
+
             overflow: hidden;
+
+            border:
+                1px solid var(--borde);
+
+            box-shadow:
+                var(--sombra-suave);
+
+            transition:
+                var(--transicion);
+        }
+
+
+        .product:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                var(--sombra);
+        }
+
+
+        .product-image {
+
+            height: 230px;
+
             position: relative;
-            transition: .4s ease;
-        }
 
-        .producto:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 45px rgba(90,50,60,.12);
-        }
-
-        .producto-imagen {
-            height: 310px;
             overflow: hidden;
-            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffe0e6,
+                    #f6a9ba
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
         }
 
-        .producto-imagen img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: .7s ease;
+
+        .product-image::before {
+
+            content: "";
+
+            font-family:
+                "Font Awesome 6 Free";
+
+            font-weight: 900;
+
+            font-size: 65px;
+
+            color:
+                rgba(255,255,255,.75);
         }
 
-        .producto:hover .producto-imagen img {
-            transform: scale(1.07);
+
+        .cake-product::before {
+            content: "\f1fd";
         }
 
-        .producto-etiqueta {
+
+        .cookie-product::before {
+            content: "\f564";
+        }
+
+
+        .cupcake-product::before {
+            content: "\f7e4";
+        }
+
+
+        .strawberry-product::before {
+            content: "\f5d1";
+        }
+
+
+        .product-badge {
+
             position: absolute;
-            top: 15px;
-            left: 15px;
-            background: var(--rosa-oscuro);
-            color: white;
-            padding: 7px 12px;
+
+            top: 14px;
+            left: 14px;
+
+            padding:
+                7px 11px;
+
+            border-radius: 30px;
+
+            background: white;
+
+            color: var(--rosa-oscuro);
+
             font-size: 8px;
+
+            font-weight: 700;
+
             letter-spacing: 1px;
         }
 
-        .producto-info {
+
+        .product-info {
+
             padding: 22px;
         }
 
-        .producto-info h3 {
-            font-family: var(--serif);
+
+        .product-info h3 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
             font-size: 25px;
-            font-weight: 600;
+
+            margin-bottom: 6px;
         }
 
-        .producto-info p {
-            font-size: 10px;
-            color: var(--gris);
-            margin: 7px 0 15px;
+
+        .product-info p {
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            color: var(--texto-suave);
+
+            margin-bottom: 15px;
         }
 
-        .producto-abajo {
+
+        .product-bottom {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
         }
 
-        .precio {
+
+        .price {
+
             color: var(--rosa-oscuro);
-            font-size: 13px;
-            font-weight: 600;
+
+            font-weight: 700;
+
+            font-size: 14px;
         }
 
-        .producto-btn {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #ecd4da;
-            background: white;
-            color: var(--rosa-oscuro);
+
+        .order-button {
+
+            border: none;
+
+            width: 38px;
+            height: 38px;
+
             border-radius: 50%;
+
+            background:
+                var(--rosa-suave);
+
+            color:
+                var(--rosa-oscuro);
+
             cursor: pointer;
-            transition: .3s ease;
+
+            transition:
+                .3s ease;
         }
 
-        .producto-btn:hover {
-            background: var(--rosa-oscuro);
+
+        .order-button:hover {
+
+            background:
+                var(--rosa);
+
+            color: white;
+
+            transform:
+                rotate(10deg)
+                scale(1.08);
+        }
+
+
+
+        /* =====================================================
+           HISTORIA
+        ====================================================== */
+
+        .story {
+
+            background:
+                #fff0f3;
+        }
+
+
+        .story-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+
+        .story-art {
+
+            min-height: 500px;
+
+            border-radius:
+                50% 30% 50% 30%;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f4a5b7,
+                    #ffdfe5
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .story-art::before {
+
+            content: "KOCHI";
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(65px, 9vw, 130px);
+
+            color:
+                rgba(255,255,255,.55);
+
+            transform:
+                rotate(-10deg);
+        }
+
+
+        .story-content .section-label {
+
+            text-align: left;
+        }
+
+
+        .story-content h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size:
+                clamp(45px, 6vw, 72px);
+
+            font-weight: 500;
+
+            line-height: .9;
+
+            margin-bottom: 25px;
+        }
+
+
+        .story-content p {
+
+            color: var(--texto-suave);
+
+            font-size: 13px;
+
+            line-height: 2;
+
+            margin-bottom: 18px;
+        }
+
+
+
+        /* =====================================================
+           GALERÍA
+        ====================================================== */
+
+        .gallery {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            grid-auto-rows: 220px;
+
+            gap: 15px;
+        }
+
+
+        .gallery-item {
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6afbd,
+                    #ffe4e9
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition:
+                var(--transicion);
+        }
+
+
+        .gallery-item:nth-child(1) {
+            grid-row: span 2;
+        }
+
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 2;
+        }
+
+
+        .gallery-item i {
+
+            font-size: 55px;
+
+            color:
+                rgba(255,255,255,.75);
+
+            transition:
+                transform .4s ease;
+        }
+
+
+        .gallery-item:hover {
+
+            transform:
+                scale(.98);
+        }
+
+
+        .gallery-item:hover i {
+
+            transform:
+                scale(1.2)
+                rotate(8deg);
+        }
+
+
+
+        /* =====================================================
+           MÚSICA
+        ====================================================== */
+
+        .music-section {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e996aa,
+                    #f5b4c1
+                );
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .music-section::before {
+
+            content: "♪";
+
+            position: absolute;
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 400px;
+
+            right: -80px;
+
+            bottom: -180px;
+
+            opacity: .08;
+        }
+
+
+        .music-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+
+        .music-section .section-label {
+
             color: white;
         }
 
-        /* =========================================
-           HISTORIA
-        ========================================= */
 
-        .historia {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 650px;
+        .music-section .section-title {
+
+            color: white;
+
+            text-align: left;
         }
 
-        .historia-imagen {
-            position: relative;
-            overflow: hidden;
+
+        .music-section .section-text {
+
+            color:
+                rgba(255,255,255,.85);
+
+            margin-bottom: 25px;
         }
 
-        .historia-imagen img {
+
+        .music-cover {
+
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
 
-        .historia-texto {
-            padding: 100px 10%;
+            max-width: 420px;
+
+            aspect-ratio: 1;
+
+            margin: auto;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,.14);
+
+            border:
+                1px solid rgba(255,255,255,.3);
+
             display: flex;
-            flex-direction: column;
+
+            align-items: center;
+
             justify-content: center;
-            background: white;
+
+            position: relative;
+
+            box-shadow:
+                0 25px 60px rgba(90,30,50,.15);
+
+            animation:
+                disc 8s linear infinite;
         }
 
-        .historia-texto p {
-            font-size: 12px;
-            color: var(--gris);
-            line-height: 2;
-            margin-top: 25px;
+
+        @keyframes disc {
+
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .firma {
-            font-family: var(--serif);
-            font-size: 31px;
-            font-style: italic;
-            color: var(--rosa-oscuro);
-            margin-top: 30px;
-        }
 
-        /* =========================================
-           GALERIA
-        ========================================= */
+        .music-cover img {
 
-        .galeria {
-            padding: 120px 5%;
-            text-align: center;
-            background: var(--crema);
-        }
+            width: 62%;
 
-        .galeria-grid {
-            margin-top: 55px;
-            display: grid;
-            grid-template-columns: 1.3fr .8fr .8fr 1.3fr;
-            grid-template-rows: 250px 250px;
-            gap: 12px;
-        }
+            height: 62%;
 
-        .galeria-item {
-            overflow: hidden;
-        }
-
-        .galeria-item img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            transition: .7s ease;
+
+            border-radius: 50%;
+
+            border:
+                8px solid rgba(255,255,255,.75);
         }
 
-        .galeria-item:hover img {
-            transform: scale(1.08);
-        }
 
-        .galeria-item:nth-child(1) {
-            grid-row: span 2;
-        }
+        .music-center {
 
-        .galeria-item:nth-child(4) {
-            grid-row: span 2;
-        }
+            position: absolute;
 
-        /* =========================================
-           TESTIMONIOS
-        ========================================= */
+            width: 18px;
+            height: 18px;
 
-        .testimonios {
-            padding: 120px 8%;
-            text-align: center;
+            border-radius: 50%;
+
             background: white;
         }
 
-        .testimonios-grid {
-            max-width: 1100px;
-            margin: 60px auto 0;
+
+        .music-controls {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+
+        .music-button {
+
+            width: 52px;
+            height: 52px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #d97891;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            transition:
+                .3s ease;
+        }
+
+
+        .music-button:hover {
+
+            transform:
+                scale(1.08);
+        }
+
+
+        .music-status {
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            opacity: .85;
+        }
+
+
+
+        /* =====================================================
+           RESEÑAS
+        ====================================================== */
+
+        .reviews {
+
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+
+            grid-template-columns:
+                repeat(3,1fr);
+
             gap: 25px;
         }
 
-        .testimonio {
-            background: var(--rosa-claro);
-            padding: 40px 30px;
+
+        .review {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            box-shadow:
+                var(--sombra-suave);
+
+            border:
+                1px solid var(--borde);
         }
 
-        .estrellas {
-            color: #d88a9a;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-        }
 
-        .testimonio p {
-            font-family: var(--serif);
-            font-size: 22px;
-            line-height: 1.4;
-            font-style: italic;
-        }
+        .stars {
 
-        .testimonio strong {
-            display: block;
-            margin-top: 25px;
-            font-size: 9px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
+            color:
+                #e9a0b1;
 
-        /* =========================================
-           CONTACTO
-        ========================================= */
-
-        .contacto {
-            padding: 110px 8%;
-            background: #f5dce1;
-            text-align: center;
-        }
-
-        .contacto p {
-            max-width: 600px;
-            margin: 25px auto;
-            color: #755a61;
-            line-height: 1.9;
-            font-size: 12px;
-        }
-
-        .contacto-info {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 35px;
-            margin: 40px 0;
-        }
-
-        .contacto-info div {
-            font-size: 11px;
-        }
-
-        .contacto-info i {
-            color: var(--rosa-oscuro);
-            margin-right: 7px;
-        }
-
-        /* =========================================
-           FOOTER
-        ========================================= */
-
-        footer {
-            background: #432c32;
-            color: white;
-            padding: 70px 7% 25px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 50px;
-            padding-bottom: 60px;
-        }
-
-        .footer-logo {
-            font-family: var(--serif);
-            font-size: 37px;
             letter-spacing: 3px;
-        }
 
-        .footer-col h4 {
-            font-family: var(--serif);
-            font-size: 21px;
             margin-bottom: 20px;
         }
 
-        .footer-col p,
-        .footer-col a {
-            color: #cdbbc0;
+
+        .review p {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 23px;
+
+            line-height: 1.3;
+
+            margin-bottom: 20px;
+        }
+
+
+        .review-name {
+
             font-size: 10px;
-            line-height: 2.2;
-            text-decoration: none;
-            display: block;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            color: var(--texto-suave);
         }
 
-        .footer-col a:hover {
-            color: white;
+
+
+        /* =====================================================
+           CONTACTO
+        ====================================================== */
+
+        .contact {
+
+            background:
+                #fff4f6;
         }
 
-        .sociales {
+
+        .contact-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 60px;
+        }
+
+
+        .contact-info {
+
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+
+            flex-direction: column;
+
+            gap: 22px;
         }
 
-        .sociales a {
-            width: 36px;
-            height: 36px;
-            border: 1px solid #755d64;
+
+        .contact-item {
+
             display: flex;
+
             align-items: center;
-            justify-content: center;
+
+            gap: 18px;
+        }
+
+
+        .contact-icon {
+
+            width: 48px;
+            height: 48px;
+
             border-radius: 50%;
-            transition: .3s;
+
+            background: white;
+
+            color: var(--rosa-oscuro);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            box-shadow:
+                var(--sombra-suave);
         }
 
-        .sociales a:hover {
-            background: var(--rosa-medio);
-            border-color: var(--rosa-medio);
-            transform: translateY(-4px);
-        }
 
-        .copyright {
-            border-top: 1px solid #5d464d;
-            padding-top: 25px;
-            text-align: center;
-            color: #a99197;
-            font-size: 9px;
+        .contact-item strong {
+
+            display: block;
+
+            font-size: 11px;
+
+            margin-bottom: 4px;
+
+            text-transform: uppercase;
+
             letter-spacing: 1px;
         }
 
-        /* =========================================
+
+        .contact-item span {
+
+            font-size: 12px;
+
+            color: var(--texto-suave);
+        }
+
+
+        .contact-form {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 25px;
+
+            box-shadow:
+                var(--sombra-suave);
+        }
+
+
+        .input-group {
+
+            margin-bottom: 17px;
+        }
+
+
+        .input-group label {
+
+            display: block;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 8px;
+
+            color: var(--texto-suave);
+        }
+
+
+        .input-group input,
+        .input-group textarea {
+
+            width: 100%;
+
+            border:
+                1px solid #eadcdf;
+
+            border-radius: 12px;
+
+            padding: 13px 15px;
+
+            outline: none;
+
+            background: #fffafb;
+
+            color: var(--texto);
+
+            font-size: 12px;
+
+            transition:
+                .3s ease;
+        }
+
+
+        .input-group input:focus,
+        .input-group textarea:focus {
+
+            border-color:
+                var(--rosa);
+        }
+
+
+        .input-group textarea {
+
+            height: 120px;
+
+            resize: vertical;
+        }
+
+
+
+        /* =====================================================
+           NEWSLETTER
+        ====================================================== */
+
+        .newsletter {
+
+            padding:
+                80px 20px;
+
+            background: white;
+
+            text-align: center;
+        }
+
+
+        .newsletter h2 {
+
+            font-family:
+                "Cormorant Garamond",
+                serif;
+
+            font-size: 55px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .newsletter p {
+
+            color: var(--texto-suave);
+
+            font-size: 12px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .newsletter-form {
+
+            width:
+                min(500px,100%);
+
+            margin: auto;
+
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .newsletter-form input {
+
+            flex: 1;
+
+            border:
+                1px solid #eadcdf;
+
+            border-radius: 50px;
+
+            padding: 15px 20px;
+
+            outline: none;
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        footer {
+
+            background:
+                #3d3337;
+
+            color: white;
+
+            padding:
+                65px 0 25px;
+        }
+
+
+        .footer-grid {
+
+            width:
+                min(1150px,92%);
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr 1fr 1fr;
+
+            gap: 50px;
+
+            padding-bottom: 50px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,.12);
+        }
+
+
+        .footer-brand .logo {
+
+            color: white;
+
+            margin-bottom: 20px;
+        }
+
+
+        .footer-brand p {
+
+            color:
+                rgba(255,255,255,.65);
+
+            font-size: 11px;
+
+            line-height: 1.9;
+
+            max-width: 280px;
+        }
+
+
+        .footer-column h4 {
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+
+        .footer-column a {
+
+            display: block;
+
+            color:
+                rgba(255,255,255,.62);
+
+            font-size: 11px;
+
+            margin-bottom: 12px;
+
+            transition:
+                .3s ease;
+        }
+
+
+        .footer-column a:hover {
+
+            color: white;
+
+            transform:
+                translateX(4px);
+        }
+
+
+        .socials {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 20px;
+        }
+
+
+        .social {
+
+            width: 38px;
+            height: 38px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(255,255,255,.08);
+
+            color: white;
+
+            transition:
+                .3s ease;
+        }
+
+
+        .social:hover {
+
+            background:
+                var(--rosa);
+
+            transform:
+                translateY(-5px);
+        }
+
+
+        .copyright {
+
+            width:
+                min(1150px,92%);
+
+            margin: 22px auto 0;
+
+            text-align: center;
+
+            font-size: 9px;
+
+            color:
+                rgba(255,255,255,.4);
+
+            letter-spacing: 1px;
+        }
+
+
+
+        /* =====================================================
+           BOTÓN ARRIBA
+        ====================================================== */
+
+        .top-button {
+
+            position: fixed;
+
+            right: 22px;
+            bottom: 22px;
+
+            width: 45px;
+            height: 45px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background:
+                #d97891;
+
+            color: white;
+
+            cursor: pointer;
+
+            z-index: 4000;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                .3s ease;
+
+            box-shadow:
+                0 10px 25px rgba(100,40,50,.18);
+        }
+
+
+        .top-button.show {
+
+            opacity: 1;
+
+            visibility: visible;
+
+            transform:
+                translateY(0);
+        }
+
+
+
+        /* =====================================================
            TOAST
-        ========================================= */
+        ====================================================== */
 
         .toast {
+
             position: fixed;
-            right: 25px;
+
+            left: 50%;
+
             bottom: 25px;
-            background: #432c32;
+
+            transform:
+                translate(-50%, 100px);
+
+            background:
+                #3d3337;
+
             color: white;
-            padding: 17px 25px;
-            z-index: 10000;
-            transform: translateY(120px);
-            opacity: 0;
-            transition: .4s ease;
+
+            padding:
+                13px 22px;
+
+            border-radius: 50px;
+
             font-size: 11px;
-            box-shadow: 0 15px 35px rgba(0,0,0,.15);
+
+            z-index: 100000;
+
+            opacity: 0;
+
+            transition:
+                .4s ease;
+
+            pointer-events: none;
         }
 
-        .toast.mostrar {
-            transform: translateY(0);
+
+        .toast.show {
+
             opacity: 1;
+
+            transform:
+                translate(-50%, 0);
         }
 
-        /* =========================================
-           ANIMACIONES SCROLL
-        ========================================= */
+
+
+        /* =====================================================
+           ANIMACIONES DE SCROLL
+        ====================================================== */
 
         .reveal {
+
             opacity: 0;
-            transform: translateY(45px);
-            transition: 1s ease;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
         }
 
-        .reveal.visible {
+
+        .reveal.active {
+
             opacity: 1;
-            transform: translateY(0);
+
+            transform:
+                translateY(0);
         }
 
-        /* =========================================
+
+
+        /* =====================================================
            RESPONSIVE
-        ========================================= */
+        ====================================================== */
 
         @media (max-width: 1000px) {
 
-            .nav {
-                padding: 0 25px;
+            nav {
+                gap: 18px;
             }
 
-            .nav-links {
-                gap: 15px;
+
+            .hero-container {
+
+                gap: 30px;
             }
 
-            .productos-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+            .products {
+
+                grid-template-columns:
+                    repeat(2,1fr);
             }
 
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-texto {
-                padding-top: 100px;
-                padding-bottom: 40px;
-            }
-
-            .hero-imagen {
-                min-height: 550px;
-            }
-
-            .hero-imagen img {
-                width: 90%;
-                left: 5%;
-                border-radius: 0;
-            }
-
-            .historia {
-                grid-template-columns: 1fr;
-            }
-
-            .historia-imagen {
-                height: 500px;
-            }
 
             .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+                grid-template-columns:
+                    repeat(2,1fr);
             }
+
         }
 
-        @media (max-width: 700px) {
+
+
+        @media (max-width: 800px) {
 
             header {
-                height: 68px;
+                height: 74px;
             }
 
-            .nav {
-                padding: 0 20px;
+
+            .logo {
+
+                font-size: 24px;
             }
 
-            .menu-btn {
+
+            .logo img {
+
+                width: 40px;
+                height: 40px;
+            }
+
+
+            .mobile-button {
+
                 display: block;
             }
 
-            .nav-links {
-                position: fixed;
-                top: 68px;
+
+            nav {
+
+                position: absolute;
+
+                top: 74px;
                 left: 0;
+
                 width: 100%;
-                background: white;
+
+                background:
+                    rgba(255,255,255,.98);
+
+                backdrop-filter:
+                    blur(15px);
+
                 flex-direction: column;
-                align-items: center;
-                padding: 35px;
-                gap: 25px;
 
-                transform: translateY(-120%);
+                align-items: stretch;
+
+                padding: 20px;
+
+                gap: 0;
+
+                box-shadow:
+                    0 15px 30px rgba(50,30,40,.08);
+
+                transform:
+                    translateY(-20px);
+
                 opacity: 0;
-                pointer-events: none;
-                transition: .4s ease;
 
-                box-shadow: 0 15px 30px rgba(0,0,0,.08);
+                visibility: hidden;
+
+                transition:
+                    .35s ease;
             }
 
-            .nav-links.activo {
-                transform: translateY(0);
+
+            nav.active {
+
+                transform:
+                    translateY(0);
+
                 opacity: 1;
-                pointer-events: auto;
+
+                visibility: visible;
             }
 
-            .nav-icon {
+
+            nav a {
+
+                padding: 15px;
+
+                border-bottom:
+                    1px solid #f4e5e8;
+            }
+
+
+            nav a::after {
                 display: none;
             }
 
-            .logo {
-                font-size: 25px;
-            }
 
             .hero {
-                padding-top: 68px;
+
+                padding-top: 74px;
+
+                min-height: auto;
+
+                padding-bottom: 80px;
             }
 
-            .hero-texto {
-                padding: 70px 25px 40px;
-            }
 
-            .hero h1 {
-                font-size: 65px;
-            }
+            .hero-container {
 
-            .hero-imagen {
-                min-height: 430px;
-            }
-
-            .hero-imagen::before {
-                width: 320px;
-                height: 320px;
-            }
-
-            .hero-imagen img {
-                height: 90%;
-                top: 5%;
-            }
-
-            .hero-flotante {
-                left: 20px;
-                bottom: 30px;
-            }
-
-            .intro,
-            .productos,
-            .galeria,
-            .testimonios {
-                padding: 80px 25px;
-            }
-
-            .caracteristicas {
                 grid-template-columns: 1fr;
-                gap: 40px;
+
+                text-align: center;
+
+                padding-top: 60px;
             }
 
-            .encabezado-productos {
-                display: block;
+
+            .hero-content {
+
+                order: 1;
             }
 
-            .encabezado-productos .btn {
-                display: inline-block;
-                margin-top: 25px;
+
+            .hero-image {
+
+                order: 2;
+
+                width: 85%;
+
+                margin: auto;
             }
 
-            .productos-grid {
+
+            .hero-buttons {
+
+                justify-content: center;
+            }
+
+
+            .eyebrow {
+
+                justify-content: center;
+            }
+
+
+            .hero-description {
+
+                margin-left: auto;
+
+                margin-right: auto;
+            }
+
+
+            .features {
+
                 grid-template-columns: 1fr;
             }
 
-            .producto-imagen {
-                height: 350px;
+
+            .story-grid,
+            .music-grid,
+            .contact-grid {
+
+                grid-template-columns: 1fr;
+
+                gap: 45px;
             }
 
-            .historia-texto {
-                padding: 75px 25px;
+
+            .story-art {
+
+                min-height: 350px;
+
+                order: 2;
             }
 
-            .galeria-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: repeat(3, 200px);
+
+            .story-content {
+
+                order: 1;
             }
 
-            .galeria-item:nth-child(1),
-            .galeria-item:nth-child(4) {
+
+            .story-content .section-label {
+
+                text-align: center;
+            }
+
+
+            .music-content {
+
+                text-align: center;
+            }
+
+
+            .music-section .section-title {
+
+                text-align: center;
+            }
+
+
+            .music-controls {
+
+                justify-content: center;
+            }
+
+
+            .reviews {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .gallery {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+                grid-auto-rows: 180px;
+            }
+
+
+            .gallery-item:nth-child(1) {
+
                 grid-row: span 1;
             }
 
-            .testimonios-grid {
-                grid-template-columns: 1fr;
+
+            .gallery-item:nth-child(4) {
+
+                grid-column: span 1;
             }
 
+        }
+
+
+
+        @media (max-width: 550px) {
+
+            .intro-logo {
+
+                width: 135px;
+                height: 135px;
+            }
+
+
+            .intro-title {
+
+                font-size: 62px;
+            }
+
+
+            .intro-slogan {
+
+                font-size: 9px;
+
+                letter-spacing: 2px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 65px;
+            }
+
+
+            .section {
+
+                padding:
+                    80px 0;
+            }
+
+
+            .products {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .gallery {
+
+                grid-template-columns:
+                    1fr;
+
+                grid-auto-rows: 200px;
+            }
+
+
+            .newsletter-form {
+
+                flex-direction: column;
+            }
+
+
+            .newsletter-form input {
+
+                width: 100%;
+            }
+
+
             .footer-grid {
-                grid-template-columns: 1fr;
+
+                grid-template-columns:
+                    1fr;
+
                 gap: 35px;
             }
+
+
+            .hero-image {
+
+                width: 95%;
+            }
+
+
+            .cake-illustration {
+
+                width: 60%;
+
+                left: 20%;
+            }
+
+        }
+
+
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration: .01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                scroll-behavior: auto !important;
+
+                transition-duration: .01ms !important;
+            }
+
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- =========================================
-         LOADER
-    ========================================== -->
 
-    <div class="loader" id="loader">
+    <!-- =========================================================
+         INTRO
+    ========================================================== -->
 
-        <div class="loader-contenido">
+    <div
+        class="intro"
+        id="intro"
+    >
 
-            <div class="loader-logo">
-                Kochi Kochi
+        <div class="decor one">
+            <i class="fa-solid fa-heart"></i>
+        </div>
+
+        <div class="decor two">
+            <i class="fa-solid fa-star"></i>
+        </div>
+
+        <div class="decor three">
+            <i class="fa-solid fa-heart"></i>
+        </div>
+
+        <div class="decor four">
+            <i class="fa-solid fa-star"></i>
+        </div>
+
+
+        <div class="intro-card">
+
+            <img
+                class="intro-logo"
+                src="img/logo-kochi-kochi.png"
+                alt="Logo Kochi Kochi"
+            >
+
+
+            <div class="intro-small">
+                Welcome to
             </div>
 
-            <div class="loader-linea"></div>
 
-            <p>Pastelería artesanal</p>
+            <h1 class="intro-title">
+                KOCHI
+                <br>
+                KOCHI
+            </h1>
+
+
+            <p class="intro-slogan">
+                el postre te lo dice ♡
+            </p>
+
+
+            <button
+                class="enter-button"
+                id="enterButton"
+            >
+
+                Entrar a Kochi Kochi
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+
+            <p class="intro-note">
+                ♫ Un pequeño momento antes de entrar
+            </p>
 
         </div>
 
     </div>
 
 
-    <!-- =========================================
-         NAVBAR
-    ========================================== -->
+
+    <!-- =========================================================
+         AUDIO DE INTRO
+    ========================================================== -->
+
+    <audio
+        id="introAudio"
+        preload="auto"
+    >
+
+        <source
+            src="intro-kochi.ogg"
+            type="audio/ogg"
+        >
+
+    </audio>
+
+
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
 
     <header id="header">
 
-        <nav class="nav">
+        <div class="nav-container">
 
-            <a href="#inicio" class="logo">
-                KOCHI KOCHI
-                <span>PASTELERÍA ARTESANAL</span>
+
+            <a
+                href="#inicio"
+                class="logo"
+            >
+
+                <img
+                    src="img/logo-kochi-kochi.png"
+                    alt="Kochi Kochi"
+                >
+
+                Kochi Kochi
+
             </a>
 
-            <button class="menu-btn" id="menuBtn">
+
+            <button
+                class="mobile-button"
+                id="mobileButton"
+                aria-label="Abrir menú"
+            >
+
                 <i class="fa-solid fa-bars"></i>
+
             </button>
 
-            <ul class="nav-links" id="navLinks">
 
-                <li>
-                    <a href="#inicio">Inicio</a>
-                </li>
+            <nav id="nav">
 
-                <li>
-                    <a href="#nosotros">Nosotros</a>
-                </li>
+                <a href="#inicio">
+                    Inicio
+                </a>
 
-                <li>
-                    <a href="#productos">Pasteles</a>
-                </li>
+                <a href="#especialidades">
+                    Especialidades
+                </a>
 
-                <li>
-                    <a href="#galeria">Galería</a>
-                </li>
+                <a href="#historia">
+                    Nosotros
+                </a>
 
-                <li>
-                    <a href="#contacto">Contacto</a>
-                </li>
+                <a href="#musica">
+                    Música
+                </a>
 
-            </ul>
+                <a href="#contacto">
+                    Contacto
+                </a>
 
-            <div class="nav-icon">
+            </nav>
 
-                <button onclick="mostrarMensaje('Próximamente: buscador')">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-
-                <button onclick="mostrarMensaje('Tu carrito está vacío')">
-                    <i class="fa-solid fa-bag-shopping"></i>
-                </button>
-
-            </div>
-
-        </nav>
+        </div>
 
     </header>
 
 
-    <!-- =========================================
+
+    <!-- =========================================================
          HERO
-    ========================================== -->
+    ========================================================== -->
 
-    <section class="hero" id="inicio">
+    <main id="inicio">
 
-        <div class="hero-texto">
+        <section class="hero">
 
-            <div class="mini-titulo">
-                Bienvenida a Kochi Kochi
+            <div class="hero-container">
+
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+
+                        <span></span>
+
+                        Bakery artesanal
+
+                        <span></span>
+
+                    </div>
+
+
+                    <h1>
+
+                        Dulces
+                        <em>momentos.</em>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Bienvenido a Kochi Kochi, un pequeño rincón
+                        donde los postres, los detalles y los momentos
+                        bonitos se encuentran en un mismo lugar.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#especialidades"
+                            class="btn btn-primary"
+                        >
+
+                            Ver especialidades
+
+                            <i class="fa-solid fa-arrow-down"></i>
+
+                        </a>
+
+
+                        <a
+                            href="#historia"
+                            class="btn btn-outline"
+                        >
+
+                            Conoce Kochi Kochi
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="hero-image">
+
+                    <div class="hero-image-box">
+
+
+                        <div class="floating-heart heart-one">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+
+                        <div class="floating-heart heart-two">
+                            <i class="fa-solid fa-heart"></i>
+                        </div>
+
+
+                        <div class="cake-illustration">
+
+                            <div class="cherry"></div>
+
+                            <div class="cake-top"></div>
+
+                            <div class="cake-cream"></div>
+
+                            <div class="cake-bottom"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <h1>
-                Dulces
-                <span>momentos.</span>
-            </h1>
+        </section>
 
-            <p class="hero-descripcion">
 
-                Creamos pasteles y pequeños detalles dulces
-                pensados para acompañar tus momentos más
-                especiales. Cada creación nace de ingredientes
-                seleccionados, creatividad y mucho amor.
 
+        <!-- =====================================================
+             SLOGAN
+        ====================================================== -->
+
+        <section class="slogan reveal">
+
+            <p class="slogan-small">
+                Kochi Kochi
             </p>
 
-            <div class="hero-botones">
 
-                <a href="#productos" class="btn btn-principal">
-                    Ver colección
-                </a>
+            <h2>
 
-                <a href="#nosotros" class="btn btn-secundario">
-                    Nuestra historia
-                </a>
+                Kochi kochi,
+
+                <br>
+
+                <span>
+                    el postre te lo dice.
+                </span>
+
+            </h2>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ESPECIALIDADES
+        ====================================================== -->
+
+        <section
+            class="section"
+            id="especialidades"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-header reveal">
+
+                    <p class="section-label">
+                        Hecho con cariño
+                    </p>
+
+                    <h2 class="section-title">
+                        Pequeñas cosas,
+                        grandes sonrisas.
+                    </h2>
+
+                    <p class="section-text">
+
+                        Cada creación de Kochi Kochi está pensada
+                        para convertir un momento cualquiera en
+                        uno especial.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="features">
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-icon">
+
+                            <i class="fa-solid fa-cake-candles"></i>
+
+                        </div>
+
+                        <h3>
+                            Pasteles
+                        </h3>
+
+                        <p>
+
+                            Pasteles preparados para celebrar
+                            cumpleaños, reuniones y todos esos
+                            días que merecen algo dulce.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-icon">
+
+                            <i class="fa-solid fa-cookie-bite"></i>
+
+                        </div>
+
+                        <h3>
+                            Galletas
+                        </h3>
+
+                        <p>
+
+                            Pequeñas, bonitas y perfectas para
+                            acompañar una tarde tranquila.
+
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="feature-card reveal">
+
+                        <div class="feature-icon">
+
+                            <i class="fa-solid fa-heart"></i>
+
+                        </div>
+
+                        <h3>
+                            Mucho cariño
+                        </h3>
+
+                        <p>
+
+                            Porque creemos que un postre también
+                            puede contar una historia.
+
+                        </p>
+
+                    </article>
+
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <div class="hero-imagen">
 
-            <img
-                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=85"
-                alt="Pastel de Kochi Kochi"
+        <!-- =====================================================
+             PRODUCTOS
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-container">
+
+
+                <div class="section-header reveal">
+
+                    <p class="section-label">
+                        Nuestro menú
+                    </p>
+
+                    <h2 class="section-title">
+                        Algo dulce
+                        para ti.
+                    </h2>
+
+                </div>
+
+
+
+                <div class="products">
+
+
+                    <article class="product reveal">
+
+                        <div class="product-image cake-product">
+
+                            <span class="product-badge">
+                                FAVORITO
+                            </span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <h3>
+                                Pastel Kochi
+                            </h3>
+
+                            <p>
+                                Suave, delicado y perfecto
+                                para compartir.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="price">
+                                    $280 MXN
+                                </span>
+
+                                <button
+                                    class="order-button"
+                                    data-product="Pastel Kochi"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="product reveal">
+
+                        <div class="product-image cookie-product">
+
+                            <span class="product-badge">
+                                NUEVO
+                            </span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <h3>
+                                Galletas
+                            </h3>
+
+                            <p>
+                                Crujientes por fuera y suaves
+                                por dentro.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="price">
+                                    $85 MXN
+                                </span>
+
+                                <button
+                                    class="order-button"
+                                    data-product="Galletas Kochi"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="product reveal">
+
+                        <div class="product-image cupcake-product">
+
+                            <span class="product-badge">
+                                ESPECIAL
+                            </span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <h3>
+                                Cupcakes
+                            </h3>
+
+                            <p>
+                                Pequeños detalles para hacer
+                                grande cualquier celebración.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="price">
+                                    $55 MXN
+                                </span>
+
+                                <button
+                                    class="order-button"
+                                    data-product="Cupcake Kochi"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="product reveal">
+
+                        <div class="product-image strawberry-product">
+
+                            <span class="product-badge">
+                                TEMPORADA
+                            </span>
+
+                        </div>
+
+                        <div class="product-info">
+
+                            <h3>
+                                Fresa dulce
+                            </h3>
+
+                            <p>
+                                Una combinación fresca,
+                                dulce y delicada.
+                            </p>
+
+                            <div class="product-bottom">
+
+                                <span class="price">
+                                    $120 MXN
+                                </span>
+
+                                <button
+                                    class="order-button"
+                                    data-product="Fresa Dulce"
+                                >
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             HISTORIA
+        ====================================================== -->
+
+        <section
+            class="section story"
+            id="historia"
+        >
+
+            <div class="section-container">
+
+
+                <div class="story-grid">
+
+
+                    <div class="story-art reveal"></div>
+
+
+                    <div class="story-content reveal">
+
+                        <p class="section-label">
+                            Nuestra historia
+                        </p>
+
+                        <h2>
+                            Un poquito de
+                            nosotros.
+                        </h2>
+
+                        <p>
+
+                            Kochi Kochi nace de una idea sencilla:
+                            hacer que los postres se sientan
+                            especiales.
+
+                        </p>
+
+                        <p>
+
+                            No buscamos solamente preparar algo
+                            dulce. Queremos crear pequeños
+                            recuerdos alrededor de una mesa,
+                            una celebración o simplemente una
+                            tarde cualquiera.
+
+                        </p>
+
+                        <p>
+
+                            Porque a veces no necesitas una gran
+                            ocasión para disfrutar algo bonito.
+
+                        </p>
+
+                        <a
+                            href="#contacto"
+                            class="btn btn-primary"
+                        >
+
+                            Escríbenos
+
+                            <i class="fa-solid fa-heart"></i>
+
+                        </a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             GALERÍA
+        ====================================================== -->
+
+        <section class="section">
+
+            <div class="section-container">
+
+
+                <div class="section-header reveal">
+
+                    <p class="section-label">
+                        El mundo Kochi Kochi
+                    </p>
+
+                    <h2 class="section-title">
+                        Dulzura en cada detalle.
+                    </h2>
+
+                </div>
+
+
+                <div class="gallery">
+
+
+                    <div class="gallery-item reveal">
+
+                        <i class="fa-solid fa-cake-candles"></i>
+
+                    </div>
+
+
+                    <div class="gallery-item reveal">
+
+                        <i class="fa-solid fa-heart"></i>
+
+                    </div>
+
+
+                    <div class="gallery-item reveal">
+
+                        <i class="fa-solid fa-cookie-bite"></i>
+
+                    </div>
+
+
+                    <div class="gallery-item reveal">
+
+                        <i class="fa-solid fa-strawberry"></i>
+
+                    </div>
+
+
+                    <div class="gallery-item reveal">
+
+                        <i class="fa-solid fa-mug-hot"></i>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             MÚSICA
+        ====================================================== -->
+
+        <section
+            class="section music-section"
+            id="musica"
+        >
+
+            <div class="section-container">
+
+
+                <div class="music-grid">
+
+
+                    <div class="music-content reveal">
+
+                        <p class="section-label">
+                            Una canción para acompañar
+                        </p>
+
+                        <h2 class="section-title">
+                            Konnichiwa
+                            Sayonara.
+                        </h2>
+
+                        <p class="section-text">
+
+                            Una pequeña canción para acompañar
+                            la experiencia de Kochi Kochi.
+
+                        </p>
+
+
+                        <div class="music-controls">
+
+                            <button
+                                class="music-button"
+                                id="musicButton"
+                                aria-label="Reproducir música"
+                            >
+
+                                <i
+                                    class="fa-solid fa-play"
+                                    id="musicIcon"
+                                ></i>
+
+                            </button>
+
+
+                            <span
+                                class="music-status"
+                                id="musicStatus"
+                            >
+                                Reproducir
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="music-cover reveal">
+
+                        <img
+                            src="img/logo-kochi-kochi.png"
+                            alt="Kochi Kochi"
+                        >
+
+                        <div class="music-center"></div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             AUDIO PRINCIPAL
+        ====================================================== -->
+
+        <audio
+            id="mainAudio"
+            preload="none"
+        >
+
+            <source
+                src="intro-kochi.ogg"
+                type="audio/ogg"
             >
 
-            <div class="hero-flotante">
-
-                <strong>Hecho con amor</strong>
-
-                <small>
-                    CADA CREACIÓN ES ÚNICA
-                </small>
-
-            </div>
-
-        </div>
-
-    </section>
+        </audio>
 
 
-    <!-- =========================================
-         INTRO
-    ========================================== -->
 
-    <section class="intro reveal" id="nosotros">
+        <!-- =====================================================
+             RESEÑAS
+        ====================================================== -->
 
-        <div class="seccion-mini">
-            Sobre Kochi Kochi
-        </div>
+        <section class="section">
 
-        <h2 class="titulo-seccion">
-            Una pequeña pastelería<br>
-            hecha con mucho amor
-        </h2>
-
-        <p class="intro-texto">
-
-            Creemos que un postre puede transformar un momento
-            común en un recuerdo extraordinario. Por eso cuidamos
-            cada detalle, desde la selección de nuestros ingredientes
-            hasta la decoración final.
-
-        </p>
+            <div class="section-container">
 
 
-        <div class="caracteristicas">
+                <div class="section-header reveal">
 
-            <div class="caracteristica">
-
-                <div class="caracteristica-icono">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-
-                <h3>Hecho con amor</h3>
-
-                <p>
-                    Cada pastel es preparado cuidadosamente
-                    y pensado para alguien especial.
-                </p>
-
-            </div>
-
-
-            <div class="caracteristica">
-
-                <div class="caracteristica-icono">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i>
-                </div>
-
-                <h3>Diseños únicos</h3>
-
-                <p>
-                    Creamos diseños personalizados para que
-                    cada celebración sea diferente.
-                </p>
-
-            </div>
-
-
-            <div class="caracteristica">
-
-                <div class="caracteristica-icono">
-                    <i class="fa-solid fa-seedling"></i>
-                </div>
-
-                <h3>Ingredientes selectos</h3>
-
-                <p>
-                    Elegimos ingredientes de calidad para
-                    conseguir sabores inolvidables.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         PRODUCTOS
-    ========================================== -->
-
-    <section class="productos" id="productos">
-
-        <div class="encabezado-productos reveal">
-
-            <div>
-
-                <div class="seccion-mini">
-                    Nuestra colección
-                </div>
-
-                <h2 class="titulo-seccion">
-                    Pequeñas obras<br>
-                    de arte.
-                </h2>
-
-            </div>
-
-            <a href="#contacto" class="btn btn-secundario">
-                Hacer un pedido
-            </a>
-
-        </div>
-
-
-        <div class="productos-grid">
-
-
-            <article class="producto reveal">
-
-                <div class="producto-imagen">
-
-                    <span class="producto-etiqueta">
-                        FAVORITO
-                    </span>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=85"
-                        alt="Pastel de chocolate"
-                    >
-
-                </div>
-
-                <div class="producto-info">
-
-                    <h3>Chocolate Velvet</h3>
-
-                    <p>
-                        Chocolate intenso, crema suave y decoración artesanal.
+                    <p class="section-label">
+                        Lo que dicen
                     </p>
 
-                    <div class="producto-abajo">
+                    <h2 class="section-title">
+                        Momentos que
+                        nos hacen sonreír.
+                    </h2>
 
-                        <span class="precio">
-                            Desde $480
+                </div>
+
+
+                <div class="reviews">
+
+
+                    <article class="review reveal">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+
+                            “Un lugar bonito, dulce y con
+                            muchísimo encanto.”
+
+                        </p>
+
+                        <span class="review-name">
+                            Cliente Kochi
                         </span>
 
-                        <button
-                            class="producto-btn"
-                            onclick="agregarProducto('Chocolate Velvet')"
-                        >
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
+                    </article>
+
+
+
+                    <article class="review reveal">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+
+                            “Los pequeños detalles hacen que
+                            todo se sienta especial.”
+
+                        </p>
+
+                        <span class="review-name">
+                            Cliente Kochi
+                        </span>
+
+                    </article>
+
+
+
+                    <article class="review reveal">
+
+                        <div class="stars">
+                            ★★★★★
+                        </div>
+
+                        <p>
+
+                            “El postre realmente te lo dice.”
+
+                        </p>
+
+                        <span class="review-name">
+                            Cliente Kochi
+                        </span>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CONTACTO
+        ====================================================== -->
+
+        <section
+            class="section contact"
+            id="contacto"
+        >
+
+            <div class="section-container">
+
+
+                <div class="section-header reveal">
+
+                    <p class="section-label">
+                        Estamos para ti
+                    </p>
+
+                    <h2 class="section-title">
+                        Hablemos.
+                    </h2>
+
+                    <p class="section-text">
+
+                        ¿Quieres hacer un pedido, preguntar algo
+                        o simplemente decir hola?
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="contact-grid">
+
+
+                    <div class="contact-info reveal">
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Visítanos
+                                </strong>
+
+                                <span>
+                                    Tu dirección aquí
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+
+                                <i class="fa-solid fa-phone"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Teléfono
+                                </strong>
+
+                                <span>
+                                    000 000 0000
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Correo
+                                </strong>
+
+                                <span>
+                                    hola@kochikochi.com
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="contact-item">
+
+                            <div class="contact-icon">
+
+                                <i class="fa-solid fa-clock"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Horario
+                                </strong>
+
+                                <span>
+                                    Lunes - Sábado · 10:00 - 20:00
+                                </span>
+
+                            </div>
+
+                        </div>
+
 
                     </div>
 
-                </div>
-
-            </article>
 
 
-            <article class="producto reveal">
-
-                <div class="producto-imagen">
-
-                    <span class="producto-etiqueta">
-                        NUEVO
-                    </span>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=700&q=85"
-                        alt="Cupcakes"
+                    <form
+                        class="contact-form reveal"
+                        id="contactForm"
                     >
 
-                </div>
 
-                <div class="producto-info">
+                        <div class="input-group">
 
-                    <h3>Pink Cupcakes</h3>
+                            <label for="nombre">
+                                Nombre
+                            </label>
 
-                    <p>
-                        Cupcakes suaves con frosting de vainilla.
-                    </p>
+                            <input
+                                type="text"
+                                id="nombre"
+                                placeholder="Tu nombre"
+                                required
+                            >
 
-                    <div class="producto-abajo">
+                        </div>
 
-                        <span class="precio">
-                            Desde $180
-                        </span>
+
+                        <div class="input-group">
+
+                            <label for="email">
+                                Correo
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="tu@email.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="input-group">
+
+                            <label for="mensaje">
+                                Mensaje
+                            </label>
+
+                            <textarea
+                                id="mensaje"
+                                placeholder="Cuéntanos..."
+                                required
+                            ></textarea>
+
+                        </div>
+
 
                         <button
-                            class="producto-btn"
-                            onclick="agregarProducto('Pink Cupcakes')"
+                            type="submit"
+                            class="btn btn-primary"
                         >
-                            <i class="fa-solid fa-plus"></i>
+
+                            Enviar mensaje
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
                         </button>
 
-                    </div>
+
+                    </form>
+
 
                 </div>
 
-            </article>
-
-
-            <article class="producto reveal">
-
-                <div class="producto-imagen">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1558636508-e0db3814bd1d?auto=format&fit=crop&w=700&q=85"
-                        alt="Pastel decorado"
-                    >
-
-                </div>
-
-                <div class="producto-info">
-
-                    <h3>Rose Cake</h3>
-
-                    <p>
-                        Nuestro clásico pastel inspirado en flores.
-                    </p>
-
-                    <div class="producto-abajo">
-
-                        <span class="precio">
-                            Desde $520
-                        </span>
-
-                        <button
-                            class="producto-btn"
-                            onclick="agregarProducto('Rose Cake')"
-                        >
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <article class="producto reveal">
-
-                <div class="producto-imagen">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1599785209707-a456fc1337bb?auto=format&fit=crop&w=700&q=85"
-                        alt="Pastel de fresa"
-                    >
-
-                </div>
-
-                <div class="producto-info">
-
-                    <h3>Strawberry Dream</h3>
-
-                    <p>
-                        Fresas, crema y bizcocho suave.
-                    </p>
-
-                    <div class="producto-abajo">
-
-                        <span class="precio">
-                            Desde $450
-                        </span>
-
-                        <button
-                            class="producto-btn"
-                            onclick="agregarProducto('Strawberry Dream')"
-                        >
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         HISTORIA
-    ========================================== -->
-
-    <section class="historia">
-
-        <div class="historia-imagen">
-
-            <img
-                src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=1200&q=85"
-                alt="Pastelería artesanal"
-            >
-
-        </div>
-
-
-        <div class="historia-texto reveal">
-
-            <div class="seccion-mini">
-                Nuestra historia
             </div>
 
-            <h2 class="titulo-seccion">
-                Todo comenzó<br>
-                con un pequeño sueño.
+        </section>
+
+
+
+        <!-- =====================================================
+             NEWSLETTER
+        ====================================================== -->
+
+        <section class="newsletter reveal">
+
+            <h2>
+                Algo dulce está por venir.
             </h2>
 
             <p>
-
-                Kochi Kochi nació de una idea sencilla:
-                crear postres que no solamente fueran bonitos,
-                sino que también hicieran sentir algo.
-
+                Déjanos tu correo para recibir novedades de Kochi Kochi.
             </p>
 
-            <p>
 
-                Desde nuestras primeras recetas hasta las
-                creaciones actuales, seguimos creyendo que
-                los mejores momentos vienen acompañados
-                de algo dulce.
+            <form
+                class="newsletter-form"
+                id="newsletterForm"
+            >
 
-            </p>
-
-            <div class="firma">
-                Con cariño, Kochi Kochi ♡
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         GALERIA
-    ========================================== -->
-
-    <section class="galeria" id="galeria">
-
-        <div class="seccion-mini">
-            Un vistazo a nuestro mundo
-        </div>
-
-        <h2 class="titulo-seccion">
-            Hecho para celebrar.
-        </h2>
-
-
-        <div class="galeria-grid">
-
-            <div class="galeria-item">
-                <img
-                    src="https://images.unsplash.com/photo-1558301211-0d8c8ddee6ec?auto=format&fit=crop&w=900&q=85"
-                    alt="Pastelería"
+                <input
+                    type="email"
+                    placeholder="Tu correo electrónico"
+                    required
                 >
-            </div>
 
-            <div class="galeria-item">
-                <img
-                    src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85"
-                    alt="Postre"
+                <button
+                    type="submit"
+                    class="btn btn-primary"
                 >
-            </div>
 
-            <div class="galeria-item">
-                <img
-                    src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=700&q=85"
-                    alt="Pastel"
-                >
-            </div>
+                    Suscribirme
 
-            <div class="galeria-item">
-                <img
-                    src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=900&q=85"
-                    alt="Pastel artesanal"
-                >
-            </div>
+                </button>
 
-            <div class="galeria-item">
-                <img
-                    src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85"
-                    alt="Chocolate"
-                >
-            </div>
+            </form>
 
-            <div class="galeria-item">
-                <img
-                    src="https://images.unsplash.com/photo-1575377427642-087cf684f04d?auto=format&fit=crop&w=700&q=85"
-                    alt="Cupcakes"
-                >
-            </div>
-
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- =========================================
-         TESTIMONIOS
-    ========================================== -->
-
-    <section class="testimonios">
-
-        <div class="seccion-mini">
-            Lo que dicen de nosotros
-        </div>
-
-        <h2 class="titulo-seccion">
-            Momentos que<br>
-            nos hacen sonreír.
-        </h2>
+    </main>
 
 
-        <div class="testimonios-grid">
 
-
-            <div class="testimonio reveal">
-
-                <div class="estrellas">
-                    ★★★★★
-                </div>
-
-                <p>
-                    “El pastel quedó precioso y estaba
-                    todavía más rico de lo que imaginaba.”
-                </p>
-
-                <strong>
-                    — Sofía
-                </strong>
-
-            </div>
-
-
-            <div class="testimonio reveal">
-
-                <div class="estrellas">
-                    ★★★★★
-                </div>
-
-                <p>
-                    “Kochi Kochi convirtió un cumpleaños
-                    especial en un recuerdo inolvidable.”
-                </p>
-
-                <strong>
-                    — Valeria
-                </strong>
-
-            </div>
-
-
-            <div class="testimonio reveal">
-
-                <div class="estrellas">
-                    ★★★★★
-                </div>
-
-                <p>
-                    “Los detalles, el sabor y la presentación
-                    son simplemente increíbles.”
-                </p>
-
-                <strong>
-                    — Mariana
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         CONTACTO
-    ========================================== -->
-
-    <section class="contacto" id="contacto">
-
-        <div class="seccion-mini">
-            Hagamos algo dulce
-        </div>
-
-        <h2 class="titulo-seccion">
-            ¿Tienes una celebración?
-        </h2>
-
-        <p>
-
-            Cuéntanos qué tienes en mente y juntos podemos
-            crear algo especial para tu momento.
-
-        </p>
-
-
-        <div class="contacto-info">
-
-            <div>
-                <i class="fa-solid fa-phone"></i>
-                000 000 0000
-            </div>
-
-            <div>
-                <i class="fa-solid fa-envelope"></i>
-                hola@kochikochi.com
-            </div>
-
-            <div>
-                <i class="fa-solid fa-location-dot"></i>
-                Veracruz, México
-            </div>
-
-        </div>
-
-
-        <a
-            href="mailto:hola@kochikochi.com"
-            class="btn btn-principal"
-        >
-            Contactarnos
-        </a>
-
-    </section>
-
-
-    <!-- =========================================
+    <!-- =========================================================
          FOOTER
-    ========================================== -->
+    ========================================================== -->
 
     <footer>
 
         <div class="footer-grid">
 
-            <div class="footer-col">
 
-                <div class="footer-logo">
-                    KOCHI KOCHI
-                </div>
+            <div class="footer-brand">
 
-                <p style="margin-top:15px; max-width:280px;">
+                <a
+                    href="#inicio"
+                    class="logo"
+                >
 
-                    Pastelería artesanal creada para
-                    endulzar tus momentos más especiales.
+                    <img
+                        src="img/logo-kochi-kochi.png"
+                        alt="Kochi Kochi"
+                    >
+
+                    Kochi Kochi
+
+                </a>
+
+
+                <p>
+
+                    El postre te lo dice.
+                    Un pequeño espacio para compartir
+                    momentos dulces.
 
                 </p>
 
 
-                <div class="sociales">
+                <div class="socials">
 
-                    <a href="#">
+                    <a
+                        href="#"
+                        class="social"
+                        aria-label="Instagram"
+                    >
+
                         <i class="fa-brands fa-instagram"></i>
+
                     </a>
 
-                    <a href="#">
+
+                    <a
+                        href="#"
+                        class="social"
+                        aria-label="Facebook"
+                    >
+
                         <i class="fa-brands fa-facebook-f"></i>
+
                     </a>
 
-                    <a href="#">
+
+                    <a
+                        href="#"
+                        class="social"
+                        aria-label="TikTok"
+                    >
+
                         <i class="fa-brands fa-tiktok"></i>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        class="social"
+                        aria-label="WhatsApp"
+                    >
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
                     </a>
 
                 </div>
@@ -1743,229 +4312,648 @@
             </div>
 
 
-            <div class="footer-col">
 
-                <h4>Explora</h4>
+            <div class="footer-column">
 
-                <a href="#inicio">Inicio</a>
-                <a href="#nosotros">Nosotros</a>
-                <a href="#productos">Pasteles</a>
-                <a href="#galeria">Galería</a>
+                <h4>
+                    Explora
+                </h4>
+
+                <a href="#inicio">
+                    Inicio
+                </a>
+
+                <a href="#especialidades">
+                    Especialidades
+                </a>
+
+                <a href="#historia">
+                    Nosotros
+                </a>
+
+                <a href="#musica">
+                    Música
+                </a>
+
+            </div>
+
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Ayuda
+                </h4>
+
+                <a href="#contacto">
+                    Contacto
+                </a>
+
+                <a href="#">
+                    Pedidos
+                </a>
+
+                <a href="#">
+                    Preguntas frecuentes
+                </a>
 
             </div>
 
 
-            <div class="footer-col">
 
-                <h4>Ayuda</h4>
+            <div class="footer-column">
 
-                <a href="#">Preguntas frecuentes</a>
-                <a href="#">Pedidos personalizados</a>
-                <a href="#">Entregas</a>
-                <a href="#">Términos</a>
+                <h4>
+                    Kochi Kochi
+                </h4>
 
-            </div>
+                <a href="#">
+                    Privacidad
+                </a>
 
+                <a href="#">
+                    Términos
+                </a>
 
-            <div class="footer-col">
-
-                <h4>Visítanos</h4>
-
-                <p>
-                    Veracruz, México
-                </p>
-
-                <p>
-                    Lunes — Sábado
-                    <br>
-                    10:00 — 19:00
-                </p>
+                <a href="#contacto">
+                    Escríbenos
+                </a>
 
             </div>
+
 
         </div>
 
 
         <div class="copyright">
 
-            © 2026 Kochi Kochi · Todos los derechos reservados.
+            © 2026 Kochi Kochi Bakery · El postre te lo dice ♡
 
         </div>
 
     </footer>
 
 
-    <!-- =========================================
-         TOAST
-    ========================================== -->
 
-    <div class="toast" id="toast">
-        Producto agregado ♡
+    <!-- =========================================================
+         BOTÓN ARRIBA
+    ========================================================== -->
+
+    <button
+        class="top-button"
+        id="topButton"
+        aria-label="Volver arriba"
+    >
+
+        <i class="fa-solid fa-arrow-up"></i>
+
+    </button>
+
+
+
+    <!-- =========================================================
+         TOAST
+    ========================================================== -->
+
+    <div
+        class="toast"
+        id="toast"
+    >
     </div>
 
 
-    <!-- =========================================
+
+    <!-- =========================================================
          JAVASCRIPT
-    ========================================== -->
+    ========================================================== -->
 
     <script>
 
-        /* ================================
-           LOADER
-        ================================= */
 
-        window.addEventListener("load", () => {
+        /* =====================================================
+           ELEMENTOS
+        ====================================================== */
 
-            setTimeout(() => {
+        const intro =
+            document.getElementById("intro");
 
-                document
-                    .getElementById("loader")
-                    .classList
-                    .add("oculto");
+        const enterButton =
+            document.getElementById("enterButton");
 
-            }, 900);
+        const introAudio =
+            document.getElementById("introAudio");
 
-        });
+        const mainAudio =
+            document.getElementById("mainAudio");
 
+        const musicButton =
+            document.getElementById("musicButton");
 
-        /* ================================
-           HEADER AL HACER SCROLL
-        ================================= */
+        const musicIcon =
+            document.getElementById("musicIcon");
 
-        const header = document.getElementById("header");
+        const musicStatus =
+            document.getElementById("musicStatus");
 
-        window.addEventListener("scroll", () => {
+        const header =
+            document.getElementById("header");
 
-            if (window.scrollY > 30) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
+        const mobileButton =
+            document.getElementById("mobileButton");
 
-        });
+        const nav =
+            document.getElementById("nav");
 
+        const topButton =
+            document.getElementById("topButton");
 
-        /* ================================
-           MENU MOVIL
-        ================================= */
-
-        const menuBtn = document.getElementById("menuBtn");
-        const navLinks = document.getElementById("navLinks");
-
-        menuBtn.addEventListener("click", () => {
-
-            navLinks.classList.toggle("activo");
-
-            const icon = menuBtn.querySelector("i");
-
-            if (navLinks.classList.contains("activo")) {
-
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-
-            } else {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
-        });
+        const toast =
+            document.getElementById("toast");
 
 
-        document.querySelectorAll(".nav-links a").forEach(link => {
 
-            link.addEventListener("click", () => {
+        /* =====================================================
+           INTRO
+        ====================================================== */
 
-                navLinks.classList.remove("activo");
+        enterButton.addEventListener(
+            "click",
+            () => {
 
-                const icon = menuBtn.querySelector("i");
+                /*
+                 * El navegador permite reproducir audio
+                 * porque este play ocurre después del clic.
+                 *
+                 * El fragmento seleccionado está alrededor
+                 * de los 10 segundos del audio original.
+                 */
 
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+                introAudio.currentTime = 9.75;
 
-            });
-
-        });
+                introAudio.play()
+                    .catch(() => {});
 
 
-        /* ================================
-           ANIMACIONES REVEAL
-        ================================= */
+                introAudio.addEventListener(
+                    "timeupdate",
+                    function detenerIntro() {
 
-        const elementos = document.querySelectorAll(".reveal");
+                        if (
+                            introAudio.currentTime >= 14.75
+                        ) {
 
-        const observer = new IntersectionObserver(
+                            introAudio.pause();
 
-            entradas => {
+                            introAudio.removeEventListener(
+                                "timeupdate",
+                                detenerIntro
+                            );
 
-                entradas.forEach(entrada => {
-
-                    if (entrada.isIntersecting) {
-
-                        entrada.target.classList.add("visible");
-
-                        observer.unobserve(entrada.target);
+                        }
 
                     }
+                );
 
-                });
 
-            },
+                intro.classList.add("hidden");
 
-            {
-                threshold: .12
+                document.body.classList.remove("no-scroll");
+
             }
-
         );
 
 
-        elementos.forEach(elemento => {
+        /*
+         * Evitamos que la página pueda desplazarse
+         * mientras la intro está visible.
+         */
 
-            observer.observe(elemento);
-
-        });
+        document.body.classList.add("no-scroll");
 
 
-        /* ================================
+
+        /* =====================================================
+           MENÚ MÓVIL
+        ====================================================== */
+
+        mobileButton.addEventListener(
+            "click",
+            () => {
+
+                nav.classList.toggle("active");
+
+
+                const icon =
+                    mobileButton.querySelector("i");
+
+
+                if (nav.classList.contains("active")) {
+
+                    icon.className =
+                        "fa-solid fa-xmark";
+
+                } else {
+
+                    icon.className =
+                        "fa-solid fa-bars";
+
+                }
+
+            }
+        );
+
+
+        nav.querySelectorAll("a").forEach(
+            link => {
+
+                link.addEventListener(
+                    "click",
+                    () => {
+
+                        nav.classList.remove("active");
+
+                        mobileButton
+                            .querySelector("i")
+                            .className =
+                            "fa-solid fa-bars";
+
+                    }
+                );
+
+            }
+        );
+
+
+
+        /* =====================================================
+           HEADER AL HACER SCROLL
+        ====================================================== */
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 40) {
+
+                    header.classList.add("scrolled");
+
+                } else {
+
+                    header.classList.remove("scrolled");
+
+                }
+
+
+                if (window.scrollY > 500) {
+
+                    topButton.classList.add("show");
+
+                } else {
+
+                    topButton.classList.remove("show");
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           BOTÓN ARRIBA
+        ====================================================== */
+
+        topButton.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+
+
+        /* =====================================================
+           ANIMACIONES REVEAL
+        ====================================================== */
+
+        const revealElements =
+            document.querySelectorAll(".reveal");
+
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(
+                        entry => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target.classList.add(
+                                    "active"
+                                );
+
+                                revealObserver.unobserve(
+                                    entry.target
+                                );
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: .12
+                }
+            );
+
+
+        revealElements.forEach(
+            element => {
+
+                revealObserver.observe(element);
+
+            }
+        );
+
+
+
+        /* =====================================================
            TOAST
-        ================================= */
+        ====================================================== */
 
         let toastTimer;
 
-        function mostrarMensaje(texto) {
 
-            const toast = document.getElementById("toast");
+        function showToast(message) {
 
-            toast.textContent = texto;
+            toast.textContent = message;
 
-            toast.classList.add("mostrar");
+            toast.classList.add("show");
+
 
             clearTimeout(toastTimer);
 
-            toastTimer = setTimeout(() => {
 
-                toast.classList.remove("mostrar");
+            toastTimer =
+                setTimeout(
+                    () => {
 
-            }, 2500);
+                        toast.classList.remove("show");
+
+                    },
+                    2500
+                );
 
         }
 
 
-        /* ================================
+
+        /* =====================================================
            PRODUCTOS
-        ================================= */
+        ====================================================== */
 
-        function agregarProducto(nombre) {
+        document
+            .querySelectorAll(".order-button")
+            .forEach(
+                button => {
 
-            mostrarMensaje(
-                nombre + " agregado al carrito ♡"
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            const product =
+                                button.dataset.product;
+
+
+                            showToast(
+                                product +
+                                " agregado a tu pedido ♡"
+                            );
+
+
+                            button.innerHTML =
+                                '<i class="fa-solid fa-check"></i>';
+
+
+                            setTimeout(
+                                () => {
+
+                                    button.innerHTML =
+                                        '<i class="fa-solid fa-plus"></i>';
+
+                                },
+                                1800
+                            );
+
+                        }
+                    );
+
+                }
             );
 
-        }
+
+
+        /* =====================================================
+           MÚSICA
+        ====================================================== */
+
+        let musicPlaying = false;
+
+
+        musicButton.addEventListener(
+            "click",
+            () => {
+
+                if (!musicPlaying) {
+
+                    mainAudio.currentTime = 9.75;
+
+                    mainAudio.play()
+                        .then(
+                            () => {
+
+                                musicPlaying = true;
+
+                                musicIcon.className =
+                                    "fa-solid fa-pause";
+
+                                musicStatus.textContent =
+                                    "Reproduciendo";
+
+                            }
+                        )
+                        .catch(
+                            () => {
+
+                                showToast(
+                                    "No se pudo reproducir el audio."
+                                );
+
+                            }
+                        );
+
+                } else {
+
+                    mainAudio.pause();
+
+                    musicPlaying = false;
+
+                    musicIcon.className =
+                        "fa-solid fa-play";
+
+                    musicStatus.textContent =
+                        "Reproducir";
+
+                }
+
+            }
+        );
+
+
+        mainAudio.addEventListener(
+            "timeupdate",
+            () => {
+
+                if (
+                    mainAudio.currentTime >= 14.75
+                ) {
+
+                    mainAudio.pause();
+
+                    musicPlaying = false;
+
+                    musicIcon.className =
+                        "fa-solid fa-play";
+
+                    musicStatus.textContent =
+                        "Reproducir";
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           FORMULARIO CONTACTO
+        ====================================================== */
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+
+        contactForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                showToast(
+                    "¡Mensaje preparado! Gracias por escribirnos ♡"
+                );
+
+
+                contactForm.reset();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           NEWSLETTER
+        ====================================================== */
+
+        const newsletterForm =
+            document.getElementById(
+                "newsletterForm"
+            );
+
+
+        newsletterForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                showToast(
+                    "¡Listo! Te esperamos en Kochi Kochi ♡"
+                );
+
+
+                newsletterForm.reset();
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CERRAR INTRO SI EL AUDIO TERMINA
+        ====================================================== */
+
+        introAudio.addEventListener(
+            "ended",
+            () => {
+
+                if (
+                    !intro.classList.contains("hidden")
+                ) {
+
+                    intro.classList.add("hidden");
+
+                    document.body.classList.remove(
+                        "no-scroll"
+                    );
+
+                }
+
+            }
+        );
+
+
+
+        /* =====================================================
+           CARGA INICIAL
+        ====================================================== */
+
+        window.addEventListener(
+            "load",
+            () => {
+
+                /*
+                 * Pequeña protección para que la intro
+                 * no desaparezca antes de tiempo.
+                 */
+
+                setTimeout(
+                    () => {
+
+                        intro.style.opacity = "1";
+
+                    },
+                    100
+                );
+
+            }
+        );
 
 
     </script>
 
+
 </body>
+
 </html>
