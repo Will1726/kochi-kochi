@@ -6,32 +6,34 @@
 
 <title>Kochi Kochi | Bakery</title>
 
-<meta name="description" content="Kochi Kochi - El postre te lo dice. Pasteles, postres y mucho amor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* =========================================================
-   KOCHI KOCHI BAKERY
-   TODO EL DISEÑO ESTÁ EN ESTE ARCHIVO
-   ========================================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap');
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 :root{
-    --rosa:#f39ab7;
-    --rosa-oscuro:#d96389;
-    --rosa-claro:#ffe8ef;
-    --rosa-muy-claro:#fff7f9;
-    --crema:#fffaf6;
+    --rosa:#f39ab9;
+    --rosa-claro:#ffdce8;
+    --rosa-suave:#fff1f6;
+    --rosa-oscuro:#c85c83;
+    --rosa-profundo:#a94069;
+    --crema:#fffaf7;
     --blanco:#ffffff;
-    --texto:#3d3035;
-    --texto-suave:#806e75;
-    --negro:#241d20;
-    --borde:#f1d8df;
-    --sombra:0 15px 45px rgba(100,45,65,.10);
-    --sombra-fuerte:0 25px 70px rgba(100,45,65,.16);
+    --texto:#49373e;
+    --texto-suave:#806d74;
+    --sombra:0 15px 45px rgba(150,75,100,.13);
     --radio:24px;
-    --trans:.35s cubic-bezier(.2,.8,.2,1);
+    --transicion:.35s ease;
 }
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     margin:0;
@@ -44,7 +46,7 @@ html{
 }
 
 body{
-    font-family:'DM Sans',sans-serif;
+    font-family:'Montserrat',sans-serif;
     background:var(--crema);
     color:var(--texto);
     overflow-x:hidden;
@@ -76,251 +78,182 @@ img{
 
 /* =========================================================
    SCROLLBAR
-   ========================================================= */
+========================================================= */
 
 ::-webkit-scrollbar{
     width:9px;
 }
 
 ::-webkit-scrollbar-track{
-    background:#fff1f5;
+    background:#fff0f5;
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#e58ba8;
+    background:#e995b1;
     border-radius:20px;
 }
 
+::-webkit-scrollbar-thumb:hover{
+    background:#c85c83;
+}
+
 /* =========================================================
-   PANTALLA DE BIENVENIDA
-   EL AUDIO EXISTE SOLAMENTE AQUÍ
-   ========================================================= */
+   INTRO
+========================================================= */
 
 #intro{
     position:fixed;
     inset:0;
     z-index:99999;
     background:
-        radial-gradient(circle at 15% 20%,rgba(255,255,255,.8),transparent 25%),
-        radial-gradient(circle at 85% 80%,rgba(255,255,255,.65),transparent 25%),
-        linear-gradient(135deg,#ffdce8,#f8abc4);
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.9),transparent 25%),
+        radial-gradient(circle at 80% 80%,rgba(255,191,213,.5),transparent 30%),
+        linear-gradient(135deg,#ffeef4,#ffd4e3,#fff7fa);
     display:flex;
-    justify-content:center;
     align-items:center;
-    padding:25px;
-    overflow:auto;
-    transition:
-        opacity .8s ease,
-        visibility .8s ease,
-        transform .8s ease;
+    justify-content:center;
+    transition:opacity .8s ease,visibility .8s ease;
 }
 
-#intro.ocultar{
+#intro.hide{
     opacity:0;
     visibility:hidden;
     pointer-events:none;
-    transform:scale(1.04);
 }
 
-.intro-decoracion{
+.intro-decor{
     position:absolute;
     border-radius:50%;
-    background:rgba(255,255,255,.25);
-    pointer-events:none;
+    background:rgba(255,255,255,.45);
+    filter:blur(2px);
 }
 
-.intro-decoracion.d1{
-    width:280px;
-    height:280px;
+.intro-decor.one{
+    width:250px;
+    height:250px;
     top:-80px;
-    left:-70px;
+    left:-80px;
 }
 
-.intro-decoracion.d2{
-    width:380px;
-    height:380px;
-    right:-140px;
+.intro-decor.two{
+    width:330px;
+    height:330px;
     bottom:-130px;
+    right:-100px;
 }
 
-.intro-decoracion.d3{
-    width:100px;
-    height:100px;
-    right:15%;
-    top:12%;
-}
-
-.intro-contenido{
-    width:min(650px,100%);
+.intro-card{
+    width:min(500px,90%);
     text-align:center;
     position:relative;
     z-index:2;
-    animation:introEntrada 1s ease both;
+    animation:introUp 1s ease;
 }
 
-@keyframes introEntrada{
+@keyframes introUp{
     from{
         opacity:0;
-        transform:translateY(30px) scale(.96);
+        transform:translateY(35px);
     }
     to{
         opacity:1;
-        transform:none;
+        transform:translateY(0);
     }
 }
 
 .intro-logo{
-    width:180px;
-    height:180px;
-    object-fit:contain;
-    margin:0 auto 18px;
+    width:230px;
+    height:230px;
+    object-fit:cover;
     border-radius:50%;
-    filter:drop-shadow(0 15px 20px rgba(100,30,55,.18));
-    animation:logoFlota 4s ease-in-out infinite;
+    margin:0 auto 28px;
+    box-shadow:
+        0 25px 60px rgba(170,75,105,.2),
+        0 0 0 10px rgba(255,255,255,.5);
 }
 
-@keyframes logoFlota{
-    0%,100%{
-        transform:translateY(0) rotate(-1deg);
-    }
-    50%{
-        transform:translateY(-8px) rotate(1deg);
-    }
+.intro-title{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(3rem,8vw,5rem);
+    color:var(--rosa-profundo);
+    line-height:.95;
+    margin-bottom:15px;
 }
 
-.intro-titulo{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(42px,8vw,76px);
-    line-height:1;
-    color:#fff;
-    text-shadow:0 5px 20px rgba(130,50,75,.15);
-    margin-bottom:8px;
-}
-
-.intro-slogan{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(18px,3vw,25px);
-    color:#fff;
-    margin-bottom:25px;
-}
-
-.audio-box{
-    width:min(440px,100%);
-    margin:0 auto 25px;
-    padding:20px;
-    border:1px solid rgba(255,255,255,.65);
-    background:rgba(255,255,255,.72);
-    backdrop-filter:blur(15px);
-    border-radius:25px;
-    box-shadow:0 20px 45px rgba(110,45,70,.15);
-}
-
-.audio-label{
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1.5px;
+.intro-subtitle{
+    color:#765c65;
+    font-size:.95rem;
+    letter-spacing:3px;
     text-transform:uppercase;
-    color:var(--rosa-oscuro);
-    margin-bottom:10px;
+    margin-bottom:35px;
 }
 
-.audio-nombre{
-    font-family:'Playfair Display',serif;
-    font-size:22px;
-    color:var(--texto);
-    margin-bottom:13px;
-}
-
-.audio-box audio{
-    width:100%;
-    height:42px;
-}
-
-.entrar-btn{
+#enterBtn{
     border:none;
-    background:#fff;
-    color:var(--rosa-oscuro);
-    padding:16px 32px;
-    min-width:180px;
+    background:var(--rosa-profundo);
+    color:white;
+    padding:16px 38px;
     border-radius:50px;
-    font-weight:800;
-    font-size:15px;
+    font-size:.9rem;
+    font-weight:700;
     letter-spacing:1px;
-    box-shadow:0 15px 35px rgba(110,45,70,.17);
-    transition:var(--trans);
+    box-shadow:0 12px 30px rgba(169,64,105,.28);
+    transition:var(--transicion);
 }
 
-.entrar-btn span{
-    display:inline-block;
-    margin-left:7px;
-    transition:var(--trans);
-}
-
-.entrar-btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 20px 40px rgba(110,45,70,.22);
-}
-
-.entrar-btn:hover span{
-    transform:translateX(5px);
-}
-
-.intro-nota{
-    margin-top:14px;
-    font-size:12px;
-    color:rgba(75,40,50,.7);
+#enterBtn:hover{
+    transform:translateY(-4px) scale(1.03);
+    background:#8f3158;
+    box-shadow:0 18px 38px rgba(169,64,105,.35);
 }
 
 /* =========================================================
    HEADER
-   ========================================================= */
+========================================================= */
 
 header{
     position:fixed;
     top:0;
     left:0;
-    right:0;
+    width:100%;
     height:82px;
     z-index:5000;
-    background:rgba(255,250,246,.90);
-    backdrop-filter:blur(16px);
-    border-bottom:1px solid rgba(241,216,223,.75);
-    display:flex;
-    align-items:center;
+    background:rgba(255,250,247,.9);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(200,92,131,.1);
+    transition:.3s ease;
 }
 
 .header-inner{
-    width:min(1400px,92%);
+    max-width:1250px;
+    height:100%;
     margin:auto;
+    padding:0 25px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:20px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex-shrink:0;
-}
-
-.logo-img{
-    width:52px;
-    height:52px;
-    object-fit:contain;
-    border-radius:50%;
+    gap:25px;
 }
 
 .logo-text{
-    font-family:'Playfair Display',serif;
-    font-weight:800;
-    font-size:25px;
-    color:var(--texto);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'DM Serif Display',serif;
+    color:var(--rosa-profundo);
+    font-size:1.7rem;
+    white-space:nowrap;
 }
 
-.logo-text span{
-    color:var(--rosa-oscuro);
+.logo-icon{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    background:var(--rosa-claro);
+    display:grid;
+    place-items:center;
+    font-size:1.25rem;
 }
 
 nav{
@@ -330,1645 +263,1177 @@ nav{
 }
 
 nav a{
-    font-size:14px;
-    font-weight:600;
-    color:var(--texto);
     position:relative;
+    font-size:.78rem;
+    font-weight:600;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color:#634d55;
     padding:8px 0;
+    transition:.3s;
 }
 
 nav a::after{
     content:"";
     position:absolute;
-    left:0;
     bottom:0;
+    left:50%;
     width:0;
     height:2px;
-    background:var(--rosa-oscuro);
-    transition:var(--trans);
+    background:var(--rosa-profundo);
+    transition:.3s;
+    transform:translateX(-50%);
 }
 
 nav a:hover{
-    color:var(--rosa-oscuro);
+    color:var(--rosa-profundo);
 }
 
 nav a:hover::after{
     width:100%;
 }
 
-.header-actions{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.icon-btn{
-    width:42px;
-    height:42px;
-    border:none;
-    background:transparent;
-    border-radius:50%;
-    color:var(--texto);
-    font-size:18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    transition:var(--trans);
-    position:relative;
-}
-
-.icon-btn:hover{
-    background:var(--rosa-claro);
-    color:var(--rosa-oscuro);
-}
-
-.contador{
-    position:absolute;
-    top:-1px;
-    right:-1px;
-    min-width:18px;
-    height:18px;
-    padding:0 5px;
-    background:var(--rosa-oscuro);
-    color:white;
-    font-size:10px;
-    font-weight:800;
-    border-radius:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-#menuMovil{
+.mobile-menu{
     display:none;
-}
-
-/* =========================================================
-   USER MENU
-   ========================================================= */
-
-.usuario-wrap{
-    position:relative;
-}
-
-.usuario-menu{
-    position:absolute;
-    top:52px;
-    right:0;
-    width:260px;
-    background:#fff;
-    border:1px solid var(--borde);
-    border-radius:20px;
-    box-shadow:var(--sombra-fuerte);
-    padding:10px;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(-8px);
-    transition:var(--trans);
-}
-
-.usuario-menu.activo{
-    opacity:1;
-    visibility:visible;
-    transform:none;
-}
-
-.usuario-cabecera{
-    padding:15px;
-    border-bottom:1px solid var(--borde);
-    margin-bottom:7px;
-}
-
-.usuario-cabecera strong{
-    display:block;
-    font-size:14px;
-}
-
-.usuario-cabecera span{
-    color:var(--texto-suave);
-    font-size:12px;
-    display:block;
-    margin-top:3px;
-    word-break:break-all;
-}
-
-.usuario-opcion{
-    width:100%;
+    width:45px;
+    height:45px;
     border:none;
-    background:transparent;
-    padding:12px 13px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    gap:11px;
-    text-align:left;
-    color:var(--texto);
-    font-size:13px;
-    font-weight:600;
-}
-
-.usuario-opcion:hover{
-    background:var(--rosa-muy-claro);
-    color:var(--rosa-oscuro);
-}
-
-.usuario-opcion.peligro{
-    color:#c24d68;
-}
-
-/* =========================================================
-   BUSCADOR
-   ========================================================= */
-
-.buscador-wrap{
-    position:relative;
-    width:250px;
-}
-
-#buscador{
-    width:100%;
-    border:1px solid var(--borde);
-    background:#fff;
-    padding:11px 40px 11px 15px;
-    border-radius:30px;
-    outline:none;
-    font-size:13px;
-    transition:var(--trans);
-}
-
-#buscador:focus{
-    border-color:var(--rosa);
-    box-shadow:0 0 0 4px rgba(243,154,183,.15);
-}
-
-.buscador-icono{
-    position:absolute;
-    right:14px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#a98d97;
+    border-radius:50%;
+    background:var(--rosa-claro);
+    color:var(--rosa-profundo);
+    font-size:1.2rem;
 }
 
 /* =========================================================
    HERO
-   ========================================================= */
-
-main{
-    padding-top:82px;
-}
+========================================================= */
 
 .hero{
+    min-height:100vh;
+    padding-top:82px;
     position:relative;
-    height:calc(100vh - 82px);
-    min-height:600px;
     overflow:hidden;
-    background:#f5c8d5;
-}
-
-.slider{
-    width:100%;
-    height:100%;
-    position:relative;
-}
-
-.slide{
-    position:absolute;
-    inset:0;
-    opacity:0;
-    visibility:hidden;
-    transform:scale(1.05);
-    transition:opacity .8s ease,transform 1.2s ease,visibility .8s;
-}
-
-.slide.activo{
-    opacity:1;
-    visibility:visible;
-    transform:scale(1);
-}
-
-.slide-bg{
-    position:absolute;
-    inset:0;
-}
-
-.slide-bg::before{
-    content:"";
-    position:absolute;
-    inset:0;
     background:
-        radial-gradient(circle at 75% 25%,rgba(255,255,255,.65),transparent 22%),
-        linear-gradient(90deg,rgba(44,24,31,.58),rgba(44,24,31,.08));
+        radial-gradient(circle at 10% 20%,#ffe5ee,transparent 30%),
+        radial-gradient(circle at 90% 80%,#ffdce8,transparent 30%),
+        #fffaf7;
 }
 
-.slide:nth-child(1) .slide-bg{
-    background:
-        radial-gradient(circle at 70% 30%,#fff1f5 0 12%,transparent 13%),
-        radial-gradient(circle at 80% 70%,#efb1c5 0 20%,transparent 21%),
-        linear-gradient(135deg,#d56c91,#f6c1d2);
-}
-
-.slide:nth-child(2) .slide-bg{
-    background:
-        radial-gradient(circle at 80% 25%,#fff 0 10%,transparent 11%),
-        radial-gradient(circle at 70% 75%,#f4d4a4 0 18%,transparent 19%),
-        linear-gradient(135deg,#bc6e83,#f3c2c8);
-}
-
-.slide:nth-child(3) .slide-bg{
-    background:
-        radial-gradient(circle at 70% 30%,#fff1c9 0 13%,transparent 14%),
-        radial-gradient(circle at 85% 75%,#ed9bb3 0 20%,transparent 21%),
-        linear-gradient(135deg,#7d5364,#e5a6ba);
-}
-
-.slide-content{
-    position:relative;
-    z-index:3;
-    height:100%;
-    width:min(1250px,90%);
+.hero-inner{
+    min-height:calc(100vh - 82px);
+    max-width:1250px;
     margin:auto;
-    display:flex;
+    padding:70px 30px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
     align-items:center;
+    gap:60px;
 }
 
-.slide-text{
-    max-width:650px;
-    color:#fff;
-}
-
-.slide-kicker{
-    display:inline-block;
-    padding:7px 13px;
-    border:1px solid rgba(255,255,255,.5);
-    border-radius:30px;
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(5px);
+.hero-small{
+    color:var(--rosa-profundo);
     text-transform:uppercase;
-    letter-spacing:2px;
-    font-size:11px;
-    font-weight:800;
-    margin-bottom:18px;
-}
-
-.slide-title{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(48px,7vw,92px);
-    line-height:.98;
+    letter-spacing:4px;
+    font-size:.72rem;
+    font-weight:700;
     margin-bottom:20px;
-    animation:none;
 }
 
-.slide.activo .slide-title{
-    animation:tituloSlider .8s .1s both;
+.hero h1{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(4rem,7vw,7.2rem);
+    line-height:.86;
+    font-weight:400;
+    color:#4e3941;
+    margin-bottom:25px;
 }
 
-@keyframes tituloSlider{
-    from{
-        opacity:0;
-        transform:translateY(30px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-    }
+.hero h1 span{
+    color:var(--rosa-profundo);
+    display:block;
 }
 
-.slide-desc{
-    max-width:500px;
-    line-height:1.7;
-    font-size:16px;
-    margin-bottom:28px;
-    color:rgba(255,255,255,.9);
+.hero-description{
+    max-width:520px;
+    color:var(--texto-suave);
+    line-height:1.9;
+    font-size:.95rem;
+    margin-bottom:32px;
 }
 
-.slide-btn{
+.hero-buttons{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
     display:inline-flex;
     align-items:center;
-    gap:10px;
-    background:#fff;
-    color:var(--rosa-oscuro);
-    padding:14px 23px;
-    border-radius:40px;
-    font-size:14px;
-    font-weight:800;
-    transition:var(--trans);
+    justify-content:center;
+    padding:15px 28px;
+    border-radius:50px;
+    border:1px solid transparent;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:1px;
+    transition:.35s;
 }
 
-.slide-btn:hover{
+.btn-primary{
+    background:var(--rosa-profundo);
+    color:#fff;
+    box-shadow:0 12px 30px rgba(169,64,105,.2);
+}
+
+.btn-primary:hover{
     transform:translateY(-4px);
-    box-shadow:0 15px 30px rgba(0,0,0,.18);
+    background:#8f3158;
 }
 
-.slider-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    z-index:10;
-    width:48px;
-    height:48px;
-    border:none;
+.btn-outline{
+    border-color:#dba1b5;
+    color:var(--rosa-profundo);
+    background:rgba(255,255,255,.5);
+}
+
+.btn-outline:hover{
+    background:#fff;
+    transform:translateY(-4px);
+}
+
+.hero-art{
+    min-height:550px;
+    position:relative;
+    display:grid;
+    place-items:center;
+}
+
+.hero-circle{
+    width:min(510px,90vw);
+    height:min(510px,90vw);
     border-radius:50%;
-    background:rgba(255,255,255,.9);
-    color:var(--rosa-oscuro);
-    font-size:20px;
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-    transition:var(--trans);
+    background:
+        radial-gradient(circle at 35% 30%,#fff,#ffe1eb 45%,#f5b1c7);
+    box-shadow:var(--sombra);
+    position:relative;
+    animation:floatCake 5s ease-in-out infinite;
 }
 
-.slider-arrow:hover{
-    transform:translateY(-50%) scale(1.08);
+@keyframes floatCake{
+    0%,100%{
+        transform:translateY(0) rotate(-2deg);
+    }
+    50%{
+        transform:translateY(-15px) rotate(2deg);
+    }
 }
 
-#anterior{
-    left:25px;
-}
-
-#siguiente{
-    right:25px;
-}
-
-.dots{
+.cake{
     position:absolute;
-    bottom:25px;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
+    width:260px;
+}
+
+.cake-top{
+    height:70px;
+    background:#fff;
+    border-radius:50%;
+    border:5px solid #e8b0bf;
+    position:relative;
+    z-index:3;
+}
+
+.cake-top::before,
+.cake-top::after{
+    content:"";
+    position:absolute;
+    border-radius:50%;
+    background:#f7c7d7;
+}
+
+.cake-top::before{
+    width:25px;
+    height:25px;
+    left:40px;
+    top:15px;
+}
+
+.cake-top::after{
+    width:18px;
+    height:18px;
+    right:55px;
+    top:20px;
+}
+
+.cake-middle{
+    height:90px;
+    margin-top:-20px;
+    background:linear-gradient(#f8aec5,#fff);
+    border:5px solid #e8b0bf;
+    border-top:none;
+    position:relative;
+    z-index:2;
+}
+
+.cake-bottom{
+    height:80px;
+    margin-top:-20px;
+    background:#f49db9;
+    border:5px solid #d9809e;
+    border-top:none;
+    border-radius:0 0 25px 25px;
+}
+
+.cake-cream{
+    position:absolute;
+    top:53px;
+    left:0;
+    width:100%;
+    height:35px;
+    background:#fff;
+    border-radius:0 0 50% 50%;
+    z-index:4;
+}
+
+.cherry{
+    position:absolute;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background:#d44e77;
+    top:-45px;
     left:50%;
     transform:translateX(-50%);
-    display:flex;
-    gap:8px;
-    z-index:10;
+    z-index:5;
 }
 
-.dot{
-    width:9px;
-    height:9px;
-    border:none;
+.cherry::before{
+    content:"";
+    position:absolute;
+    width:35px;
+    height:18px;
+    border-top:3px solid #73966a;
     border-radius:50%;
-    background:rgba(255,255,255,.5);
-    transition:var(--trans);
+    top:-12px;
+    left:-5px;
+    transform:rotate(-25deg);
 }
 
-.dot.activo{
-    width:30px;
-    border-radius:20px;
-    background:#fff;
+.floating-spark{
+    position:absolute;
+    color:white;
+    font-size:1.5rem;
+    animation:spark 3s ease-in-out infinite;
+}
+
+.spark1{
+    top:13%;
+    left:18%;
+}
+
+.spark2{
+    top:30%;
+    right:13%;
+    animation-delay:1s;
+}
+
+.spark3{
+    bottom:18%;
+    left:15%;
+    animation-delay:2s;
+}
+
+@keyframes spark{
+    0%,100%{
+        transform:translateY(0) rotate(0);
+        opacity:.6;
+    }
+    50%{
+        transform:translateY(-15px) rotate(20deg);
+        opacity:1;
+    }
 }
 
 /* =========================================================
-   SECCIONES
-   ========================================================= */
+   MUSIC DISC
+========================================================= */
 
-.seccion{
-    padding:100px 0;
+.music-player{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    z-index:6000;
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:9px 15px 9px 9px;
+    border-radius:60px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(15px);
+    box-shadow:0 15px 45px rgba(100,50,70,.18);
+    border:1px solid rgba(200,92,131,.12);
 }
 
-.contenedor{
-    width:min(1200px,90%);
+.disc{
+    width:55px;
+    height:55px;
+    flex:none;
+    border-radius:50%;
+    background:
+        radial-gradient(circle,#fff 0 9%,transparent 10%),
+        radial-gradient(circle,#222 0 16%,transparent 17%),
+        repeating-radial-gradient(circle,#252025 0 3px,#111 4px 6px);
+    box-shadow:0 7px 18px rgba(0,0,0,.25);
+    position:relative;
+    cursor:pointer;
+    animation:spin 4s linear infinite;
+    animation-play-state:paused;
+}
+
+.disc.playing{
+    animation-play-state:running;
+}
+
+.disc::after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:#f5a0bb;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border:2px solid #fff;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.music-info{
+    min-width:145px;
+}
+
+.music-label{
+    font-size:.65rem;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    color:#a14a6d;
+    font-weight:700;
+}
+
+.music-name{
+    font-size:.72rem;
+    font-weight:600;
+    margin-top:3px;
+}
+
+.music-status{
+    font-size:.62rem;
+    color:#98858c;
+    margin-top:2px;
+}
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section{
+    padding:110px 25px;
+}
+
+.section-container{
+    max-width:1150px;
     margin:auto;
 }
 
-.encabezado-seccion{
+.section-heading{
     text-align:center;
-    max-width:700px;
-    margin:0 auto 50px;
+    margin-bottom:60px;
 }
 
-.eyebrow{
-    color:var(--rosa-oscuro);
+.section-tag{
     text-transform:uppercase;
-    letter-spacing:3px;
-    font-size:11px;
-    font-weight:800;
-    margin-bottom:12px;
+    color:var(--rosa-profundo);
+    letter-spacing:4px;
+    font-size:.7rem;
+    font-weight:700;
+    margin-bottom:13px;
 }
 
-.titulo-seccion{
-    font-family:'Playfair Display',serif;
-    font-size:clamp(35px,5vw,55px);
-    line-height:1.1;
-    margin-bottom:15px;
-    color:var(--texto);
+.section-title{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(2.8rem,5vw,4.5rem);
+    font-weight:400;
+    color:#4b383f;
 }
 
-.texto-seccion{
-    color:var(--texto-suave);
+.section-text{
+    max-width:620px;
+    margin:15px auto 0;
+    color:#806d74;
     line-height:1.8;
+    font-size:.9rem;
+}
+
+/* =========================================================
+   SLOGAN
+========================================================= */
+
+.slogan{
+    background:var(--rosa-profundo);
+    color:#fff;
+    text-align:center;
+    padding:80px 25px;
+    position:relative;
+    overflow:hidden;
+}
+
+.slogan::before,
+.slogan::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:50%;
+}
+
+.slogan::before{
+    left:-150px;
+    top:-150px;
+}
+
+.slogan::after{
+    right:-150px;
+    bottom:-150px;
+}
+
+.slogan p{
+    position:relative;
+    z-index:2;
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(2.2rem,5vw,4.4rem);
 }
 
 /* =========================================================
    FEATURES
-   ========================================================= */
+========================================================= */
 
 .features{
     background:#fff;
 }
 
-.features-grid{
+.feature-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
 }
 
-.feature{
-    padding:30px 22px;
-    background:var(--rosa-muy-claro);
-    border:1px solid var(--borde);
-    border-radius:22px;
+.feature-card{
+    background:#fffafc;
+    border:1px solid #f4dce5;
+    padding:40px 30px;
+    border-radius:var(--radio);
     text-align:center;
-    transition:var(--trans);
+    transition:.4s;
 }
 
-.feature:hover{
-    transform:translateY(-8px);
+.feature-card:hover{
+    transform:translateY(-10px);
     box-shadow:var(--sombra);
 }
 
 .feature-icon{
-    width:65px;
-    height:65px;
-    margin:0 auto 18px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:20px;
-    background:#fff;
-    color:var(--rosa-oscuro);
-    font-size:28px;
-}
-
-.feature h3{
-    font-family:'Playfair Display',serif;
-    font-size:20px;
-    margin-bottom:8px;
-}
-
-.feature p{
-    color:var(--texto-suave);
-    font-size:13px;
-    line-height:1.6;
-}
-
-/* =========================================================
-   CATEGORIAS
-   ========================================================= */
-
-.categorias{
-    background:var(--rosa-muy-claro);
-}
-
-.categorias-grid{
+    width:75px;
+    height:75px;
+    margin:0 auto 23px;
+    border-radius:50%;
+    background:#ffe2eb;
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+    place-items:center;
+    font-size:2rem;
 }
 
-.categoria{
-    min-height:250px;
-    border-radius:25px;
-    position:relative;
-    overflow:hidden;
-    display:flex;
-    align-items:flex-end;
-    padding:25px;
-    color:white;
-    transition:var(--trans);
-    cursor:pointer;
-}
-
-.categoria:hover{
-    transform:translateY(-8px);
-    box-shadow:var(--sombra-fuerte);
-}
-
-.categoria::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(transparent 25%,rgba(35,20,25,.75));
-}
-
-.categoria:nth-child(1){
-    background:linear-gradient(145deg,#d56d91,#f3b6c9);
-}
-
-.categoria:nth-child(2){
-    background:linear-gradient(145deg,#b97a6e,#e6b29d);
-}
-
-.categoria:nth-child(3){
-    background:linear-gradient(145deg,#bd8d8e,#e8c7bc);
-}
-
-.categoria:nth-child(4){
-    background:linear-gradient(145deg,#70535e,#d68ba6);
-}
-
-.categoria-contenido{
-    position:relative;
-    z-index:2;
-}
-
-.categoria-icon{
-    font-size:38px;
+.feature-card h3{
+    font-family:'DM Serif Display',serif;
+    font-size:1.7rem;
+    font-weight:400;
     margin-bottom:12px;
 }
 
-.categoria h3{
-    font-family:'Playfair Display',serif;
-    font-size:27px;
+.feature-card p{
+    color:#806d74;
+    font-size:.82rem;
+    line-height:1.8;
 }
 
 /* =========================================================
-   PRODUCTOS
-   ========================================================= */
+   PRODUCTS
+========================================================= */
 
-.productos{
-    background:#fff;
+.products{
+    background:#fff6f9;
 }
 
-.filtros{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:35px;
-}
-
-.filtro{
-    border:1px solid var(--borde);
-    background:#fff;
-    color:var(--texto-suave);
-    border-radius:30px;
-    padding:10px 17px;
-    font-size:12px;
-    font-weight:700;
-    transition:var(--trans);
-}
-
-.filtro:hover,
-.filtro.activo{
-    background:var(--rosa-oscuro);
-    border-color:var(--rosa-oscuro);
-    color:#fff;
-}
-
-.productos-grid{
+.product-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:22px;
 }
 
-.producto{
+.product-card{
     background:#fff;
-    border:1px solid var(--borde);
-    border-radius:24px;
+    border-radius:var(--radio);
     overflow:hidden;
-    position:relative;
-    transition:var(--trans);
+    box-shadow:0 8px 30px rgba(150,75,100,.07);
+    transition:.4s;
 }
 
-.producto:hover{
+.product-card:hover{
     transform:translateY(-8px);
     box-shadow:var(--sombra);
 }
 
-.producto.oculto{
-    display:none;
-}
-
-.producto-visual{
-    height:250px;
+.product-image{
+    height:230px;
     position:relative;
     overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(145deg,#fff3f6,#f9dce5);
+    background:linear-gradient(145deg,#ffeef4,#ffd3e1);
+    display:grid;
+    place-items:center;
 }
 
-.producto:nth-child(even) .producto-visual{
-    background:linear-gradient(145deg,#fff7ef,#f4dfd2);
-}
-
-.producto:nth-child(3n) .producto-visual{
-    background:linear-gradient(145deg,#f8f2f4,#ecd9e0);
-}
-
-.producto-svg{
-    width:82%;
-    height:82%;
-    transition:transform .6s cubic-bezier(.2,.8,.2,1);
-}
-
-.producto:hover .producto-svg{
-    transform:scale(1.08) rotate(-2deg);
-}
-
-.badge{
-    position:absolute;
-    left:14px;
-    top:14px;
-    padding:6px 10px;
-    background:var(--rosa-oscuro);
-    color:#fff;
-    font-size:10px;
-    font-weight:800;
-    border-radius:20px;
-    letter-spacing:.5px;
-}
-
-.favorito{
-    position:absolute;
-    right:14px;
-    top:14px;
-    width:38px;
-    height:38px;
-    border:none;
+.product-image::before{
+    content:"";
+    width:145px;
+    height:145px;
     border-radius:50%;
-    background:rgba(255,255,255,.9);
-    color:#9c818a;
-    font-size:16px;
-    transition:var(--trans);
+    background:rgba(255,255,255,.5);
+    position:absolute;
 }
 
-.favorito:hover,
-.favorito.activo{
-    color:#df547d;
-    transform:scale(1.08);
+.product-cake{
+    width:110px;
+    height:95px;
+    background:#fff;
+    border-radius:10px 10px 25px 25px;
+    position:relative;
+    z-index:2;
+    box-shadow:0 12px 20px rgba(130,65,85,.13);
 }
 
-.producto-info{
-    padding:20px;
+.product-cake::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:35px;
+    background:#f5aec4;
+    border-radius:50%;
+    top:-15px;
+    left:0;
 }
 
-.producto-categoria{
-    text-transform:uppercase;
-    font-size:10px;
+.product-cake::after{
+    content:"♥";
+    position:absolute;
+    color:#d25b82;
+    font-size:1.5rem;
+    left:50%;
+    top:38px;
+    transform:translateX(-50%);
+}
+
+.product-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:#fff;
+    color:#b14a70;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:.58rem;
     font-weight:800;
-    letter-spacing:1.5px;
-    color:var(--rosa-oscuro);
+    letter-spacing:1px;
+    z-index:3;
+}
+
+.product-info{
+    padding:23px;
+}
+
+.product-info h3{
+    font-family:'DM Serif Display',serif;
+    font-size:1.45rem;
+    font-weight:400;
     margin-bottom:7px;
 }
 
-.producto h3{
-    font-family:'Playfair Display',serif;
-    font-size:21px;
-    margin-bottom:7px;
+.product-info p{
+    color:#89767d;
+    font-size:.75rem;
+    line-height:1.6;
+    margin-bottom:17px;
 }
 
-.producto-desc{
-    font-size:12px;
-    color:var(--texto-suave);
-    line-height:1.5;
-    min-height:38px;
-    margin-bottom:15px;
-}
-
-.producto-bottom{
+.product-bottom{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px;
 }
 
-.precio{
-    font-size:19px;
+.price{
+    color:var(--rosa-profundo);
     font-weight:800;
-    color:var(--texto);
+    font-size:.9rem;
 }
 
-.agregar{
+.add-cart{
     border:none;
-    background:var(--texto);
-    color:#fff;
-    width:42px;
-    height:42px;
+    width:38px;
+    height:38px;
     border-radius:50%;
-    transition:var(--trans);
-    font-size:17px;
+    background:#ffe0ea;
+    color:#a94069;
+    font-size:1.1rem;
+    transition:.3s;
 }
 
-.agregar:hover{
-    background:var(--rosa-oscuro);
-    transform:scale(1.08);
-}
-
-/* =========================================================
-   ILUSTRACIONES SVG
-   ========================================================= */
-
-.svg-sombra{
-    fill:rgba(74,38,49,.12);
-}
-
-.svg-rosa{
-    fill:#e9789a;
-}
-
-.svg-rosa2{
-    fill:#f4afc4;
-}
-
-.svg-crema{
-    fill:#fff3e6;
-}
-
-.svg-crema2{
-    fill:#ffe5c9;
-}
-
-.svg-chocolate{
-    fill:#71434c;
-}
-
-.svg-chocolate2{
-    fill:#9b5d5f;
-}
-
-.svg-blanco{
-    fill:#fff;
-}
-
-.svg-linea{
-    fill:none;
-    stroke:#633d46;
-    stroke-width:4;
-    stroke-linecap:round;
-    stroke-linejoin:round;
+.add-cart:hover{
+    background:#a94069;
+    color:white;
+    transform:rotate(10deg) scale(1.1);
 }
 
 /* =========================================================
-   HISTORIA
-   ========================================================= */
+   STORY
+========================================================= */
 
-.historia{
-    background:var(--rosa-muy-claro);
+.story{
+    background:#fff;
 }
 
-.historia-grid{
+.story-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:70px;
     align-items:center;
 }
 
-.historia-visual{
+.story-art{
     min-height:500px;
-    border-radius:35px;
-    background:
-        radial-gradient(circle at 30% 30%,#fff 0 5%,transparent 6%),
-        radial-gradient(circle at 70% 65%,#fff 0 7%,transparent 8%),
-        linear-gradient(145deg,#e98ca8,#f5c8d6);
+    position:relative;
+    display:grid;
+    place-items:center;
+}
+
+.story-frame{
+    width:82%;
+    height:420px;
+    border-radius:150px 150px 25px 25px;
+    background:linear-gradient(145deg,#f8b1c7,#ffe4ed);
     position:relative;
     overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
 }
 
-.tarta-grande{
-    width:75%;
-    max-width:420px;
-    filter:drop-shadow(0 30px 25px rgba(80,35,50,.18));
-    animation:tartaFlota 5s ease-in-out infinite;
+.story-frame::before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:rgba(255,255,255,.45);
+    left:50%;
+    top:45%;
+    transform:translate(-50%,-50%);
 }
 
-@keyframes tartaFlota{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-12px);
-    }
+.story-cake{
+    position:absolute;
+    width:190px;
+    height:150px;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
 }
 
-.historia-texto .titulo-seccion{
-    text-align:left;
+.story-cake .layer1{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:70px;
+    background:#fff;
+    border:5px solid #e7a4b9;
+    border-radius:10px 10px 25px 25px;
 }
 
-.historia-texto p{
-    color:var(--texto-suave);
-    line-height:1.9;
+.story-cake .layer2{
+    position:absolute;
+    bottom:60px;
+    left:20px;
+    width:150px;
+    height:65px;
+    background:#f7bfd0;
+    border:5px solid #e4a0b7;
+    border-radius:10px 10px 22px 22px;
+}
+
+.story-cake .top{
+    position:absolute;
+    bottom:112px;
+    left:35px;
+    width:120px;
+    height:45px;
+    background:#fff;
+    border:5px solid #e5a5b9;
+    border-radius:50%;
+}
+
+.story-copy h2{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(2.8rem,5vw,4.5rem);
+    line-height:1;
+    font-weight:400;
+    margin-bottom:25px;
+}
+
+.story-copy h2 span{
+    color:var(--rosa-profundo);
+}
+
+.story-copy p{
+    color:#806d74;
+    font-size:.9rem;
+    line-height:2;
     margin-bottom:18px;
 }
 
-.firma{
-    font-family:'Playfair Display',serif;
-    color:var(--rosa-oscuro);
-    font-size:22px;
+.story-list{
+    list-style:none;
     margin-top:25px;
 }
 
-/* =========================================================
-   GALERIA
-   ========================================================= */
-
-.galeria{
-    background:#fff;
+.story-list li{
+    margin-bottom:14px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    font-size:.8rem;
+    font-weight:600;
 }
 
-.galeria-grid{
+.story-list span{
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    background:#ffe0ea;
+    display:grid;
+    place-items:center;
+    color:#a94069;
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.gallery{
+    background:#fff6f9;
+}
+
+.gallery-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     grid-auto-rows:180px;
-    gap:14px;
+    gap:15px;
 }
 
-.galeria-item{
-    border-radius:20px;
+.gallery-item{
+    border-radius:22px;
     overflow:hidden;
     position:relative;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    transition:var(--trans);
+    background:linear-gradient(135deg,#ffdbe7,#f4a7c0);
+    display:grid;
+    place-items:center;
 }
 
-.galeria-item:hover{
-    transform:scale(.98);
-}
-
-.galeria-item.grande{
-    grid-column:span 2;
+.gallery-item:nth-child(1){
     grid-row:span 2;
 }
 
-.galeria-item:nth-child(1){
-    background:linear-gradient(135deg,#f29db8,#fbd6e2);
+.gallery-item:nth-child(4){
+    grid-row:span 2;
 }
 
-.galeria-item:nth-child(2){
-    background:linear-gradient(135deg,#e8b194,#f7dbc9);
+.gallery-art{
+    font-size:5rem;
+    filter:drop-shadow(0 15px 10px rgba(100,50,70,.12));
+    transition:.4s;
 }
 
-.galeria-item:nth-child(3){
-    background:linear-gradient(135deg,#d48ca4,#efc2cf);
+.gallery-item:hover .gallery-art{
+    transform:scale(1.15) rotate(5deg);
 }
 
-.galeria-item:nth-child(4){
-    background:linear-gradient(135deg,#b67b85,#e1b1b5);
+.gallery-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(170,70,105,.7);
+    color:#fff;
+    display:grid;
+    place-items:center;
+    opacity:0;
+    transition:.3s;
+    font-family:'DM Serif Display',serif;
+    font-size:1.7rem;
 }
 
-.galeria-item:nth-child(5){
-    background:linear-gradient(135deg,#f2c5c0,#f9e5db);
-}
-
-.galeria-item:nth-child(6){
-    background:linear-gradient(135deg,#c9929f,#f0c7d3);
-}
-
-.galeria-icon{
-    font-size:70px;
-    filter:drop-shadow(0 10px 10px rgba(50,20,30,.12));
-    transition:var(--trans);
-}
-
-.galeria-item:hover .galeria-icon{
-    transform:scale(1.1) rotate(3deg);
+.gallery-item:hover .gallery-overlay{
+    opacity:1;
 }
 
 /* =========================================================
-   TESTIMONIOS
-   ========================================================= */
+   REVIEWS
+========================================================= */
 
-.testimonios{
-    background:var(--rosa-muy-claro);
+.reviews{
+    background:#fff;
 }
 
-.reseñas-grid{
+.review-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:22px;
 }
 
-.reseña{
-    background:#fff;
-    border:1px solid var(--borde);
-    padding:28px;
-    border-radius:24px;
-    transition:var(--trans);
+.review{
+    padding:32px;
+    border-radius:var(--radio);
+    background:#fff7fa;
+    border:1px solid #f4dce5;
 }
 
-.reseña:hover{
-    transform:translateY(-6px);
-    box-shadow:var(--sombra);
+.stars{
+    color:#d96d91;
+    letter-spacing:3px;
+    margin-bottom:17px;
 }
 
-.estrellas{
-    color:#e99a38;
-    letter-spacing:2px;
-    margin-bottom:18px;
-}
-
-.reseña p{
-    font-family:'Playfair Display',serif;
-    font-size:17px;
-    line-height:1.7;
+.review p{
+    font-family:'DM Serif Display',serif;
+    font-size:1.3rem;
+    line-height:1.5;
     margin-bottom:20px;
 }
 
-.reseña-autor{
-    display:flex;
-    align-items:center;
-    gap:11px;
-}
-
-.avatar{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:var(--rosa-claro);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:var(--rosa-oscuro);
-    font-weight:800;
-}
-
-.reseña-autor strong{
-    display:block;
-    font-size:13px;
-}
-
-.reseña-autor span{
-    display:block;
-    color:var(--texto-suave);
-    font-size:11px;
-    margin-top:2px;
+.review-name{
+    color:#8b747c;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
 /* =========================================================
-   NEWSLETTER
-   ========================================================= */
+   CONTACT
+========================================================= */
 
-.newsletter{
-    background:#fff;
+.contact{
+    background:#fff3f7;
 }
 
-.newsletter-box{
-    background:linear-gradient(135deg,#e985a4,#f4b5c9);
-    color:#fff;
-    padding:55px;
-    border-radius:35px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:30px;
-    overflow:hidden;
-    position:relative;
-}
-
-.newsletter-box::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    border-radius:50%;
-    right:-100px;
-    top:-120px;
-    background:rgba(255,255,255,.13);
-}
-
-.newsletter-text{
-    position:relative;
-    z-index:2;
-}
-
-.newsletter-text h2{
-    font-family:'Playfair Display',serif;
-    font-size:38px;
-    margin-bottom:8px;
-}
-
-.newsletter-text p{
-    color:rgba(255,255,255,.85);
-}
-
-.newsletter-form{
-    display:flex;
-    gap:8px;
-    position:relative;
-    z-index:2;
-}
-
-.newsletter-form input{
-    width:270px;
-    padding:14px 17px;
-    border:none;
-    outline:none;
-    border-radius:30px;
-}
-
-.newsletter-form button{
-    border:none;
-    padding:14px 22px;
-    border-radius:30px;
-    background:#fff;
-    color:var(--rosa-oscuro);
-    font-weight:800;
-}
-
-/* =========================================================
-   CONTACTO
-   ========================================================= */
-
-.contacto{
-    background:var(--rosa-muy-claro);
-}
-
-.contacto-grid{
+.contact-grid{
     display:grid;
     grid-template-columns:.8fr 1.2fr;
     gap:50px;
+    align-items:start;
 }
 
-.contacto-info{
-    padding-top:10px;
+.contact-info h2{
+    font-family:'DM Serif Display',serif;
+    font-size:3.5rem;
+    font-weight:400;
+    line-height:1;
+    margin-bottom:20px;
 }
 
-.contacto-item{
-    display:flex;
-    gap:15px;
-    margin-bottom:25px;
+.contact-info > p{
+    color:#806d74;
+    line-height:1.8;
+    font-size:.85rem;
+    margin-bottom:30px;
 }
 
-.contacto-icon{
-    width:45px;
-    height:45px;
-    flex-shrink:0;
-    background:#fff;
-    border:1px solid var(--borde);
-    border-radius:14px;
+.contact-detail{
     display:flex;
     align-items:center;
-    justify-content:center;
-    color:var(--rosa-oscuro);
+    gap:14px;
+    margin-bottom:17px;
+    font-size:.8rem;
 }
 
-.contacto-item h4{
-    font-size:14px;
-    margin-bottom:4px;
+.contact-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    background:#ffe0ea;
+    display:grid;
+    place-items:center;
+    flex:none;
 }
 
-.contacto-item p{
-    color:var(--texto-suave);
-    font-size:13px;
-    line-height:1.5;
-}
-
-.contacto-form{
+.contact-form{
     background:#fff;
-    border:1px solid var(--borde);
-    padding:30px;
-    border-radius:28px;
+    border-radius:30px;
+    padding:35px;
+    box-shadow:var(--sombra);
 }
 
-.form-grid{
+.form-row{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:15px;
 }
 
-.campo{
-    margin-bottom:15px;
+.form-group{
+    margin-bottom:17px;
 }
 
-.campo.full{
-    grid-column:1/-1;
-}
-
-.campo label{
+.form-group label{
     display:block;
-    font-size:12px;
+    font-size:.68rem;
     font-weight:700;
-    margin-bottom:7px;
+    color:#715b63;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:8px;
 }
 
-.campo input,
-.campo textarea,
-.campo select{
+.form-group input,
+.form-group textarea{
     width:100%;
-    border:1px solid var(--borde);
-    background:#fff;
-    padding:12px 14px;
-    outline:none;
+    border:1px solid #eed9e1;
+    background:#fffafc;
+    padding:13px 15px;
     border-radius:12px;
-    font-size:13px;
-    transition:var(--trans);
+    outline:none;
+    font-size:.8rem;
+    color:var(--texto);
+    transition:.3s;
 }
 
-.campo textarea{
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#d77e9d;
+    box-shadow:0 0 0 3px rgba(215,126,157,.1);
+}
+
+.form-group textarea{
     min-height:130px;
     resize:vertical;
 }
 
-.campo input:focus,
-.campo textarea:focus,
-.campo select:focus{
-    border-color:var(--rosa);
-    box-shadow:0 0 0 4px rgba(243,154,183,.12);
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+.newsletter{
+    background:#a94069;
+    color:white;
+    text-align:center;
+    padding:75px 25px;
 }
 
-.btn-principal{
+.newsletter h2{
+    font-family:'DM Serif Display',serif;
+    font-size:3rem;
+    font-weight:400;
+    margin-bottom:12px;
+}
+
+.newsletter p{
+    opacity:.8;
+    font-size:.8rem;
+    margin-bottom:25px;
+}
+
+.newsletter-form{
+    max-width:500px;
+    margin:auto;
+    display:flex;
+    gap:10px;
+}
+
+.newsletter-form input{
+    flex:1;
     border:none;
-    background:var(--rosa-oscuro);
-    color:#fff;
-    padding:13px 22px;
-    border-radius:30px;
-    font-size:13px;
-    font-weight:800;
-    transition:var(--trans);
+    outline:none;
+    border-radius:50px;
+    padding:15px 20px;
 }
 
-.btn-principal:hover{
-    background:#c95178;
-    transform:translateY(-2px);
+.newsletter-form button{
+    border:none;
+    border-radius:50px;
+    padding:15px 25px;
+    background:#fff;
+    color:#a94069;
+    font-weight:800;
 }
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 footer{
-    background:#2d2327;
+    background:#382b30;
     color:#fff;
-    padding:65px 0 25px;
+    padding:65px 25px 25px;
 }
 
 .footer-grid{
+    max-width:1150px;
+    margin:auto;
     display:grid;
-    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
     gap:40px;
-    padding-bottom:45px;
 }
 
-.footer-brand{
-    max-width:320px;
-}
-
-.footer-brand .logo-text{
-    color:#fff;
-    margin-bottom:13px;
+.footer-brand h2{
+    font-family:'DM Serif Display',serif;
+    font-size:2.4rem;
+    font-weight:400;
+    color:#f5b0c6;
+    margin-bottom:15px;
 }
 
 .footer-brand p{
-    color:#cbbcc1;
-    font-size:13px;
+    color:#b9a9af;
+    font-size:.76rem;
     line-height:1.8;
+    max-width:280px;
 }
 
-.footer-col h4{
-    font-family:'Playfair Display',serif;
-    font-size:18px;
-    margin-bottom:18px;
+.footer-col h3{
+    font-size:.7rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:20px;
+    color:#f4c2d3;
 }
 
 .footer-col a{
     display:block;
-    color:#cbbcc1;
-    font-size:13px;
-    margin-bottom:11px;
-    transition:var(--trans);
+    color:#b9a9af;
+    font-size:.75rem;
+    margin-bottom:12px;
+    transition:.3s;
 }
 
 .footer-col a:hover{
-    color:#fff;
+    color:white;
     transform:translateX(4px);
 }
 
-.sociales{
+.socials{
     display:flex;
-    gap:9px;
-    margin-top:18px;
+    gap:10px;
 }
 
 .social{
     width:38px;
     height:38px;
     border-radius:50%;
-    background:rgba(255,255,255,.08);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:14px;
-    transition:var(--trans);
+    background:#49373e;
+    display:grid;
+    place-items:center;
+    transition:.3s;
 }
 
 .social:hover{
-    background:var(--rosa-oscuro);
+    background:#c85c83;
     transform:translateY(-4px);
 }
 
 .footer-bottom{
+    max-width:1150px;
+    margin:50px auto 0;
+    padding-top:20px;
     border-top:1px solid rgba(255,255,255,.1);
-    padding-top:22px;
     display:flex;
     justify-content:space-between;
     gap:20px;
-    color:#a9959d;
-    font-size:11px;
-}
-
-/* =========================================================
-   CARRITO
-   ========================================================= */
-
-.overlay{
-    position:fixed;
-    inset:0;
-    z-index:7998;
-    background:rgba(30,20,24,.45);
-    backdrop-filter:blur(3px);
-    opacity:0;
-    visibility:hidden;
-    transition:var(--trans);
-}
-
-.overlay.activo{
-    opacity:1;
-    visibility:visible;
-}
-
-#panelCarrito{
-    position:fixed;
-    z-index:8000;
-    right:0;
-    top:0;
-    bottom:0;
-    width:min(420px,100%);
-    background:#fff;
-    box-shadow:-20px 0 50px rgba(0,0,0,.15);
-    transform:translateX(100%);
-    transition:.45s cubic-bezier(.2,.8,.2,1);
-    display:flex;
-    flex-direction:column;
-}
-
-#panelCarrito.activo{
-    transform:none;
-}
-
-.carrito-header{
-    padding:22px;
-    border-bottom:1px solid var(--borde);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.carrito-header h2{
-    font-family:'Playfair Display',serif;
-    font-size:27px;
-}
-
-.cerrar{
-    width:38px;
-    height:38px;
-    border:none;
-    border-radius:50%;
-    background:var(--rosa-muy-claro);
-    color:var(--texto);
-    font-size:18px;
-}
-
-#listaCarrito{
-    flex:1;
-    overflow:auto;
-    padding:20px;
-}
-
-.carrito-vacio{
-    text-align:center;
-    padding:60px 20px;
-    color:var(--texto-suave);
-}
-
-.carrito-vacio-icon{
-    font-size:45px;
-    margin-bottom:15px;
-}
-
-.item-carrito{
-    display:grid;
-    grid-template-columns:65px 1fr auto;
-    gap:12px;
-    align-items:center;
-    padding:12px 0;
-    border-bottom:1px solid var(--borde);
-}
-
-.item-img{
-    width:65px;
-    height:65px;
-    border-radius:15px;
-    background:var(--rosa-claro);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:28px;
-}
-
-.item-carrito h4{
-    font-size:13px;
-    margin-bottom:4px;
-}
-
-.item-carrito small{
-    color:var(--texto-suave);
-}
-
-.cantidad{
-    display:flex;
-    align-items:center;
-    gap:5px;
-    margin-top:8px;
-}
-
-.cantidad button{
-    width:24px;
-    height:24px;
-    border:none;
-    border-radius:50%;
-    background:var(--rosa-claro);
-    color:var(--rosa-oscuro);
-}
-
-.item-total{
-    font-size:13px;
-    font-weight:800;
-}
-
-.eliminar-item{
-    border:none;
-    background:none;
-    color:#c87588;
-    font-size:11px;
-    margin-top:5px;
-}
-
-.carrito-footer{
-    border-top:1px solid var(--borde);
-    padding:20px;
-}
-
-.total-row{
-    display:flex;
-    justify-content:space-between;
-    font-size:15px;
-    margin-bottom:15px;
-}
-
-.total-row strong{
-    font-size:22px;
-}
-
-.comprar-btn{
-    width:100%;
-    border:none;
-    background:var(--rosa-oscuro);
-    color:white;
-    padding:15px;
-    border-radius:14px;
-    font-weight:800;
-    transition:var(--trans);
-}
-
-.comprar-btn:hover{
-    background:#c95178;
-}
-
-/* =========================================================
-   MODALES
-   ========================================================= */
-
-.modal-backdrop{
-    position:fixed;
-    inset:0;
-    z-index:9000;
-    background:rgba(30,20,24,.55);
-    backdrop-filter:blur(5px);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    opacity:0;
-    visibility:hidden;
-    transition:var(--trans);
-}
-
-.modal-backdrop.activo{
-    opacity:1;
-    visibility:visible;
-}
-
-.modal{
-    width:min(450px,100%);
-    max-height:90vh;
-    overflow:auto;
-    background:#fff;
-    border-radius:28px;
-    box-shadow:0 30px 80px rgba(0,0,0,.25);
-    padding:30px;
-    transform:translateY(20px) scale(.97);
-    transition:var(--trans);
-}
-
-.modal-backdrop.activo .modal{
-    transform:none;
-}
-
-.modal-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-.modal-header h2{
-    font-family:'Playfair Display',serif;
-    font-size:28px;
-}
-
-.modal-cerrar{
-    width:36px;
-    height:36px;
-    border:none;
-    background:var(--rosa-muy-claro);
-    border-radius:50%;
-}
-
-.login-form input{
-    width:100%;
-    padding:13px 15px;
-    border:1px solid var(--borde);
-    border-radius:12px;
-    margin-bottom:12px;
-    outline:none;
-}
-
-.login-form input:focus{
-    border-color:var(--rosa);
-}
-
-.login-btn{
-    width:100%;
-    border:none;
-    padding:14px;
-    border-radius:13px;
-    background:var(--rosa-oscuro);
-    color:white;
-    font-weight:800;
-    margin-top:4px;
-}
-
-.google-btn{
-    width:100%;
-    border:1px solid var(--borde);
-    padding:13px;
-    border-radius:13px;
-    background:#fff;
-    color:var(--texto);
-    font-weight:700;
-    margin-top:10px;
-}
-
-.modal-separador{
-    text-align:center;
-    color:#a9939c;
-    font-size:11px;
-    margin:17px 0;
-}
-
-.cuenta-resumen{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.resumen-box{
-    padding:18px;
-    background:var(--rosa-muy-claro);
-    border-radius:16px;
-    text-align:center;
-}
-
-.resumen-box strong{
-    display:block;
-    font-size:22px;
-    color:var(--rosa-oscuro);
-}
-
-.resumen-box span{
-    font-size:11px;
-    color:var(--texto-suave);
-}
-
-.preferencia{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 0;
-    border-bottom:1px solid var(--borde);
-}
-
-.preferencia:last-child{
-    border-bottom:none;
-}
-
-.preferencia strong{
-    display:block;
-    font-size:13px;
-}
-
-.preferencia small{
-    color:var(--texto-suave);
-}
-
-.switch{
-    width:45px;
-    height:25px;
-    border:none;
-    background:#ddd;
-    border-radius:20px;
-    position:relative;
-}
-
-.switch::after{
-    content:"";
-    width:19px;
-    height:19px;
-    position:absolute;
-    left:3px;
-    top:3px;
-    border-radius:50%;
-    background:#fff;
-    transition:var(--trans);
-}
-
-.switch.activo{
-    background:var(--rosa-oscuro);
-}
-
-.switch.activo::after{
-    transform:translateX(20px);
+    color:#93858a;
+    font-size:.65rem;
 }
 
 /* =========================================================
    TOAST
-   ========================================================= */
+========================================================= */
 
 #toast{
     position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:99998;
-    padding:14px 19px;
-    background:#2d2327;
-    color:#fff;
-    border-radius:14px;
-    font-size:13px;
-    font-weight:600;
-    box-shadow:var(--sombra-fuerte);
-    transform:translateY(120px);
+    left:50%;
+    bottom:30px;
+    transform:translate(-50%,120px);
+    background:#382b30;
+    color:white;
+    padding:14px 22px;
+    border-radius:50px;
+    font-size:.75rem;
+    z-index:99990;
+    box-shadow:0 12px 30px rgba(0,0,0,.2);
     opacity:0;
     transition:.4s ease;
+    pointer-events:none;
 }
 
-#toast.activo{
-    transform:none;
+#toast.show{
+    transform:translate(-50%,0);
     opacity:1;
 }
 
 /* =========================================================
-   BOTON ARRIBA
-   ========================================================= */
+   BACK TO TOP
+========================================================= */
 
-#arriba{
+#topBtn{
     position:fixed;
-    right:22px;
-    bottom:22px;
-    z-index:4000;
-    width:43px;
-    height:43px;
+    right:25px;
+    bottom:95px;
+    width:45px;
+    height:45px;
     border:none;
     border-radius:50%;
-    background:var(--rosa-oscuro);
-    color:#fff;
-    box-shadow:var(--sombra);
+    background:#fff;
+    color:#a94069;
+    box-shadow:0 10px 25px rgba(80,40,55,.15);
+    z-index:5000;
     opacity:0;
     visibility:hidden;
-    transform:translateY(10px);
-    transition:var(--trans);
+    transform:translateY(15px);
+    transition:.3s;
 }
 
-#arriba.visible{
+#topBtn.show{
     opacity:1;
     visibility:visible;
-    transform:none;
+    transform:translateY(0);
+}
+
+#topBtn:hover{
+    background:#a94069;
+    color:white;
 }
 
 /* =========================================================
-   ANIMACIONES SCROLL
-   ========================================================= */
+   REVEAL
+========================================================= */
 
 .reveal{
     opacity:0;
@@ -1978,30 +1443,25 @@ footer{
 
 .reveal.visible{
     opacity:1;
-    transform:none;
+    transform:translateY(0);
 }
 
 /* =========================================================
    RESPONSIVE
-   ========================================================= */
+========================================================= */
 
-@media(max-width:1100px){
+@media(max-width:1050px){
 
     nav{
-        gap:14px;
+        gap:15px;
     }
 
-    .buscador-wrap{
-        width:190px;
+    nav a{
+        font-size:.68rem;
     }
 
-    .features-grid,
-    .categorias-grid{
+    .product-grid{
         grid-template-columns:repeat(2,1fr);
-    }
-
-    .productos-grid{
-        grid-template-columns:repeat(3,1fr);
     }
 
     .footer-grid{
@@ -2009,682 +1469,382 @@ footer{
     }
 }
 
-@media(max-width:850px){
+@media(max-width:800px){
 
     header{
         height:72px;
     }
 
-    main{
-        padding-top:72px;
+    .header-inner{
+        padding:0 18px;
     }
 
     .logo-text{
-        font-size:21px;
+        font-size:1.4rem;
     }
 
-    .logo-img{
-        width:45px;
-        height:45px;
-    }
-
-    #menuMovil{
-        display:flex;
-    }
-
-    .header-inner{
-        width:94%;
+    .logo-icon{
+        width:38px;
+        height:38px;
     }
 
     nav{
         position:fixed;
         top:72px;
-        left:0;
-        right:0;
-        background:#fff;
-        border-bottom:1px solid var(--borde);
-        padding:15px 6%;
+        right:-100%;
+        width:280px;
+        height:calc(100vh - 72px);
+        background:#fffafc;
         display:flex;
         flex-direction:column;
-        align-items:stretch;
-        gap:3px;
-        transform:translateY(-120%);
-        opacity:0;
-        visibility:hidden;
+        align-items:flex-start;
+        padding:35px 30px;
+        gap:10px;
+        box-shadow:-15px 0 40px rgba(100,50,70,.12);
         transition:.4s ease;
-        box-shadow:0 15px 30px rgba(60,30,40,.08);
     }
 
-    nav.activo{
-        transform:none;
-        opacity:1;
-        visibility:visible;
+    nav.active{
+        right:0;
     }
 
     nav a{
-        padding:14px;
-        border-radius:10px;
-    }
-
-    nav a:hover{
-        background:var(--rosa-muy-claro);
+        width:100%;
+        padding:14px 0;
+        font-size:.75rem;
+        border-bottom:1px solid #f3e1e7;
     }
 
     nav a::after{
         display:none;
     }
 
-    .buscador-wrap{
-        position:absolute;
-        top:82px;
-        left:4%;
-        right:4%;
-        width:auto;
-        z-index:100;
-    }
-
-    #buscador{
-        background:#fff;
-        box-shadow:0 8px 20px rgba(50,20,30,.08);
+    .mobile-menu{
+        display:block;
     }
 
     .hero{
-        height:calc(100vh - 72px);
-        min-height:650px;
+        padding-top:72px;
     }
 
-    .slide-content{
-        width:88%;
-        padding-top:55px;
+    .hero-inner{
+        min-height:auto;
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:30px;
+        padding-top:75px;
     }
 
-    .slide-title{
-        font-size:clamp(45px,12vw,75px);
+    .hero-description{
+        margin-left:auto;
+        margin-right:auto;
     }
 
-    .slider-arrow{
-        display:none;
+    .hero-buttons{
+        justify-content:center;
     }
 
-    .slide-desc{
-        font-size:14px;
+    .hero-art{
+        min-height:420px;
     }
 
-    .historia-grid,
-    .contacto-grid{
+    .hero-circle{
+        width:380px;
+        height:380px;
+    }
+
+    .feature-grid,
+    .review-grid{
         grid-template-columns:1fr;
     }
 
-    .historia-grid{
-        gap:35px;
+    .story-grid,
+    .contact-grid{
+        grid-template-columns:1fr;
     }
 
-    .historia-visual{
-        min-height:400px;
+    .story-copy{
+        text-align:center;
     }
 
-    .productos-grid{
+    .story-list{
+        display:inline-block;
+        text-align:left;
+    }
+
+    .gallery-grid{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .newsletter-box{
-        flex-direction:column;
-        align-items:flex-start;
-        padding:40px 28px;
+    .contact-info{
+        text-align:center;
     }
 
-    .newsletter-form{
-        width:100%;
+    .contact-detail{
+        justify-content:center;
     }
 
-    .newsletter-form input{
-        flex:1;
-        width:auto;
-    }
-
-    .galeria-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .galeria-item.grande{
-        grid-column:span 2;
+    .music-player{
+        right:15px;
+        bottom:15px;
     }
 }
 
 @media(max-width:550px){
 
-    .header-inner{
-        gap:3px;
+    section{
+        padding:80px 18px;
     }
 
-    .logo-text{
-        font-size:18px;
+    .intro-logo{
+        width:180px;
+        height:180px;
     }
 
-    .logo-img{
-        width:40px;
-        height:40px;
+    .intro-title{
+        font-size:3.4rem;
     }
 
-    .header-actions{
-        gap:0;
+    .hero-inner{
+        padding-left:18px;
+        padding-right:18px;
     }
 
-    .icon-btn{
-        width:38px;
-        height:38px;
+    .hero h1{
+        font-size:4rem;
     }
 
-    .usuario-menu{
-        right:-10px;
-        width:245px;
+    .hero-art{
+        min-height:340px;
     }
 
-    .hero{
-        min-height:620px;
+    .hero-circle{
+        width:310px;
+        height:310px;
     }
 
-    .slide-content{
-        padding-top:75px;
+    .cake{
+        transform:translate(-50%,-50%) scale(.8);
     }
 
-    .slide-title{
-        font-size:47px;
-    }
-
-    .slide-desc{
-        max-width:340px;
-        font-size:13px;
-    }
-
-    .seccion{
-        padding:75px 0;
-    }
-
-    .features-grid,
-    .categorias-grid,
-    .productos-grid,
-    .reseñas-grid{
+    .product-grid{
         grid-template-columns:1fr;
     }
 
-    .producto-visual{
-        height:275px;
-    }
-
-    .historia-visual{
-        min-height:300px;
-    }
-
-    .galeria-grid{
+    .gallery-grid{
         grid-template-columns:1fr 1fr;
-        grid-auto-rows:150px;
+        grid-auto-rows:145px;
     }
 
-    .galeria-item.grande{
-        grid-column:span 2;
-        grid-row:span 2;
+    .gallery-item:nth-child(1),
+    .gallery-item:nth-child(4){
+        grid-row:span 1;
+    }
+
+    .gallery-art{
+        font-size:3.5rem;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .contact-form{
+        padding:25px;
     }
 
     .newsletter-form{
         flex-direction:column;
     }
 
-    .newsletter-form input{
-        width:100%;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .campo.full{
-        grid-column:auto;
-    }
-
-    .contacto-form{
-        padding:22px;
-    }
-
     .footer-grid{
         grid-template-columns:1fr;
-        gap:30px;
     }
 
     .footer-bottom{
         flex-direction:column;
-    }
-
-    #toast{
-        right:15px;
-        left:15px;
-        bottom:15px;
         text-align:center;
     }
 
-    .intro-logo{
-        width:145px;
-        height:145px;
+    .music-info{
+        min-width:110px;
     }
 
-    .intro-titulo{
-        font-size:48px;
+    .music-name{
+        max-width:110px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
     }
 
-    .audio-box{
-        padding:15px;
+    .music-player{
+        padding-right:10px;
     }
-}
 
-/* =========================================================
-   REDUCCIÓN DE MOVIMIENTO
-   ========================================================= */
-
-@media(prefers-reduced-motion:reduce){
-
-    *,
-    *::before,
-    *::after{
-        scroll-behavior:auto!important;
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        transition-duration:.01ms!important;
+    #topBtn{
+        right:15px;
+        bottom:90px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- ======================================================
-     PANTALLA DE INICIO
-     EL AUDIO ESTÁ SOLAMENTE AQUÍ
-     ====================================================== -->
+<!-- =====================================================
+     AUDIO DE FONDO
+====================================================== -->
+
+<audio
+    id="bgMusic"
+    src="intro-kochi.ogg"
+    loop
+    preload="auto"
+    playsinline>
+</audio>
+
+
+<!-- =====================================================
+     INTRO
+====================================================== -->
 
 <div id="intro">
 
-    <div class="intro-decoracion d1"></div>
-    <div class="intro-decoracion d2"></div>
-    <div class="intro-decoracion d3"></div>
+    <div class="intro-decor one"></div>
+    <div class="intro-decor two"></div>
 
-    <div class="intro-contenido">
+    <div class="intro-card">
 
         <img
             src="img/logo-kochi-kochi.png"
-            alt="Logo Kochi Kochi"
+            alt="Kochi Kochi Bakery"
             class="intro-logo"
         >
 
-        <h1 class="intro-titulo">
+        <h1 class="intro-title">
             Kochi Kochi
         </h1>
 
-        <p class="intro-slogan">
+        <p class="intro-subtitle">
             El postre te lo dice
         </p>
 
-        <!-- =================================================
-             AUDIO SOLO AQUÍ
-             ================================================= -->
-
-        <div class="audio-box">
-
-            <div class="audio-label">
-                Nuestra canción
-            </div>
-
-            <div class="audio-nombre">
-                ♪ Konnichiwa Sayonara
-            </div>
-
-            <audio
-                id="introAudio"
-                controls
-                preload="metadata"
-                playsinline
-            >
-                <source src="intro-kochi.ogg" type="audio/ogg">
-                Tu navegador no puede reproducir este audio.
-            </audio>
-
-        </div>
-
-        <button
-            id="entrarBtn"
-            class="entrar-btn"
-            type="button"
-        >
-            ENTRAR
-            <span>→</span>
+        <button id="enterBtn">
+            ENTRAR A LA BAKERY
         </button>
-
-        <p class="intro-nota">
-            Escucha nuestra canción antes de entrar ♡
-        </p>
 
     </div>
 
 </div>
 
 
-<!-- ======================================================
+<!-- =====================================================
      HEADER
-     ====================================================== -->
+====================================================== -->
 
 <header>
 
     <div class="header-inner">
 
-        <a href="#inicio" class="logo">
+        <a href="#inicio" class="logo-text">
 
-            <img
-                src="img/logo-kochi-kochi.png"
-                alt="Kochi Kochi"
-                class="logo-img"
-            >
+            <span class="logo-icon">🍰</span>
 
-            <div class="logo-text">
-                Kochi <span>Kochi</span>
-            </div>
+            Kochi Kochi
 
         </a>
+
+        <button
+            class="mobile-menu"
+            id="mobileMenu"
+            aria-label="Abrir menú">
+            ☰
+        </button>
 
         <nav id="nav">
 
             <a href="#inicio">Inicio</a>
+            <a href="#especialidades">Especialidades</a>
             <a href="#productos">Postres</a>
-            <a href="#categorias">Categorías</a>
             <a href="#historia">Nosotros</a>
             <a href="#galeria">Galería</a>
             <a href="#contacto">Contacto</a>
 
         </nav>
 
-        <div class="header-actions">
-
-            <div class="buscador-wrap">
-
-                <input
-                    type="search"
-                    id="buscador"
-                    placeholder="Buscar postres..."
-                    autocomplete="off"
-                >
-
-                <span class="buscador-icono">
-                    🔎
-                </span>
-
-            </div>
-
-            <button
-                class="icon-btn"
-                id="abrirCarrito"
-                type="button"
-                aria-label="Abrir carrito"
-            >
-                🛒
-                <span
-                    class="contador"
-                    id="contadorCarrito"
-                >0</span>
-            </button>
-
-            <button
-                class="icon-btn"
-                id="abrirFavoritos"
-                type="button"
-                aria-label="Favoritos"
-            >
-                ♡
-                <span
-                    class="contador"
-                    id="contadorFavoritos"
-                >0</span>
-            </button>
-
-            <div class="usuario-wrap">
-
-                <button
-                    class="icon-btn"
-                    id="btnUsuario"
-                    type="button"
-                    aria-label="Cuenta"
-                >
-                    👤
-                </button>
-
-                <div
-                    class="usuario-menu"
-                    id="usuarioMenu"
-                >
-
-                    <div class="usuario-cabecera">
-
-                        <strong id="usuarioNombre">
-                            Bienvenido a Kochi Kochi
-                        </strong>
-
-                        <span id="usuarioCorreo">
-                            Inicia sesión para guardar tus favoritos
-                        </span>
-
-                    </div>
-
-                    <button
-                        class="usuario-opcion"
-                        id="opcionCuenta"
-                        type="button"
-                    >
-                        👤
-                        Mi cuenta
-                    </button>
-
-                    <button
-                        class="usuario-opcion"
-                        id="opcionPedidos"
-                        type="button"
-                    >
-                        📦
-                        Mis pedidos
-                    </button>
-
-                    <button
-                        class="usuario-opcion"
-                        id="opcionPreferencias"
-                        type="button"
-                    >
-                        ⚙️
-                        Preferencias
-                    </button>
-
-                    <button
-                        class="usuario-opcion peligro"
-                        id="cerrarSesion"
-                        type="button"
-                    >
-                        ↪
-                        Cerrar sesión
-                    </button>
-
-                </div>
-
-            </div>
-
-            <button
-                class="icon-btn"
-                id="menuMovil"
-                type="button"
-                aria-label="Abrir menú"
-            >
-                ☰
-            </button>
-
-        </div>
-
     </div>
 
 </header>
 
 
-<!-- ======================================================
-     CONTENIDO
-     ====================================================== -->
+<!-- =====================================================
+     HERO
+====================================================== -->
 
-<main id="inicio">
+<main>
+
+<section class="hero" id="inicio">
+
+    <div class="hero-inner">
+
+        <div class="hero-copy reveal">
+
+            <div class="hero-small">
+                Bakery · Pastelería · Amor
+            </div>
+
+            <h1>
+                Hecho
+                <span>con amor.</span>
+            </h1>
+
+            <p class="hero-description">
+                Bienvenido a Kochi Kochi, un pequeño rincón
+                donde cada pastel, cada galleta y cada postre
+                está preparado para convertir un momento normal
+                en uno especial.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#productos" class="btn btn-primary">
+                    VER POSTRES
+                </a>
+
+                <a href="#historia" class="btn btn-outline">
+                    CONOCERNOS
+                </a>
+
+            </div>
+
+        </div>
 
 
-<!-- ======================================================
-     HERO / SLIDER
-     ====================================================== -->
+        <div class="hero-art reveal">
 
-<section class="hero">
+            <div class="hero-circle">
 
-    <div
-        class="slider"
-        id="slider"
-    >
+                <span class="floating-spark spark1">✦</span>
+                <span class="floating-spark spark2">♡</span>
+                <span class="floating-spark spark3">✧</span>
 
-        <!-- SLIDE 1 -->
+                <div class="cake">
 
-        <article class="slide activo">
+                    <div class="cherry"></div>
 
-            <div class="slide-bg"></div>
+                    <div class="cake-top"></div>
 
-            <div class="slide-content">
+                    <div class="cake-middle"></div>
 
-                <div class="slide-text">
+                    <div class="cake-bottom"></div>
 
-                    <span class="slide-kicker">
-                        Bienvenido a Kochi Kochi
-                    </span>
-
-                    <h1 class="slide-title">
-                        El postre<br>
-                        te lo dice.
-                    </h1>
-
-                    <p class="slide-desc">
-                        Pasteles, dulces y pequeños momentos
-                        hechos con muchísimo cariño.
-                    </p>
-
-                    <a
-                        href="#productos"
-                        class="slide-btn"
-                    >
-                        Ver postres →
-                    </a>
+                    <div class="cake-cream"></div>
 
                 </div>
 
             </div>
 
-        </article>
-
-
-        <!-- SLIDE 2 -->
-
-        <article class="slide">
-
-            <div class="slide-bg"></div>
-
-            <div class="slide-content">
-
-                <div class="slide-text">
-
-                    <span class="slide-kicker">
-                        Hecho con amor
-                    </span>
-
-                    <h2 class="slide-title">
-                        Dulce<br>
-                        y especial.
-                    </h2>
-
-                    <p class="slide-desc">
-                        Cada creación tiene su propia personalidad,
-                        desde los clásicos hasta nuestras combinaciones
-                        más especiales.
-                    </p>
-
-                    <a
-                        href="#historia"
-                        class="slide-btn"
-                    >
-                        Conócenos →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <!-- SLIDE 3 -->
-
-        <article class="slide">
-
-            <div class="slide-bg"></div>
-
-            <div class="slide-content">
-
-                <div class="slide-text">
-
-                    <span class="slide-kicker">
-                        Kochi Kochi Bakery
-                    </span>
-
-                    <h2 class="slide-title">
-                        Un detalle<br>
-                        para recordar.
-                    </h2>
-
-                    <p class="slide-desc">
-                        Regala una sonrisa con un postre preparado
-                        para convertir cualquier día en una ocasión especial.
-                    </p>
-
-                    <a
-                        href="#contacto"
-                        class="slide-btn"
-                    >
-                        Haz tu pedido →
-                    </a>
-
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <button
-            class="slider-arrow"
-            id="anterior"
-            type="button"
-            aria-label="Anterior"
-        >
-            ‹
-        </button>
-
-        <button
-            class="slider-arrow"
-            id="siguiente"
-            type="button"
-            aria-label="Siguiente"
-        >
-            ›
-        </button>
-
-        <div
-            class="dots"
-            id="dots"
-        >
-            <button class="dot activo" type="button"></button>
-            <button class="dot" type="button"></button>
-            <button class="dot" type="button"></button>
         </div>
 
     </div>
@@ -2692,98 +1852,98 @@ footer{
 </section>
 
 
-<!-- ======================================================
-     BENEFICIOS
-     ====================================================== -->
+<!-- =====================================================
+     SLOGAN
+====================================================== -->
 
-<section class="seccion features">
+<section class="slogan">
 
-    <div class="contenedor">
+    <p>
+        “Kochi kochi, el postre te lo dice.”
+    </p>
 
-        <div class="encabezado-seccion reveal">
+</section>
 
-            <div class="eyebrow">
-                Kochi Kochi
+
+<!-- =====================================================
+     ESPECIALIDADES
+====================================================== -->
+
+<section class="features" id="especialidades">
+
+    <div class="section-container">
+
+        <div class="section-heading reveal">
+
+            <div class="section-tag">
+                Lo que hacemos
             </div>
 
-            <h2 class="titulo-seccion">
+            <h2 class="section-title">
                 Pequeños detalles,
-                grandes sonrisas.
+                grandes sabores.
             </h2>
 
-            <p class="texto-seccion">
-                Queremos que cada visita a Kochi Kochi sea
-                tan especial como el primer bocado.
+            <p class="section-text">
+                Cada creación está pensada para verse bonita,
+                saber increíble y hacer que quieras volver.
             </p>
 
         </div>
 
 
-        <div class="features-grid">
+        <div class="feature-grid">
 
-            <article class="feature reveal">
-
-                <div class="feature-icon">
-                    ♡
-                </div>
-
-                <h3>
-                    Hecho con amor
-                </h3>
-
-                <p>
-                    Cada postre se prepara cuidando cada pequeño detalle.
-                </p>
-
-            </article>
-
-
-            <article class="feature reveal">
-
-                <div class="feature-icon">
-                    ✦
-                </div>
-
-                <h3>
-                    Ingredientes
-                </h3>
-
-                <p>
-                    Seleccionamos ingredientes para conseguir sabores especiales.
-                </p>
-
-            </article>
-
-
-            <article class="feature reveal">
+            <article class="feature-card reveal">
 
                 <div class="feature-icon">
                     🎂
                 </div>
 
                 <h3>
-                    Para celebrar
+                    Pasteles
                 </h3>
 
                 <p>
-                    Pasteles y postres para cumpleaños, reuniones y momentos únicos.
+                    Pasteles para cumpleaños, celebraciones
+                    y esos días en los que simplemente quieres
+                    algo dulce.
                 </p>
 
             </article>
 
 
-            <article class="feature reveal">
+            <article class="feature-card reveal">
 
                 <div class="feature-icon">
-                    ✿
+                    🍪
                 </div>
 
                 <h3>
-                    Hecho para ti
+                    Galletas
                 </h3>
 
                 <p>
-                    Puedes escribirnos para crear algo pensado para tu ocasión.
+                    Galletas suaves, crujientes y llenas de
+                    pequeños detalles que hacen la diferencia.
+                </p>
+
+            </article>
+
+
+            <article class="feature-card reveal">
+
+                <div class="feature-icon">
+                    🍓
+                </div>
+
+                <h3>
+                    Especiales
+                </h3>
+
+                <p>
+                    Postres de temporada y creaciones especiales
+                    para sorprender a alguien.
                 </p>
 
             </article>
@@ -2795,315 +1955,64 @@ footer{
 </section>
 
 
-<!-- ======================================================
-     CATEGORÍAS
-     ====================================================== -->
-
-<section
-    class="seccion categorias"
-    id="categorias"
->
-
-    <div class="contenedor">
-
-        <div class="encabezado-seccion reveal">
-
-            <div class="eyebrow">
-                Descubre
-            </div>
-
-            <h2 class="titulo-seccion">
-                Algo dulce para todos.
-            </h2>
-
-            <p class="texto-seccion">
-                Explora nuestras categorías.
-            </p>
-
-        </div>
-
-
-        <div class="categorias-grid">
-
-            <article
-                class="categoria reveal"
-                data-categoria="pasteles"
-            >
-
-                <div class="categoria-contenido">
-
-                    <div class="categoria-icon">
-                        🎂
-                    </div>
-
-                    <h3>
-                        Pasteles
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-            <article
-                class="categoria reveal"
-                data-categoria="cupcakes"
-            >
-
-                <div class="categoria-contenido">
-
-                    <div class="categoria-icon">
-                        🧁
-                    </div>
-
-                    <h3>
-                        Cupcakes
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-            <article
-                class="categoria reveal"
-                data-categoria="galletas"
-            >
-
-                <div class="categoria-contenido">
-
-                    <div class="categoria-icon">
-                        🍪
-                    </div>
-
-                    <h3>
-                        Galletas
-                    </h3>
-
-                </div>
-
-            </article>
-
-
-            <article
-                class="categoria reveal"
-                data-categoria="especiales"
-            >
-
-                <div class="categoria-contenido">
-
-                    <div class="categoria-icon">
-                        🍓
-                    </div>
-
-                    <h3>
-                        Especiales
-                    </h3>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
+<!-- =====================================================
      PRODUCTOS
-     ====================================================== -->
+====================================================== -->
 
-<section
-    class="seccion productos"
-    id="productos"
->
+<section class="products" id="productos">
 
-    <div class="contenedor">
+    <div class="section-container">
 
-        <div class="encabezado-seccion reveal">
+        <div class="section-heading reveal">
 
-            <div class="eyebrow">
+            <div class="section-tag">
                 Nuestro menú
             </div>
 
-            <h2 class="titulo-seccion">
-                Los favoritos de Kochi Kochi.
+            <h2 class="section-title">
+                Favoritos de Kochi
             </h2>
 
-            <p class="texto-seccion">
-                Elige tu favorito y agrégalo al carrito.
+            <p class="section-text">
+                Una selección de nuestros postres favoritos.
             </p>
 
         </div>
 
 
-        <div class="filtros reveal">
-
-            <button
-                class="filtro activo"
-                data-filtro="todos"
-            >
-                Todos
-            </button>
-
-            <button
-                class="filtro"
-                data-filtro="pasteles"
-            >
-                Pasteles
-            </button>
-
-            <button
-                class="filtro"
-                data-filtro="cupcakes"
-            >
-                Cupcakes
-            </button>
-
-            <button
-                class="filtro"
-                data-filtro="galletas"
-            >
-                Galletas
-            </button>
-
-            <button
-                class="filtro"
-                data-filtro="especiales"
-            >
-                Especiales
-            </button>
-
-        </div>
+        <div class="product-grid">
 
 
-        <div class="productos-grid" id="productosGrid">
+            <article class="product-card reveal">
 
+                <div class="product-image">
 
-            <!-- PRODUCTO 1 -->
-
-            <article
-                class="producto reveal"
-                data-id="1"
-                data-categoria="pasteles"
-                data-nombre="Pastel Pink Strawberry"
-                data-precio="420"
-            >
-
-                <div class="producto-visual">
-
-                    <span class="badge">
+                    <span class="product-badge">
                         FAVORITO
                     </span>
 
-                    <button
-                        class="favorito"
-                        type="button"
-                        aria-label="Agregar a favoritos"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="260"
-                            rx="130"
-                            ry="18"
-                        />
-
-                        <path
-                            class="svg-crema"
-                            d="M85 190h230v45c0 16-13 28-29 28H114c-16 0-29-12-29-28z"
-                        />
-
-                        <path
-                            class="svg-rosa2"
-                            d="M85 190c30 18 55 18 85 0 30 18 55 18 85 0 20 12 36 13 45 9v26c-10 11-27 17-45 17H114c-16 0-29-12-29-28z"
-                        />
-
-                        <path
-                            class="svg-rosa"
-                            d="M85 190c12-25 29-38 52-39 16-32 38-42 63-30 25-12 47-2 63 30 23 1 40 14 52 39z"
-                        />
-
-                        <circle
-                            class="svg-blanco"
-                            cx="200"
-                            cy="125"
-                            r="12"
-                        />
-
-                        <path
-                            class="svg-rosa"
-                            d="M181 94c7-15 22-16 28-4-2 14-15 21-28 4z"
-                        />
-
-                        <path
-                            class="svg-rosa"
-                            d="M211 91c7-15 22-16 28-4-2 14-15 21-28 4z"
-                        />
-
-                        <circle
-                            class="svg-chocolate2"
-                            cx="150"
-                            cy="177"
-                            r="5"
-                        />
-
-                        <circle
-                            class="svg-chocolate2"
-                            cx="250"
-                            cy="170"
-                            r="5"
-                        />
-
-                        <circle
-                            class="svg-chocolate2"
-                            cx="225"
-                            cy="198"
-                            r="4"
-                        />
-
-                    </svg>
+                    <div class="product-cake"></div>
 
                 </div>
 
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Pastel
-                    </div>
+                <div class="product-info">
 
                     <h3>
-                        Pink Strawberry
+                        Strawberry Cake
                     </h3>
 
-                    <p class="producto-desc">
-                        Pastel suave con crema y detalles de fresa.
+                    <p>
+                        Pastel suave con crema y fresas.
                     </p>
 
-                    <div class="producto-bottom">
+                    <div class="product-bottom">
 
-                        <span class="precio">
-                            $420
+                        <span class="price">
+                            $320 MXN
                         </span>
 
-                        <button
-                            class="agregar"
-                            type="button"
-                            aria-label="Agregar"
-                        >
+                        <button class="add-cart"
+                                data-product="Strawberry Cake">
                             +
                         </button>
 
@@ -3114,114 +2023,38 @@ footer{
             </article>
 
 
-            <!-- PRODUCTO 2 -->
+            <article class="product-card reveal">
 
-            <article
-                class="producto reveal"
-                data-id="2"
-                data-categoria="cupcakes"
-                data-nombre="Cupcake Rosita"
-                data-precio="75"
-            >
+                <div class="product-image">
 
-                <div class="producto-visual">
-
-                    <span class="badge">
+                    <span class="product-badge">
                         NUEVO
                     </span>
 
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="255"
-                            rx="105"
-                            ry="15"
-                        />
-
-                        <path
-                            class="svg-crema2"
-                            d="M120 145h160l-15 100H135z"
-                        />
-
-                        <path
-                            fill="#e5a278"
-                            d="M120 145h160l-10 55H130z"
-                        />
-
-                        <path
-                            class="svg-rosa"
-                            d="M112 145c5-38 32-48 49-43 11-36 42-42 62-18 24-18 58 0 62 37 18 5 25 22 20 38H112z"
-                        />
-
-                        <circle
-                            class="svg-blanco"
-                            cx="190"
-                            cy="102"
-                            r="10"
-                        />
-
-                        <path
-                            class="svg-rosa2"
-                            d="M185 89c0-18 25-20 27-2-4 12-16 16-27 2z"
-                        />
-
-                        <circle
-                            fill="#7a3d4c"
-                            cx="150"
-                            cy="142"
-                            r="4"
-                        />
-
-                        <circle
-                            fill="#7a3d4c"
-                            cx="245"
-                            cy="145"
-                            r="4"
-                        />
-
-                    </svg>
+                    <div class="product-cake"
+                         style="transform:rotate(-3deg);">
+                    </div>
 
                 </div>
 
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Cupcake
-                    </div>
+                <div class="product-info">
 
                     <h3>
-                        Cupcake Rosita
+                        Pink Dream
                     </h3>
 
-                    <p class="producto-desc">
-                        Cupcake esponjoso con crema de fresa.
+                    <p>
+                        Pastel rosado con decoración especial.
                     </p>
 
-                    <div class="producto-bottom">
+                    <div class="product-bottom">
 
-                        <span class="precio">
-                            $75
+                        <span class="price">
+                            $380 MXN
                         </span>
 
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
+                        <button class="add-cart"
+                                data-product="Pink Dream">
                             +
                         </button>
 
@@ -3232,124 +2065,34 @@ footer{
             </article>
 
 
-            <!-- PRODUCTO 3 -->
+            <article class="product-card reveal">
 
-            <article
-                class="producto reveal"
-                data-id="3"
-                data-categoria="galletas"
-                data-nombre="Galletas Choco"
-                data-precio="95"
-            >
+                <div class="product-image">
 
-                <div class="producto-visual">
-
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="255"
-                            rx="115"
-                            ry="15"
-                        />
-
-                        <circle
-                            fill="#d89a63"
-                            cx="200"
-                            cy="155"
-                            r="100"
-                        />
-
-                        <circle
-                            fill="#c98252"
-                            cx="150"
-                            cy="120"
-                            r="11"
-                        />
-
-                        <circle
-                            fill="#8a4d45"
-                            cx="220"
-                            cy="110"
-                            r="13"
-                        />
-
-                        <circle
-                            fill="#8a4d45"
-                            cx="260"
-                            cy="155"
-                            r="10"
-                        />
-
-                        <circle
-                            fill="#8a4d45"
-                            cx="180"
-                            cy="180"
-                            r="12"
-                        />
-
-                        <circle
-                            fill="#c98252"
-                            cx="125"
-                            cy="175"
-                            r="8"
-                        />
-
-                        <circle
-                            fill="#8a4d45"
-                            cx="235"
-                            cy="205"
-                            r="11"
-                        />
-
-                        <path
-                            class="svg-linea"
-                            opacity=".25"
-                            d="M130 95c30-25 80-35 120-12"
-                        />
-
-                    </svg>
+                    <div class="product-cake"
+                         style="background:#f6d2a9;">
+                    </div>
 
                 </div>
 
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Galletas
-                    </div>
+                <div class="product-info">
 
                     <h3>
-                        Galletas Choco
+                        Kochi Cookies
                     </h3>
 
-                    <p class="producto-desc">
-                        Galletas caseras con trozos de chocolate.
+                    <p>
+                        Galletas caseras recién horneadas.
                     </p>
 
-                    <div class="producto-bottom">
+                    <div class="product-bottom">
 
-                        <span class="precio">
-                            $95
+                        <span class="price">
+                            $120 MXN
                         </span>
 
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
+                        <button class="add-cart"
+                                data-product="Kochi Cookies">
                             +
                         </button>
 
@@ -3360,114 +2103,38 @@ footer{
             </article>
 
 
-            <!-- PRODUCTO 4 -->
+            <article class="product-card reveal">
 
-            <article
-                class="producto reveal"
-                data-id="4"
-                data-categoria="especiales"
-                data-nombre="Berry Cake"
-                data-precio="490"
-            >
+                <div class="product-image">
 
-                <div class="producto-visual">
-
-                    <span class="badge">
+                    <span class="product-badge">
                         ESPECIAL
                     </span>
 
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="258"
-                            rx="125"
-                            ry="16"
-                        />
-
-                        <path
-                            class="svg-crema"
-                            d="M85 150h230v88c0 16-13 28-29 28H114c-16 0-29-12-29-28z"
-                        />
-
-                        <path
-                            class="svg-rosa2"
-                            d="M85 185h230v20H85z"
-                        />
-
-                        <path
-                            class="svg-rosa"
-                            d="M80 150c15-27 36-35 59-29 15-29 38-40 61-25 25-16 52-4 63 25 25-5 45 5 57 29z"
-                        />
-
-                        <circle
-                            fill="#d84f75"
-                            cx="145"
-                            cy="125"
-                            r="13"
-                        />
-
-                        <circle
-                            fill="#d84f75"
-                            cx="200"
-                            cy="105"
-                            r="14"
-                        />
-
-                        <circle
-                            fill="#d84f75"
-                            cx="254"
-                            cy="125"
-                            r="13"
-                        />
-
-                        <path
-                            class="svg-blanco"
-                            d="M185 83c7-18 22-17 26-4-3 13-15 18-26 4z"
-                        />
-
-                    </svg>
+                    <div class="product-cake"
+                         style="background:#f7c7d7;">
+                    </div>
 
                 </div>
 
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Especial
-                    </div>
+                <div class="product-info">
 
                     <h3>
-                        Berry Cake
+                        Sweet Box
                     </h3>
 
-                    <p class="producto-desc">
-                        Pastel especial con frutos rojos y crema.
+                    <p>
+                        Caja con una selección de postres.
                     </p>
 
-                    <div class="producto-bottom">
+                    <div class="product-bottom">
 
-                        <span class="precio">
-                            $490
+                        <span class="price">
+                            $250 MXN
                         </span>
 
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
+                        <button class="add-cart"
+                                data-product="Sweet Box">
                             +
                         </button>
 
@@ -3477,467 +2144,6 @@ footer{
 
             </article>
 
-
-            <!-- PRODUCTO 5 -->
-
-            <article
-                class="producto reveal"
-                data-id="5"
-                data-categoria="cupcakes"
-                data-nombre="Cupcake Chocolate"
-                data-precio="80"
-            >
-
-                <div class="producto-visual">
-
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="255"
-                            rx="105"
-                            ry="15"
-                        />
-
-                        <path
-                            fill="#e5a278"
-                            d="M120 145h160l-15 100H135z"
-                        />
-
-                        <path
-                            class="svg-chocolate"
-                            d="M110 145c8-32 32-45 52-40 8-31 42-46 65-20 24-19 59-1 63 35 19 6 25 21 18 39H110z"
-                        />
-
-                        <path
-                            class="svg-chocolate2"
-                            d="M145 125c20-18 42-20 63-8 19-19 42-18 59 0"
-                            fill="none"
-                            stroke="#c27a68"
-                            stroke-width="8"
-                            stroke-linecap="round"
-                        />
-
-                        <circle
-                            fill="#fff"
-                            cx="200"
-                            cy="98"
-                            r="8"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Cupcake
-                    </div>
-
-                    <h3>
-                        Cupcake Chocolate
-                    </h3>
-
-                    <p class="producto-desc">
-                        Chocolate, crema y mucho sabor.
-                    </p>
-
-                    <div class="producto-bottom">
-
-                        <span class="precio">
-                            $80
-                        </span>
-
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PRODUCTO 6 -->
-
-            <article
-                class="producto reveal"
-                data-id="6"
-                data-categoria="pasteles"
-                data-nombre="Mini Cake"
-                data-precio="280"
-            >
-
-                <div class="producto-visual">
-
-                    <span class="badge">
-                        NUEVO
-                    </span>
-
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="255"
-                            rx="100"
-                            ry="14"
-                        />
-
-                        <path
-                            class="svg-crema"
-                            d="M115 150h170v85c0 15-12 25-27 25H142c-15 0-27-10-27-25z"
-                        />
-
-                        <path
-                            class="svg-rosa"
-                            d="M110 150c10-25 29-37 50-33 12-27 34-35 55-20 22-15 45-6 55 20 21-4 40 8 50 33z"
-                        />
-
-                        <path
-                            class="svg-rosa2"
-                            d="M115 190h170v18H115z"
-                        />
-
-                        <circle
-                            fill="#e65d80"
-                            cx="160"
-                            cy="135"
-                            r="8"
-                        />
-
-                        <circle
-                            fill="#e65d80"
-                            cx="200"
-                            cy="120"
-                            r="9"
-                        />
-
-                        <circle
-                            fill="#e65d80"
-                            cx="240"
-                            cy="135"
-                            r="8"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Pastel
-                    </div>
-
-                    <h3>
-                        Mini Cake
-                    </h3>
-
-                    <p class="producto-desc">
-                        Un pequeño pastel para un momento especial.
-                    </p>
-
-                    <div class="producto-bottom">
-
-                        <span class="precio">
-                            $280
-                        </span>
-
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PRODUCTO 7 -->
-
-            <article
-                class="producto reveal"
-                data-id="7"
-                data-categoria="galletas"
-                data-nombre="Galletas Pink"
-                data-precio="90"
-            >
-
-                <div class="producto-visual">
-
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="255"
-                            rx="115"
-                            ry="15"
-                        />
-
-                        <circle
-                            fill="#efa5ba"
-                            cx="200"
-                            cy="155"
-                            r="100"
-                        />
-
-                        <circle
-                            fill="#fff1f4"
-                            cx="160"
-                            cy="120"
-                            r="8"
-                        />
-
-                        <circle
-                            fill="#fff1f4"
-                            cx="220"
-                            cy="108"
-                            r="8"
-                        />
-
-                        <circle
-                            fill="#fff1f4"
-                            cx="260"
-                            cy="150"
-                            r="8"
-                        />
-
-                        <circle
-                            fill="#fff1f4"
-                            cx="185"
-                            cy="180"
-                            r="8"
-                        />
-
-                        <circle
-                            fill="#fff1f4"
-                            cx="130"
-                            cy="165"
-                            r="7"
-                        />
-
-                        <circle
-                            fill="#fff1f4"
-                            cx="235"
-                            cy="210"
-                            r="7"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Galletas
-                    </div>
-
-                    <h3>
-                        Galletas Pink
-                    </h3>
-
-                    <p class="producto-desc">
-                        Galletas suaves con glaseado rosado.
-                    </p>
-
-                    <div class="producto-bottom">
-
-                        <span class="precio">
-                            $90
-                        </span>
-
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- PRODUCTO 8 -->
-
-            <article
-                class="producto reveal"
-                data-id="8"
-                data-categoria="especiales"
-                data-nombre="Strawberry Box"
-                data-precio="320"
-            >
-
-                <div class="producto-visual">
-
-                    <span class="badge">
-                        ESPECIAL
-                    </span>
-
-                    <button
-                        class="favorito"
-                        type="button"
-                    >
-                        ♡
-                    </button>
-
-
-                    <svg
-                        class="producto-svg"
-                        viewBox="0 0 400 300"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-
-                        <ellipse
-                            class="svg-sombra"
-                            cx="200"
-                            cy="255"
-                            rx="120"
-                            ry="15"
-                        />
-
-                        <path
-                            fill="#d990a1"
-                            d="M90 145h220v100H90z"
-                        />
-
-                        <path
-                            fill="#f6c9d6"
-                            d="M100 155h200v75H100z"
-                        />
-
-                        <path
-                            fill="#fff"
-                            d="M110 165h180v20H110z"
-                        />
-
-                        <circle
-                            fill="#e34e75"
-                            cx="145"
-                            cy="205"
-                            r="19"
-                        />
-
-                        <circle
-                            fill="#e34e75"
-                            cx="200"
-                            cy="205"
-                            r="19"
-                        />
-
-                        <circle
-                            fill="#e34e75"
-                            cx="255"
-                            cy="205"
-                            r="19"
-                        />
-
-                        <path
-                            fill="#6e9c63"
-                            d="M135 188l10-14 8 12 10-10 2 18z"
-                        />
-
-                        <path
-                            fill="#6e9c63"
-                            d="M190 188l10-14 8 12 10-10 2 18z"
-                        />
-
-                        <path
-                            fill="#6e9c63"
-                            d="M245 188l10-14 8 12 10-10 2 18z"
-                        />
-
-                    </svg>
-
-                </div>
-
-
-                <div class="producto-info">
-
-                    <div class="producto-categoria">
-                        Especial
-                    </div>
-
-                    <h3>
-                        Strawberry Box
-                    </h3>
-
-                    <p class="producto-desc">
-                        Caja especial con fresas y detalles dulces.
-                    </p>
-
-                    <div class="producto-bottom">
-
-                        <span class="precio">
-                            $320
-                        </span>
-
-                        <button
-                            class="agregar"
-                            type="button"
-                        >
-                            +
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </article>
 
         </div>
 
@@ -3946,122 +2152,79 @@ footer{
 </section>
 
 
-<!-- ======================================================
+<!-- =====================================================
      HISTORIA
-     ====================================================== -->
+====================================================== -->
 
-<section
-    class="seccion historia"
-    id="historia"
->
+<section class="story" id="historia">
 
-    <div class="contenedor">
+    <div class="section-container">
 
-        <div class="historia-grid">
+        <div class="story-grid">
 
-            <div class="historia-visual reveal">
+            <div class="story-art reveal">
 
-                <svg
-                    class="tarta-grande"
-                    viewBox="0 0 500 500"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
+                <div class="story-frame">
 
-                    <ellipse
-                        class="svg-sombra"
-                        cx="250"
-                        cy="420"
-                        rx="165"
-                        ry="22"
-                    />
+                    <div class="story-cake">
 
-                    <path
-                        class="svg-crema"
-                        d="M100 255h300v120c0 28-22 48-50 48H150c-28 0-50-20-50-48z"
-                    />
+                        <div class="top"></div>
+                        <div class="layer2"></div>
+                        <div class="layer1"></div>
 
-                    <path
-                        class="svg-rosa"
-                        d="M95 255c20-40 52-60 89-50 23-48 63-65 105-39 42-26 82-9 105 39 37-10 69 10 89 50z"
-                    />
+                    </div>
 
-                    <path
-                        class="svg-rosa2"
-                        d="M100 300h300v35H100z"
-                    />
-
-                    <path
-                        class="svg-chocolate"
-                        d="M130 365c35-30 65 20 100-8 35-28 60 23 100-5 25-18 40-8 40-8v31c-35 27-70-16-105 10-35 26-60-20-95 7-20 15-40 8-40 8z"
-                    />
-
-                    <circle
-                        fill="#df5278"
-                        cx="170"
-                        cy="215"
-                        r="18"
-                    />
-
-                    <circle
-                        fill="#df5278"
-                        cx="250"
-                        cy="185"
-                        r="20"
-                    />
-
-                    <circle
-                        fill="#df5278"
-                        cx="330"
-                        cy="215"
-                        r="18"
-                    />
-
-                    <path
-                        fill="#6c9862"
-                        d="M250 167c-3-28 16-37 28-24-2 18-12 27-28 24z"
-                    />
-
-                    <path
-                        fill="#6c9862"
-                        d="M153 198c-2-22 13-30 24-20-2 15-10 23-24 20z"
-                    />
-
-                </svg>
+                </div>
 
             </div>
 
 
-            <div class="historia-texto reveal">
+            <div class="story-copy reveal">
 
-                <div class="eyebrow">
+                <div class="section-tag">
                     Nuestra historia
                 </div>
 
-                <h2 class="titulo-seccion">
-                    Un poquito de amor
-                    en cada postre.
+                <h2>
+                    Una bakery
+                    <span>hecha con cariño.</span>
                 </h2>
 
                 <p>
                     Kochi Kochi nació de una idea sencilla:
-                    hacer que un postre pueda decir aquello que
-                    muchas veces no sabemos cómo expresar.
+                    hacer postres bonitos, ricos y capaces
+                    de alegrarle el día a alguien.
                 </p>
 
                 <p>
-                    Cumpleaños, regalos, reuniones o simplemente
-                    un antojo de martes. Creemos que cualquier
-                    momento puede convertirse en un recuerdo bonito.
+                    Nos gusta cuidar los pequeños detalles,
+                    desde la presentación hasta ese primer
+                    bocado que hace que todo valga la pena.
                 </p>
 
-                <p>
-                    Por eso cuidamos nuestros sabores, nuestros
-                    detalles y la forma en que presentamos cada creación.
-                </p>
+                <ul class="story-list">
 
-                <div class="firma">
-                    Kochi kochi, el postre te lo dice ♡
-                </div>
+                    <li>
+                        <span>✓</span>
+                        Ingredientes seleccionados
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Preparado con cariño
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Diseños personalizados
+                    </li>
+
+                    <li>
+                        <span>✓</span>
+                        Mucho amor en cada postre
+                    </li>
+
+                </ul>
 
             </div>
 
@@ -4072,185 +2235,105 @@ footer{
 </section>
 
 
-<!-- ======================================================
-     GALERIA
-     ====================================================== -->
+<!-- =====================================================
+     GALERÍA
+====================================================== -->
 
-<section
-    class="seccion galeria"
-    id="galeria"
->
+<section class="gallery" id="galeria">
 
-    <div class="contenedor">
+    <div class="section-container">
 
-        <div class="encabezado-seccion reveal">
+        <div class="section-heading reveal">
 
-            <div class="eyebrow">
-                Momentos dulces
+            <div class="section-tag">
+                Sweet moments
             </div>
 
-            <h2 class="titulo-seccion">
-                Un rincón de Kochi Kochi.
-            </h2>
-
-            <p class="texto-seccion">
-                Una galería creada directamente con código para que
-                no dependas de imágenes externas que puedan romperse.
-            </p>
-
-        </div>
-
-
-        <div class="galeria-grid">
-
-            <div class="galeria-item grande reveal">
-                <div class="galeria-icon">🎂</div>
-            </div>
-
-            <div class="galeria-item reveal">
-                <div class="galeria-icon">🧁</div>
-            </div>
-
-            <div class="galeria-item reveal">
-                <div class="galeria-icon">🍓</div>
-            </div>
-
-            <div class="galeria-item reveal">
-                <div class="galeria-icon">🍪</div>
-            </div>
-
-            <div class="galeria-item reveal">
-                <div class="galeria-icon">🍰</div>
-            </div>
-
-            <div class="galeria-item reveal">
-                <div class="galeria-icon">🍒</div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     TESTIMONIOS
-     ====================================================== -->
-
-<section class="seccion testimonios">
-
-    <div class="contenedor">
-
-        <div class="encabezado-seccion reveal">
-
-            <div class="eyebrow">
-                Opiniones
-            </div>
-
-            <h2 class="titulo-seccion">
-                Lo que dicen nuestros clientes.
+            <h2 class="section-title">
+                Un poquito de Kochi
             </h2>
 
         </div>
 
 
-        <div class="reseñas-grid">
+        <div class="gallery-grid">
 
-            <article class="reseña reveal">
+            <div class="gallery-item reveal">
 
-                <div class="estrellas">
-                    ★★★★★
+                <div class="gallery-art">
+                    🎂
                 </div>
 
-                <p>
-                    “El pastel quedó precioso y además estaba
-                    delicioso. Definitivamente volvería a pedir.”
-                </p>
-
-                <div class="reseña-autor">
-
-                    <div class="avatar">
-                        A
-                    </div>
-
-                    <div>
-                        <strong>
-                            Andrea
-                        </strong>
-
-                        <span>
-                            Cliente Kochi Kochi
-                        </span>
-                    </div>
-
+                <div class="gallery-overlay">
+                    Cakes
                 </div>
 
-            </article>
+            </div>
 
 
-            <article class="reseña reveal">
+            <div class="gallery-item reveal">
 
-                <div class="estrellas">
-                    ★★★★★
+                <div class="gallery-art">
+                    🧁
                 </div>
 
-                <p>
-                    “Me encantó la presentación. Se nota que
-                    ponen mucho cariño en lo que hacen.”
-                </p>
-
-                <div class="reseña-autor">
-
-                    <div class="avatar">
-                        M
-                    </div>
-
-                    <div>
-                        <strong>
-                            Mariana
-                        </strong>
-
-                        <span>
-                            Cliente Kochi Kochi
-                        </span>
-                    </div>
-
+                <div class="gallery-overlay">
+                    Cupcakes
                 </div>
 
-            </article>
+            </div>
 
 
-            <article class="reseña reveal">
+            <div class="gallery-item reveal">
 
-                <div class="estrellas">
-                    ★★★★★
+                <div class="gallery-art">
+                    🍓
                 </div>
 
-                <p>
-                    “Las galletas fueron un éxito en la reunión.
-                    Todos preguntaron de dónde eran.”
-                </p>
-
-                <div class="reseña-autor">
-
-                    <div class="avatar">
-                        D
-                    </div>
-
-                    <div>
-                        <strong>
-                            Diego
-                        </strong>
-
-                        <span>
-                            Cliente Kochi Kochi
-                        </span>
-                    </div>
-
+                <div class="gallery-overlay">
+                    Fresh
                 </div>
 
-            </article>
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <div class="gallery-art">
+                    🍪
+                </div>
+
+                <div class="gallery-overlay">
+                    Cookies
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <div class="gallery-art">
+                    🍰
+                </div>
+
+                <div class="gallery-overlay">
+                    Sweet
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item reveal">
+
+                <div class="gallery-art">
+                    🍒
+                </div>
+
+                <div class="gallery-overlay">
+                    Love
+                </div>
+
+            </div>
 
         </div>
 
@@ -4259,185 +2342,173 @@ footer{
 </section>
 
 
-<!-- ======================================================
-     NEWSLETTER
-     ====================================================== -->
+<!-- =====================================================
+     REVIEWS
+====================================================== -->
 
-<section class="seccion newsletter">
+<section class="reviews">
 
-    <div class="contenedor">
+    <div class="section-container">
 
-        <div class="newsletter-box reveal">
+        <div class="section-heading reveal">
 
-            <div class="newsletter-text">
+            <div class="section-tag">
+                Sweet words
+            </div>
 
-                <div class="eyebrow" style="color:#fff;">
-                    Mantente dulce
+            <h2 class="section-title">
+                Lo que dicen de nosotros
+            </h2>
+
+        </div>
+
+
+        <div class="review-grid">
+
+
+            <article class="review reveal">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    “El pastel estaba precioso y además
+                    estaba buenísimo. Definitivamente volvería.”
+                </p>
+
+                <div class="review-name">
+                    — Cliente Kochi
+                </div>
+
+            </article>
+
+
+            <article class="review reveal">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    “Todo se siente muy cuidado y bonito.
+                    Las galletas fueron mis favoritas.”
+                </p>
+
+                <div class="review-name">
+                    — Cliente Kochi
+                </div>
+
+            </article>
+
+
+            <article class="review reveal">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    “Un lugar perfecto para comprar algo
+                    dulce para alguien especial.”
+                </p>
+
+                <div class="review-name">
+                    — Cliente Kochi
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONTACTO
+====================================================== -->
+
+<section class="contact" id="contacto">
+
+    <div class="section-container">
+
+        <div class="contact-grid">
+
+
+            <div class="contact-info reveal">
+
+                <div class="section-tag">
+                    Escríbenos
                 </div>
 
                 <h2>
-                    No te pierdas
-                    nuestros sabores.
+                    Hagamos algo
+                    dulce.
                 </h2>
 
                 <p>
-                    Recibe novedades y promociones de Kochi Kochi.
+                    ¿Quieres hacer un pedido, preguntar por
+                    un pastel personalizado o simplemente
+                    decir hola? Mándanos un mensaje.
                 </p>
 
-            </div>
+
+                <div class="contact-detail">
+
+                    <div class="contact-icon">
+                        📍
+                    </div>
+
+                    <span>
+                        Kochi Kochi Bakery
+                    </span>
+
+                </div>
 
 
-            <form
-                class="newsletter-form"
-                id="newsletterForm"
-            >
+                <div class="contact-detail">
 
-                <input
-                    type="email"
-                    id="newsletterEmail"
-                    placeholder="Tu correo electrónico"
-                    required
-                >
-
-                <button type="submit">
-                    Suscribirme
-                </button>
-
-            </form>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ======================================================
-     CONTACTO
-     ====================================================== -->
-
-<section
-    class="seccion contacto"
-    id="contacto"
->
-
-    <div class="contenedor">
-
-        <div class="encabezado-seccion reveal">
-
-            <div class="eyebrow">
-                Contacto
-            </div>
-
-            <h2 class="titulo-seccion">
-                ¿Creamos algo especial?
-            </h2>
-
-            <p class="texto-seccion">
-                Escríbenos y cuéntanos qué tienes en mente.
-            </p>
-
-        </div>
-
-
-        <div class="contacto-grid">
-
-            <div class="contacto-info reveal">
-
-                <div class="contacto-item">
-
-                    <div class="contacto-icon">
+                    <div class="contact-icon">
                         ✉
                     </div>
 
-                    <div>
-                        <h4>
-                            Correo
-                        </h4>
-
-                        <p>
-                            hola@kochikochi.com
-                        </p>
-                    </div>
+                    <span>
+                        hola@kochikochi.com
+                    </span>
 
                 </div>
 
 
-                <div class="contacto-item">
+                <div class="contact-detail">
 
-                    <div class="contacto-icon">
+                    <div class="contact-icon">
                         ☎
                     </div>
 
-                    <div>
-                        <h4>
-                            Teléfono
-                        </h4>
-
-                        <p>
-                            +52 000 000 0000
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="contacto-item">
-
-                    <div class="contacto-icon">
-                        ⌖
-                    </div>
-
-                    <div>
-                        <h4>
-                            Ubicación
-                        </h4>
-
-                        <p>
-                            Veracruz, México
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="contacto-item">
-
-                    <div class="contacto-icon">
-                        ◷
-                    </div>
-
-                    <div>
-                        <h4>
-                            Horario
-                        </h4>
-
-                        <p>
-                            Lunes - Sábado<br>
-                            10:00 - 20:00
-                        </p>
-                    </div>
+                    <span>
+                        +52 000 000 0000
+                    </span>
 
                 </div>
 
             </div>
 
 
-            <form
-                class="contacto-form reveal"
-                id="contactoForm"
-            >
+            <form class="contact-form reveal"
+                  id="contactForm">
 
-                <div class="form-grid">
+                <div class="form-row">
 
-                    <div class="campo">
+                    <div class="form-group">
 
-                        <label for="nombre">
+                        <label>
                             Nombre
                         </label>
 
                         <input
-                            id="nombre"
                             type="text"
                             placeholder="Tu nombre"
                             required
@@ -4446,92 +2517,56 @@ footer{
                     </div>
 
 
-                    <div class="campo">
+                    <div class="form-group">
 
-                        <label for="email">
-                            Correo
+                        <label>
+                            Email
                         </label>
 
                         <input
-                            id="email"
                             type="email"
-                            placeholder="correo@email.com"
+                            placeholder="tu@email.com"
                             required
                         >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="telefono">
-                            Teléfono
-                        </label>
-
-                        <input
-                            id="telefono"
-                            type="tel"
-                            placeholder="Tu teléfono"
-                        >
-
-                    </div>
-
-
-                    <div class="campo">
-
-                        <label for="tipoPedido">
-                            Tipo de pedido
-                        </label>
-
-                        <select id="tipoPedido">
-
-                            <option>
-                                Selecciona una opción
-                            </option>
-
-                            <option>
-                                Pastel
-                            </option>
-
-                            <option>
-                                Cupcakes
-                            </option>
-
-                            <option>
-                                Galletas
-                            </option>
-
-                            <option>
-                                Pedido especial
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="campo full">
-
-                        <label for="mensaje">
-                            Mensaje
-                        </label>
-
-                        <textarea
-                            id="mensaje"
-                            placeholder="Cuéntanos qué necesitas..."
-                            required
-                        ></textarea>
 
                     </div>
 
                 </div>
 
 
+                <div class="form-group">
+
+                    <label>
+                        Asunto
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="¿En qué podemos ayudarte?"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mensaje
+                    </label>
+
+                    <textarea
+                        placeholder="Cuéntanos..."
+                        required>
+                    </textarea>
+
+                </div>
+
+
                 <button
-                    class="btn-principal"
                     type="submit"
-                >
-                    Enviar mensaje
+                    class="btn btn-primary">
+                    ENVIAR MENSAJE
                 </button>
 
             </form>
@@ -4542,151 +2577,165 @@ footer{
 
 </section>
 
+
+<!-- =====================================================
+     NEWSLETTER
+====================================================== -->
+
+<section class="newsletter">
+
+    <div class="section-container reveal">
+
+        <h2>
+            Algo dulce está por llegar.
+        </h2>
+
+        <p>
+            Recibe novedades y nuevos postres de Kochi Kochi.
+        </p>
+
+        <form class="newsletter-form"
+              id="newsletterForm">
+
+            <input
+                type="email"
+                placeholder="Tu correo electrónico"
+                required
+            >
+
+            <button type="submit">
+                SUSCRIBIRME
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
 </main>
 
 
-<!-- ======================================================
+<!-- =====================================================
+     MUSIC PLAYER
+====================================================== -->
+
+<div class="music-player">
+
+    <button
+        class="disc"
+        id="musicDisc"
+        aria-label="Reproducir o pausar música">
+    </button>
+
+    <div class="music-info">
+
+        <div class="music-label">
+            Ahora sonando
+        </div>
+
+        <div class="music-name">
+            Konnichiwa Sayonara
+        </div>
+
+        <div class="music-status"
+             id="musicStatus">
+            Presiona el disco para pausar
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP BUTTON
+====================================================== -->
+
+<button id="topBtn">
+    ↑
+</button>
+
+
+<!-- =====================================================
+     TOAST
+====================================================== -->
+
+<div id="toast">
+    ¡Listo!
+</div>
+
+
+<!-- =====================================================
      FOOTER
-     ====================================================== -->
+====================================================== -->
 
 <footer>
 
-    <div class="contenedor">
-
-        <div class="footer-grid">
-
-            <div class="footer-brand">
-
-                <div class="logo">
-
-                    <img
-                        src="img/logo-kochi-kochi.png"
-                        alt="Kochi Kochi"
-                        class="logo-img"
-                    >
-
-                    <div class="logo-text">
-                        Kochi <span>Kochi</span>
-                    </div>
-
-                </div>
-
-                <p>
-                    Kochi kochi, el postre te lo dice.
-                    Creamos momentos dulces para compartir,
-                    celebrar y recordar.
-                </p>
+    <div class="footer-grid">
 
 
-                <div class="sociales">
+        <div class="footer-brand">
 
-                    <a
-                        href="#"
-                        class="social"
-                        aria-label="Instagram"
-                    >
-                        ◎
-                    </a>
+            <h2>
+                Kochi Kochi
+            </h2>
 
-                    <a
-                        href="#"
-                        class="social"
-                        aria-label="Facebook"
-                    >
-                        f
-                    </a>
+            <p>
+                Kochi kochi, el postre te lo dice.
+                Una bakery creada para compartir
+                pequeños momentos dulces.
+            </p>
 
-                    <a
-                        href="#"
-                        class="social"
-                        aria-label="TikTok"
-                    >
-                        ♪
-                    </a>
-
-                    <a
-                        href="#"
-                        class="social"
-                        aria-label="WhatsApp"
-                    >
-                        ☎
-                    </a>
-
-                </div>
-
-            </div>
+        </div>
 
 
-            <div class="footer-col">
+        <div class="footer-col">
 
-                <h4>
-                    Tienda
-                </h4>
+            <h3>
+                Explora
+            </h3>
 
-                <a href="#productos">
-                    Todos los postres
+            <a href="#inicio">Inicio</a>
+            <a href="#productos">Postres</a>
+            <a href="#historia">Nosotros</a>
+            <a href="#galeria">Galería</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>
+                Ayuda
+            </h3>
+
+            <a href="#contacto">Contacto</a>
+            <a href="#">Pedidos</a>
+            <a href="#">Preguntas frecuentes</a>
+            <a href="#">Términos</a>
+
+        </div>
+
+
+        <div class="footer-col">
+
+            <h3>
+                Síguenos
+            </h3>
+
+            <div class="socials">
+
+                <a href="#" class="social">
+                    f
                 </a>
 
-                <a href="#productos">
-                    Pasteles
+                <a href="#" class="social">
+                    ◎
                 </a>
 
-                <a href="#productos">
-                    Cupcakes
-                </a>
-
-                <a href="#productos">
-                    Galletas
-                </a>
-
-            </div>
-
-
-            <div class="footer-col">
-
-                <h4>
-                    Kochi Kochi
-                </h4>
-
-                <a href="#historia">
-                    Nuestra historia
-                </a>
-
-                <a href="#galeria">
-                    Galería
-                </a>
-
-                <a href="#contacto">
-                    Contacto
-                </a>
-
-                <a href="#">
-                    Preguntas frecuentes
-                </a>
-
-            </div>
-
-
-            <div class="footer-col">
-
-                <h4>
-                    Ayuda
-                </h4>
-
-                <a href="#">
-                    Envíos
-                </a>
-
-                <a href="#">
-                    Métodos de pago
-                </a>
-
-                <a href="#">
-                    Términos
-                </a>
-
-                <a href="#">
-                    Privacidad
+                <a href="#" class="social">
+                    ♪
                 </a>
 
             </div>
@@ -4694,2304 +2743,243 @@ footer{
         </div>
 
 
-        <div class="footer-bottom">
+    </div>
 
-            <span>
-                © 2026 Kochi Kochi. Todos los derechos reservados.
-            </span>
 
-            <span>
-                Kochi kochi, el postre te lo dice ♡
-            </span>
+    <div class="footer-bottom">
 
-        </div>
+        <span>
+            © 2026 Kochi Kochi Bakery
+        </span>
+
+        <span>
+            Hecho con ♡ y mucho azúcar
+        </span>
 
     </div>
 
 </footer>
 
 
-<!-- ======================================================
-     OVERLAY
-     ====================================================== -->
+<script>
 
-<div
-    class="overlay"
-    id="overlay"
-></div>
+/* =========================================================
+   ELEMENTOS
+========================================================= */
 
+const intro = document.getElementById("intro");
+const enterBtn = document.getElementById("enterBtn");
 
-<!-- ======================================================
-     CARRITO
-     ====================================================== -->
+const bgMusic = document.getElementById("bgMusic");
+const musicDisc = document.getElementById("musicDisc");
+const musicStatus = document.getElementById("musicStatus");
 
-<aside
-    id="panelCarrito"
-    aria-label="Carrito"
->
+const mobileMenu = document.getElementById("mobileMenu");
+const nav = document.getElementById("nav");
 
-    <div class="carrito-header">
+const topBtn = document.getElementById("topBtn");
+const toast = document.getElementById("toast");
 
-        <h2>
-            Tu carrito
-        </h2>
 
-        <button
-            class="cerrar"
-            id="cerrarCarrito"
-            type="button"
-        >
-            ×
-        </button>
+/* =========================================================
+   MÚSICA
+   IMPORTANTE:
+   La canción NO comienza hasta pulsar "ENTRAR".
+   Esto permite que el navegador autorice el audio.
+========================================================= */
 
-    </div>
+bgMusic.volume = 0.45;
 
 
-    <div id="listaCarrito">
+/* =========================================================
+   ENTRAR A LA PÁGINA + INICIAR CANCIÓN
+========================================================= */
 
-        <div class="carrito-vacio">
+enterBtn.addEventListener("click", async () => {
 
-            <div class="carrito-vacio-icon">
-                🛒
-            </div>
+    try{
 
-            <p>
-                Tu carrito está vacío.
-            </p>
+        bgMusic.currentTime = 0;
 
-        </div>
+        bgMusic.volume = 0.45;
 
-    </div>
+        await bgMusic.play();
 
+        musicDisc.classList.add("playing");
 
-    <div class="carrito-footer">
+        musicStatus.textContent =
+            "Sonando de fondo";
 
-        <div class="total-row">
+    }catch(error){
 
-            <span>
-                Total
-            </span>
-
-            <strong id="totalCarrito">
-                $0
-            </strong>
-
-        </div>
-
-        <button
-            class="comprar-btn"
-            id="comprar"
-            type="button"
-        >
-            Finalizar compra
-        </button>
-
-    </div>
-
-</aside>
-
-
-<!-- ======================================================
-     MODAL LOGIN
-     ====================================================== -->
-
-<div
-    class="modal-backdrop"
-    id="modalLogin"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>
-                Bienvenido ♡
-            </h2>
-
-            <button
-                class="modal-cerrar"
-                type="button"
-                data-cerrar="modalLogin"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <p style="font-size:13px;color:#806e75;line-height:1.6;margin-bottom:20px;">
-            Inicia sesión para guardar favoritos,
-            sincronizar tu carrito y consultar tus pedidos.
-        </p>
-
-
-        <form
-            class="login-form"
-            id="loginForm"
-        >
-
-            <input
-                id="correo"
-                type="email"
-                placeholder="Correo electrónico"
-                required
-            >
-
-            <input
-                id="password"
-                type="password"
-                placeholder="Contraseña"
-                required
-            >
-
-            <button
-                class="login-btn"
-                type="submit"
-            >
-                Iniciar sesión
-            </button>
-
-        </form>
-
-
-        <div class="modal-separador">
-            O
-        </div>
-
-
-        <button
-            class="google-btn"
-            id="googleLogin"
-            type="button"
-        >
-            Continuar con Google
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ======================================================
-     MODAL CUENTA
-     ====================================================== -->
-
-<div
-    class="modal-backdrop"
-    id="modalCuenta"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>
-                Mi cuenta
-            </h2>
-
-            <button
-                class="modal-cerrar"
-                type="button"
-                data-cerrar="modalCuenta"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="cuenta-resumen">
-
-            <div class="resumen-box">
-
-                <strong id="resumenFavoritos">
-                    0
-                </strong>
-
-                <span>
-                    Favoritos
-                </span>
-
-            </div>
-
-
-            <div class="resumen-box">
-
-                <strong id="resumenCarrito">
-                    0
-                </strong>
-
-                <span>
-                    Productos
-                </span>
-
-            </div>
-
-        </div>
-
-
-        <p
-            id="cuentaEmail"
-            style="font-size:13px;color:#806e75;line-height:1.7;"
-        >
-            No has iniciado sesión.
-        </p>
-
-    </div>
-
-</div>
-
-
-<!-- ======================================================
-     MODAL PEDIDOS
-     ====================================================== -->
-
-<div
-    class="modal-backdrop"
-    id="modalPedidos"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>
-                Mis pedidos
-            </h2>
-
-            <button
-                class="modal-cerrar"
-                type="button"
-                data-cerrar="modalPedidos"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div id="listaPedidos">
-
-            <div class="carrito-vacio">
-
-                <div class="carrito-vacio-icon">
-                    📦
-                </div>
-
-                <p>
-                    Todavía no tienes pedidos.
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ======================================================
-     MODAL PREFERENCIAS
-     ====================================================== -->
-
-<div
-    class="modal-backdrop"
-    id="modalPreferencias"
->
-
-    <div class="modal">
-
-        <div class="modal-header">
-
-            <h2>
-                Preferencias
-            </h2>
-
-            <button
-                class="modal-cerrar"
-                type="button"
-                data-cerrar="modalPreferencias"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div class="preferencia">
-
-            <div>
-
-                <strong>
-                    Animaciones
-                </strong>
-
-                <small>
-                    Mostrar animaciones del sitio
-                </small>
-
-            </div>
-
-            <button
-                class="switch activo"
-                id="switchAnimaciones"
-                type="button"
-            ></button>
-
-        </div>
-
-
-        <div class="preferencia">
-
-            <div>
-
-                <strong>
-                    Notificaciones
-                </strong>
-
-                <small>
-                    Mostrar avisos de la tienda
-                </small>
-
-            </div>
-
-            <button
-                class="switch activo"
-                id="switchNotificaciones"
-                type="button"
-            ></button>
-
-        </div>
-
-
-        <div class="preferencia">
-
-            <div>
-
-                <strong>
-                    Guardar carrito
-                </strong>
-
-                <small>
-                    Mantener productos en este navegador
-                </small>
-
-            </div>
-
-            <button
-                class="switch activo"
-                id="switchCarrito"
-                type="button"
-            ></button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- ======================================================
-     TOAST
-     ====================================================== -->
-
-<div id="toast">
-
-    <span id="toastTexto">
-        Listo
-    </span>
-
-</div>
-
-
-<!-- ======================================================
-     BOTÓN ARRIBA
-     ====================================================== -->
-
-<button
-    id="arriba"
-    type="button"
-    aria-label="Volver arriba"
->
-    ↑
-</button>
-
-
-<!-- ======================================================
-     FIREBASE
-     ====================================================== -->
-
-<script type="module">
-
-/*
-===========================================================
-FIREBASE
-===========================================================
-
-Cuando tengas tu proyecto Firebase, reemplaza el objeto
-firebaseConfig por los datos de tu proyecto.
-
-Este archivo funciona aunque Firebase todavía no esté
-configurado porque la tienda utiliza localStorage como
-respaldo.
-
-===========================================================
-*/
-
-import {
-    initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
-import {
-    getAuth,
-    onAuthStateChanged,
-    signInWithEmailAndPassword,
-    GoogleAuthProvider,
-    signInWithPopup,
-    signOut
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-import {
-    getFirestore,
-    doc,
-    getDoc,
-    setDoc,
-    addDoc,
-    collection
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
-
-/* ========================================================
-   CONFIGURACIÓN
-   ======================================================== */
-
-const firebaseConfig = {
-
-    apiKey: "TU_API_KEY",
-
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-
-    projectId: "TU_PROJECT_ID",
-
-    storageBucket: "TU_PROYECTO.firebasestorage.app",
-
-    messagingSenderId: "TU_MESSAGING_SENDER_ID",
-
-    appId: "TU_APP_ID"
-
-};
-
-
-/* ========================================================
-   VARIABLES FIREBASE
-   ======================================================== */
-
-let app = null;
-let auth = null;
-let db = null;
-let firebaseActivo = false;
-
-try{
-
-    if(
-        firebaseConfig.apiKey !== "TU_API_KEY" &&
-        firebaseConfig.projectId !== "TU_PROJECT_ID"
-    ){
-
-        app = initializeApp(firebaseConfig);
-
-        auth = getAuth(app);
-
-        db = getFirestore(app);
-
-        firebaseActivo = true;
+        console.log(
+            "El navegador no pudo iniciar el audio:",
+            error
+        );
 
     }
 
-}catch(error){
-
-    console.warn(
-        "Firebase no está configurado todavía.",
-        error
-    );
-
-}
-
-
-/* ========================================================
-   VARIABLES GENERALES
-   ======================================================== */
-
-let usuarioActual = null;
-
-let carrito = JSON.parse(
-    localStorage.getItem("kochiCarrito") || "[]"
-);
-
-let favoritos = JSON.parse(
-    localStorage.getItem("kochiFavoritos") || "[]"
-);
-
-let slideActual = 0;
-
-let intervaloSlider;
-
-let toastTimeout;
-
-
-/* ========================================================
-   ELEMENTOS
-   ======================================================== */
-
-const intro =
-    document.getElementById("intro");
-
-const entrarBtn =
-    document.getElementById("entrarBtn");
-
-const introAudio =
-    document.getElementById("introAudio");
-
-const nav =
-    document.getElementById("nav");
-
-const menuMovil =
-    document.getElementById("menuMovil");
-
-const btnUsuario =
-    document.getElementById("btnUsuario");
-
-const usuarioMenu =
-    document.getElementById("usuarioMenu");
-
-const abrirCarrito =
-    document.getElementById("abrirCarrito");
-
-const panelCarrito =
-    document.getElementById("panelCarrito");
-
-const cerrarCarrito =
-    document.getElementById("cerrarCarrito");
-
-const overlay =
-    document.getElementById("overlay");
-
-const listaCarrito =
-    document.getElementById("listaCarrito");
-
-const totalCarrito =
-    document.getElementById("totalCarrito");
-
-const contadorCarrito =
-    document.getElementById("contadorCarrito");
-
-const contadorFavoritos =
-    document.getElementById("contadorFavoritos");
-
-const buscador =
-    document.getElementById("buscador");
-
-const toast =
-    document.getElementById("toast");
-
-const toastTexto =
-    document.getElementById("toastTexto");
-
-const arriba =
-    document.getElementById("arriba");
-
-
-/* ========================================================
-   ENTRAR A LA PÁGINA
-   ======================================================== */
-
-/*
-   IMPORTANTE:
-
-   El audio SOLO pertenece a la pantalla #intro.
-
-   Cuando se pulsa ENTRAR:
-   1. Se pausa.
-   2. Se regresa al segundo 0.
-   3. Se agrega la animación de salida.
-   4. Se elimina visualmente la pantalla.
-
-   NO existe música de fondo.
-*/
-
-entrarBtn.addEventListener("click",function(){
-
-    introAudio.pause();
-
-    introAudio.currentTime = 0;
-
-    intro.classList.add("ocultar");
+    intro.classList.add("hide");
 
     document.body.classList.remove("no-scroll");
 
-    setTimeout(function(){
-
-        intro.style.display = "none";
-
-    },850);
-
 });
 
 
-/* ========================================================
-   EVITAR SCROLL MIENTRAS ESTÁ LA INTRO
-   ======================================================== */
+/* =========================================================
+   DISCO:
+   PAUSAR / REANUDAR
+========================================================= */
 
-document.body.classList.add("no-scroll");
+musicDisc.addEventListener("click", async () => {
 
+    if(bgMusic.paused){
 
-/* ========================================================
-   MENÚ MÓVIL
-   ======================================================== */
+        try{
 
-menuMovil.addEventListener("click",function(){
+            await bgMusic.play();
 
-    nav.classList.toggle("activo");
+            musicDisc.classList.add("playing");
 
-    if(nav.classList.contains("activo")){
+            musicStatus.textContent =
+                "Sonando de fondo";
 
-        menuMovil.textContent = "×";
+        }catch(error){
+
+            console.log(error);
+
+        }
 
     }else{
 
-        menuMovil.textContent = "☰";
+        bgMusic.pause();
+
+        musicDisc.classList.remove("playing");
+
+        musicStatus.textContent =
+            "Música pausada";
 
     }
 
 });
 
 
-nav.querySelectorAll("a").forEach(function(enlace){
+/* =========================================================
+   ACTUALIZAR ESTADO SI EL AUDIO CAMBIA
+========================================================= */
 
-    enlace.addEventListener("click",function(){
+bgMusic.addEventListener("play", () => {
 
-        nav.classList.remove("activo");
+    musicDisc.classList.add("playing");
 
-        menuMovil.textContent = "☰";
+    musicStatus.textContent =
+        "Sonando de fondo";
+
+});
+
+
+bgMusic.addEventListener("pause", () => {
+
+    musicDisc.classList.remove("playing");
+
+    musicStatus.textContent =
+        "Música pausada";
+
+});
+
+
+/* =========================================================
+   MENÚ MÓVIL
+========================================================= */
+
+mobileMenu.addEventListener("click", () => {
+
+    nav.classList.toggle("active");
+
+    if(nav.classList.contains("active")){
+
+        mobileMenu.textContent = "×";
+
+    }else{
+
+        mobileMenu.textContent = "☰";
+
+    }
+
+});
+
+
+/* =========================================================
+   CERRAR MENÚ AL TOCAR UN ENLACE
+========================================================= */
+
+document.querySelectorAll("nav a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        nav.classList.remove("active");
+
+        mobileMenu.textContent = "☰";
 
     });
 
 });
 
 
-/* ========================================================
-   USUARIO
-   ======================================================== */
+/* =========================================================
+   SCROLL TOP
+========================================================= */
 
-btnUsuario.addEventListener("click",function(event){
+window.addEventListener("scroll", () => {
 
-    event.stopPropagation();
+    if(window.scrollY > 500){
 
-    usuarioMenu.classList.toggle("activo");
+        topBtn.classList.add("show");
 
-});
+    }else{
 
-
-document.addEventListener("click",function(event){
-
-    if(
-        !usuarioMenu.contains(event.target) &&
-        !btnUsuario.contains(event.target)
-    ){
-
-        usuarioMenu.classList.remove("activo");
+        topBtn.classList.remove("show");
 
     }
 
 });
 
 
-/* ========================================================
-   TOAST
-   ======================================================== */
+topBtn.addEventListener("click", () => {
 
-function mostrarToast(mensaje){
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
-    toastTexto.textContent = mensaje;
+});
 
-    toast.classList.add("activo");
 
-    clearTimeout(toastTimeout);
+/* =========================================================
+   ANIMACIONES REVEAL
+========================================================= */
 
-    toastTimeout = setTimeout(function(){
+const revealElements =
+    document.querySelectorAll(".reveal");
 
-        toast.classList.remove("activo");
 
-    },3000);
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
 
-}
+            entries.forEach(entry => {
 
+                if(entry.isIntersecting){
 
-/* ========================================================
-   GUARDAR CARRITO
-   ======================================================== */
+                    entry.target.classList.add("visible");
 
-function guardarCarrito(){
-
-    localStorage.setItem(
-        "kochiCarrito",
-        JSON.stringify(carrito)
-    );
-
-}
-
-
-/* ========================================================
-   GUARDAR FAVORITOS
-   ======================================================== */
-
-function guardarFavoritos(){
-
-    localStorage.setItem(
-        "kochiFavoritos",
-        JSON.stringify(favoritos)
-    );
-
-}
-
-
-/* ========================================================
-   ACTUALIZAR CONTADORES
-   ======================================================== */
-
-function actualizarContadores(){
-
-    const cantidadProductos =
-        carrito.reduce(
-            (total,producto) =>
-                total + producto.cantidad,
-            0
-        );
-
-    contadorCarrito.textContent =
-        cantidadProductos;
-
-    contadorFavoritos.textContent =
-        favoritos.length;
-
-    document.getElementById(
-        "resumenCarrito"
-    ).textContent =
-        cantidadProductos;
-
-    document.getElementById(
-        "resumenFavoritos"
-    ).textContent =
-        favoritos.length;
-
-}
-
-
-/* ========================================================
-   ABRIR CARRITO
-   ======================================================== */
-
-function abrirPanelCarrito(){
-
-    panelCarrito.classList.add("activo");
-
-    overlay.classList.add("activo");
-
-    document.body.classList.add("no-scroll");
-
-}
-
-
-abrirCarrito.addEventListener(
-    "click",
-    abrirPanelCarrito
-);
-
-
-/* ========================================================
-   CERRAR CARRITO
-   ======================================================== */
-
-function cerrarPanelCarrito(){
-
-    panelCarrito.classList.remove("activo");
-
-    overlay.classList.remove("activo");
-
-    document.body.classList.remove("no-scroll");
-
-}
-
-
-cerrarCarrito.addEventListener(
-    "click",
-    cerrarPanelCarrito
-);
-
-
-overlay.addEventListener(
-    "click",
-    cerrarPanelCarrito
-);
-
-
-/* ========================================================
-   RENDERIZAR CARRITO
-   ======================================================== */
-
-function renderizarCarrito(){
-
-    if(carrito.length === 0){
-
-        listaCarrito.innerHTML = `
-
-            <div class="carrito-vacio">
-
-                <div class="carrito-vacio-icon">
-                    🛒
-                </div>
-
-                <p>
-                    Tu carrito está vacío.
-                </p>
-
-            </div>
-
-        `;
-
-        totalCarrito.textContent = "$0";
-
-        actualizarContadores();
-
-        return;
-
-    }
-
-
-    let total = 0;
-
-
-    listaCarrito.innerHTML =
-        carrito.map(function(producto,index){
-
-            const subtotal =
-                producto.precio *
-                producto.cantidad;
-
-            total += subtotal;
-
-
-            return `
-
-                <div class="item-carrito">
-
-                    <div class="item-img">
-                        ${producto.icono || "🍰"}
-                    </div>
-
-                    <div>
-
-                        <h4>
-                            ${producto.nombre}
-                        </h4>
-
-                        <small>
-                            $${producto.precio} c/u
-                        </small>
-
-                        <div class="cantidad">
-
-                            <button
-                                type="button"
-                                onclick="cambiarCantidad(${index},-1)"
-                            >
-                                −
-                            </button>
-
-                            <span>
-                                ${producto.cantidad}
-                            </span>
-
-                            <button
-                                type="button"
-                                onclick="cambiarCantidad(${index},1)"
-                            >
-                                +
-                            </button>
-
-                        </div>
-
-                        <button
-                            class="eliminar-item"
-                            type="button"
-                            onclick="eliminarProducto(${index})"
-                        >
-                            Eliminar
-                        </button>
-
-                    </div>
-
-                    <div class="item-total">
-                        $${subtotal}
-                    </div>
-
-                </div>
-
-            `;
-
-        }).join("");
-
-
-    totalCarrito.textContent =
-        "$" + total.toLocaleString("es-MX");
-
-    actualizarContadores();
-
-}
-
-
-/* ========================================================
-   CAMBIAR CANTIDAD
-   ======================================================== */
-
-window.cambiarCantidad = function(index,cambio){
-
-    carrito[index].cantidad += cambio;
-
-    if(carrito[index].cantidad <= 0){
-
-        carrito.splice(index,1);
-
-    }
-
-    guardarCarrito();
-
-    renderizarCarrito();
-
-};
-
-
-/* ========================================================
-   ELIMINAR PRODUCTO
-   ======================================================== */
-
-window.eliminarProducto = function(index){
-
-    carrito.splice(index,1);
-
-    guardarCarrito();
-
-    renderizarCarrito();
-
-    mostrarToast("Producto eliminado del carrito.");
-
-};
-
-
-/* ========================================================
-   AGREGAR PRODUCTOS
-   ======================================================== */
-
-document.querySelectorAll(".producto").forEach(
-    function(producto){
-
-        const boton =
-            producto.querySelector(".agregar");
-
-        boton.addEventListener(
-            "click",
-            function(){
-
-                const id =
-                    producto.dataset.id;
-
-                const nombre =
-                    producto.dataset.nombre;
-
-                const precio =
-                    Number(producto.dataset.precio);
-
-                const existente =
-                    carrito.find(
-                        item => item.id === id
-                    );
-
-
-                if(existente){
-
-                    existente.cantidad++;
-
-                }else{
-
-                    carrito.push({
-
-                        id:id,
-
-                        nombre:nombre,
-
-                        precio:precio,
-
-                        cantidad:1,
-
-                        icono:
-                            producto
-                            .querySelector(".producto-categoria")
-                            .textContent
-                            .toLowerCase()
-                            .includes("galleta")
-                            ? "🍪"
-                            : producto
-                            .querySelector(".producto-categoria")
-                            .textContent
-                            .toLowerCase()
-                            .includes("cupcake")
-                            ? "🧁"
-                            : producto
-                            .querySelector(".producto-categoria")
-                            .textContent
-                            .toLowerCase()
-                            .includes("especial")
-                            ? "🍓"
-                            : "🎂"
-
-                    });
-
-                }
-
-
-                guardarCarrito();
-
-                renderizarCarrito();
-
-                mostrarToast(
-                    `${nombre} agregado al carrito ♡`
-                );
-
-            }
-        );
-
-    }
-);
-
-
-/* ========================================================
-   FAVORITOS
-   ======================================================== */
-
-document.querySelectorAll(".producto").forEach(
-    function(producto){
-
-        const boton =
-            producto.querySelector(".favorito");
-
-        const id =
-            producto.dataset.id;
-
-
-        if(favoritos.includes(id)){
-
-            boton.classList.add("activo");
-
-            boton.textContent = "♥";
-
-        }
-
-
-        boton.addEventListener(
-            "click",
-            function(){
-
-                /*
-                Si quieres que los favoritos requieran
-                cuenta Firebase, aquí es donde se puede
-                activar esa validación.
-
-                Por ahora se guardan localmente.
-                */
-
-                if(favoritos.includes(id)){
-
-                    favoritos =
-                        favoritos.filter(
-                            favorito => favorito !== id
-                        );
-
-                    boton.classList.remove("activo");
-
-                    boton.textContent = "♡";
-
-                    mostrarToast(
-                        "Quitado de favoritos."
-                    );
-
-                }else{
-
-                    favoritos.push(id);
-
-                    boton.classList.add("activo");
-
-                    boton.textContent = "♥";
-
-                    mostrarToast(
-                        "Agregado a favoritos ♡"
-                    );
-
-                }
-
-
-                guardarFavoritos();
-
-                actualizarContadores();
-
-            }
-        );
-
-    }
-);
-
-
-/* ========================================================
-   FAVORITOS DEL HEADER
-   ======================================================== */
-
-document
-.getElementById("abrirFavoritos")
-.addEventListener(
-    "click",
-    function(){
-
-        if(favoritos.length === 0){
-
-            mostrarToast(
-                "Todavía no tienes favoritos."
-            );
-
-            return;
-
-        }
-
-
-        const productosFavoritos =
-            document.querySelectorAll(
-                ".producto"
-            );
-
-
-        productosFavoritos.forEach(
-            function(producto){
-
-                const id =
-                    producto.dataset.id;
-
-                if(favoritos.includes(id)){
-
-                    producto.scrollIntoView({
-                        behavior:"smooth",
-                        block:"center"
-                    });
-
-                    return;
-
-                }
-
-            }
-        );
-
-    }
-);
-
-
-/* ========================================================
-   BÚSQUEDA
-   ======================================================== */
-
-buscador.addEventListener(
-    "input",
-    function(){
-
-        const termino =
-            buscador.value
-            .toLowerCase()
-            .trim();
-
-
-        document.querySelectorAll(
-            ".producto"
-        ).forEach(function(producto){
-
-            const nombre =
-                producto.dataset.nombre
-                .toLowerCase();
-
-            const categoria =
-                producto.dataset.categoria
-                .toLowerCase();
-
-
-            if(
-                nombre.includes(termino) ||
-                categoria.includes(termino)
-            ){
-
-                producto.classList.remove(
-                    "oculto"
-                );
-
-            }else{
-
-                producto.classList.add(
-                    "oculto"
-                );
-
-            }
-
-        });
-
-    }
-);
-
-
-/* ========================================================
-   FILTROS
-   ======================================================== */
-
-document.querySelectorAll(".filtro")
-.forEach(function(boton){
-
-    boton.addEventListener(
-        "click",
-        function(){
-
-            document.querySelectorAll(
-                ".filtro"
-            ).forEach(
-                f => f.classList.remove("activo")
-            );
-
-            boton.classList.add("activo");
-
-            const filtro =
-                boton.dataset.filtro;
-
-
-            document.querySelectorAll(
-                ".producto"
-            ).forEach(function(producto){
-
-                if(
-                    filtro === "todos" ||
-                    producto.dataset.categoria === filtro
-                ){
-
-                    producto.classList.remove(
-                        "oculto"
-                    );
-
-                }else{
-
-                    producto.classList.add(
-                        "oculto"
+                    revealObserver.unobserve(
+                        entry.target
                     );
 
                 }
 
             });
-
-        }
-    );
-
-});
-
-
-/* ========================================================
-   CATEGORÍAS
-   ======================================================== */
-
-document.querySelectorAll(".categoria")
-.forEach(function(categoria){
-
-    categoria.addEventListener(
-        "click",
-        function(){
-
-            const tipo =
-                categoria.dataset.categoria;
-
-            document
-                .querySelector(
-                    `.filtro[data-filtro="${tipo}"]`
-                )
-                ?.click();
-
-            document
-                .getElementById("productos")
-                .scrollIntoView({
-                    behavior:"smooth"
-                });
-
-        }
-    );
-
-});
-
-
-/* ========================================================
-   SLIDER
-   ======================================================== */
-
-const slides =
-    document.querySelectorAll(".slide");
-
-const dots =
-    document.querySelectorAll(".dot");
-
-
-function mostrarSlide(numero){
-
-    if(numero < 0){
-
-        numero =
-            slides.length - 1;
-
-    }
-
-    if(numero >= slides.length){
-
-        numero = 0;
-
-    }
-
-
-    slides.forEach(
-        slide =>
-            slide.classList.remove("activo")
-    );
-
-
-    dots.forEach(
-        dot =>
-            dot.classList.remove("activo")
-    );
-
-
-    slides[numero].classList.add("activo");
-
-    dots[numero].classList.add("activo");
-
-    slideActual = numero;
-
-}
-
-
-function siguienteSlide(){
-
-    mostrarSlide(
-        slideActual + 1
-    );
-
-}
-
-
-function anteriorSlide(){
-
-    mostrarSlide(
-        slideActual - 1
-    );
-
-}
-
-
-document
-.getElementById("siguiente")
-.addEventListener(
-    "click",
-    siguienteSlide
-);
-
-
-document
-.getElementById("anterior")
-.addEventListener(
-    "click",
-    anteriorSlide
-);
-
-
-dots.forEach(
-    function(dot,index){
-
-        dot.addEventListener(
-            "click",
-            function(){
-
-                mostrarSlide(index);
-
-                reiniciarSlider();
-
-            }
-        );
-
-    }
-);
-
-
-function reiniciarSlider(){
-
-    clearInterval(intervaloSlider);
-
-    intervaloSlider =
-        setInterval(
-            siguienteSlide,
-            5000
-        );
-
-}
-
-
-reiniciarSlider();
-
-
-/* ========================================================
-   SWIPE DEL SLIDER
-   ======================================================== */
-
-let touchInicioX = 0;
-
-let touchFinX = 0;
-
-const slider =
-    document.getElementById("slider");
-
-
-slider.addEventListener(
-    "touchstart",
-    function(event){
-
-        touchInicioX =
-            event.changedTouches[0].screenX;
-
-    },
-    {passive:true}
-);
-
-
-slider.addEventListener(
-    "touchend",
-    function(event){
-
-        touchFinX =
-            event.changedTouches[0].screenX;
-
-        const diferencia =
-            touchFinX - touchInicioX;
-
-
-        if(Math.abs(diferencia) > 50){
-
-            if(diferencia < 0){
-
-                siguienteSlide();
-
-            }else{
-
-                anteriorSlide();
-
-            }
-
-            reiniciarSlider();
-
-        }
-
-    },
-    {passive:true}
-);
-
-
-/* ========================================================
-   NEWSLETTER
-   ======================================================== */
-
-document
-.getElementById("newsletterForm")
-.addEventListener(
-    "submit",
-    function(event){
-
-        event.preventDefault();
-
-        const email =
-            document
-            .getElementById("newsletterEmail")
-            .value;
-
-        localStorage.setItem(
-            "kochiNewsletter",
-            email
-        );
-
-        this.reset();
-
-        mostrarToast(
-            "¡Te suscribiste correctamente! ♡"
-        );
-
-    }
-);
-
-
-/* ========================================================
-   CONTACTO
-   ======================================================== */
-
-document
-.getElementById("contactoForm")
-.addEventListener(
-    "submit",
-    function(event){
-
-        event.preventDefault();
-
-        mostrarToast(
-            "Mensaje enviado. ¡Gracias por escribirnos! ♡"
-        );
-
-        this.reset();
-
-    }
-);
-
-
-/* ========================================================
-   FINALIZAR COMPRA
-   ======================================================== */
-
-document
-.getElementById("comprar")
-.addEventListener(
-    "click",
-    async function(){
-
-        if(carrito.length === 0){
-
-            mostrarToast(
-                "Tu carrito está vacío."
-            );
-
-            return;
-
-        }
-
-
-        if(!usuarioActual){
-
-            cerrarPanelCarrito();
-
-            abrirModal("modalLogin");
-
-            mostrarToast(
-                "Inicia sesión para finalizar tu compra."
-            );
-
-            return;
-
-        }
-
-
-        const total =
-            carrito.reduce(
-                (suma,producto) =>
-                    suma +
-                    producto.precio *
-                    producto.cantidad,
-                0
-            );
-
-
-        try{
-
-            if(firebaseActivo && db){
-
-                await addDoc(
-                    collection(db,"pedidos"),
-                    {
-
-                        usuario:
-                            usuarioActual.uid,
-
-                        productos:
-                            carrito,
-
-                        total:total,
-
-                        fecha:
-                            new Date().toISOString()
-
-                    }
-                );
-
-            }
-
-
-            carrito = [];
-
-            guardarCarrito();
-
-            renderizarCarrito();
-
-            cerrarPanelCarrito();
-
-            mostrarToast(
-                "¡Compra realizada correctamente! ♡"
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            mostrarToast(
-                "No se pudo registrar el pedido."
-            );
-
-        }
-
-    }
-);
-
-
-/* ========================================================
-   MODALES
-   ======================================================== */
-
-function abrirModal(id){
-
-    document
-        .getElementById(id)
-        .classList.add("activo");
-
-    document.body.classList.add("no-scroll");
-
-}
-
-
-function cerrarModal(id){
-
-    document
-        .getElementById(id)
-        .classList.remove("activo");
-
-    document.body.classList.remove("no-scroll");
-
-}
-
-
-document.querySelectorAll(
-    "[data-cerrar]"
-).forEach(function(boton){
-
-    boton.addEventListener(
-        "click",
-        function(){
-
-            cerrarModal(
-                boton.dataset.cerrar
-            );
-
-        }
-    );
-
-});
-
-
-document.querySelectorAll(
-    ".modal-backdrop"
-).forEach(function(backdrop){
-
-    backdrop.addEventListener(
-        "click",
-        function(event){
-
-            if(event.target === backdrop){
-
-                backdrop.classList.remove("activo");
-
-                document.body.classList.remove(
-                    "no-scroll"
-                );
-
-            }
-
-        }
-    );
-
-});
-
-
-/* ========================================================
-   OPCIONES DE USUARIO
-   ======================================================== */
-
-document
-.getElementById("opcionCuenta")
-.addEventListener(
-    "click",
-    function(){
-
-        usuarioMenu.classList.remove("activo");
-
-        actualizarContadores();
-
-        abrirModal("modalCuenta");
-
-    }
-);
-
-
-document
-.getElementById("opcionPedidos")
-.addEventListener(
-    "click",
-    function(){
-
-        usuarioMenu.classList.remove("activo");
-
-        abrirModal("modalPedidos");
-
-    }
-);
-
-
-document
-.getElementById("opcionPreferencias")
-.addEventListener(
-    "click",
-    function(){
-
-        usuarioMenu.classList.remove("activo");
-
-        abrirModal("modalPreferencias");
-
-    }
-);
-
-
-/* ========================================================
-   SWITCHES
-   ======================================================== */
-
-document.querySelectorAll(".switch")
-.forEach(function(switchBtn){
-
-    switchBtn.addEventListener(
-        "click",
-        function(){
-
-            this.classList.toggle("activo");
-
-        }
-    );
-
-});
-
-
-/* ========================================================
-   LOGIN EMAIL/PASSWORD
-   ======================================================== */
-
-document
-.getElementById("loginForm")
-.addEventListener(
-    "submit",
-    async function(event){
-
-        event.preventDefault();
-
-
-        const correo =
-            document
-            .getElementById("correo")
-            .value
-            .trim();
-
-
-        const password =
-            document
-            .getElementById("password")
-            .value;
-
-
-        if(!firebaseActivo || !auth){
-
-            mostrarToast(
-                "Primero configura Firebase."
-            );
-
-            return;
-
-        }
-
-
-        try{
-
-            await signInWithEmailAndPassword(
-                auth,
-                correo,
-                password
-            );
-
-            cerrarModal("modalLogin");
-
-            mostrarToast(
-                "¡Bienvenido a Kochi Kochi! ♡"
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            mostrarToast(
-                "Correo o contraseña incorrectos."
-            );
-
-        }
-
-    }
-);
-
-
-/* ========================================================
-   GOOGLE LOGIN
-   ======================================================== */
-
-document
-.getElementById("googleLogin")
-.addEventListener(
-    "click",
-    async function(){
-
-        if(!firebaseActivo || !auth){
-
-            mostrarToast(
-                "Primero configura Firebase."
-            );
-
-            return;
-
-        }
-
-
-        try{
-
-            const provider =
-                new GoogleAuthProvider();
-
-            await signInWithPopup(
-                auth,
-                provider
-            );
-
-            cerrarModal("modalLogin");
-
-            mostrarToast(
-                "¡Bienvenido! ♡"
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            mostrarToast(
-                "No se pudo iniciar sesión con Google."
-            );
-
-        }
-
-    }
-);
-
-
-/* ========================================================
-   CERRAR SESIÓN
-   ======================================================== */
-
-document
-.getElementById("cerrarSesion")
-.addEventListener(
-    "click",
-    async function(){
-
-        if(!usuarioActual){
-
-            usuarioMenu.classList.remove(
-                "activo"
-            );
-
-            abrirModal("modalLogin");
-
-            return;
-
-        }
-
-
-        try{
-
-            if(firebaseActivo && auth){
-
-                await signOut(auth);
-
-            }
-
-            usuarioMenu.classList.remove(
-                "activo"
-            );
-
-            mostrarToast(
-                "Sesión cerrada."
-            );
-
-        }catch(error){
-
-            console.error(error);
-
-            mostrarToast(
-                "No se pudo cerrar la sesión."
-            );
-
-        }
-
-    }
-);
-
-
-/* ========================================================
-   ESTADO DE AUTENTICACIÓN
-   ======================================================== */
-
-if(firebaseActivo && auth){
-
-    onAuthStateChanged(
-        auth,
-        async function(usuario){
-
-            usuarioActual =
-                usuario;
-
-
-            if(usuario){
-
-                const nombre =
-                    usuario.displayName ||
-                    usuario.email
-                    .split("@")[0]
-                    .replace(
-                        /^./,
-                        letra =>
-                            letra.toUpperCase()
-                    );
-
-
-                document
-                    .getElementById(
-                        "usuarioNombre"
-                    )
-                    .textContent =
-                    nombre;
-
-
-                document
-                    .getElementById(
-                        "usuarioCorreo"
-                    )
-                    .textContent =
-                    usuario.email;
-
-
-                document
-                    .getElementById(
-                        "cuentaEmail"
-                    )
-                    .textContent =
-                    usuario.email;
-
-
-                await cargarDatosFirebase();
-
-            }else{
-
-                document
-                    .getElementById(
-                        "usuarioNombre"
-                    )
-                    .textContent =
-                    "Bienvenido a Kochi Kochi";
-
-
-                document
-                    .getElementById(
-                        "usuarioCorreo"
-                    )
-                    .textContent =
-                    "Inicia sesión para guardar tus favoritos";
-
-
-                document
-                    .getElementById(
-                        "cuentaEmail"
-                    )
-                    .textContent =
-                    "No has iniciado sesión.";
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ========================================================
-   CARGAR DATOS FIREBASE
-   ======================================================== */
-
-async function cargarDatosFirebase(){
-
-    if(!firebaseActivo || !usuarioActual){
-
-        return;
-
-    }
-
-
-    try{
-
-        const carritoRef =
-            doc(
-                db,
-                "carritos",
-                usuarioActual.uid
-            );
-
-
-        const carritoSnap =
-            await getDoc(carritoRef);
-
-
-        if(carritoSnap.exists()){
-
-            const datos =
-                carritoSnap.data();
-
-
-            if(
-                Array.isArray(
-                    datos.productos
-                )
-            ){
-
-                carrito =
-                    datos.productos;
-
-                guardarCarrito();
-
-                renderizarCarrito();
-
-            }
-
-        }
-
-
-        const favoritosRef =
-            doc(
-                db,
-                "favoritos",
-                usuarioActual.uid
-            );
-
-
-        const favoritosSnap =
-            await getDoc(favoritosRef);
-
-
-        if(favoritosSnap.exists()){
-
-            const datos =
-                favoritosSnap.data();
-
-
-            if(
-                Array.isArray(
-                    datos.productos
-                )
-            ){
-
-                favoritos =
-                    datos.productos;
-
-                guardarFavoritos();
-
-                actualizarFavoritosVisual();
-
-            }
-
-        }
-
-    }catch(error){
-
-        console.error(
-            "Error cargando datos:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ========================================================
-   ACTUALIZAR FAVORITOS VISUALES
-   ======================================================== */
-
-function actualizarFavoritosVisual(){
-
-    document.querySelectorAll(
-        ".producto"
-    ).forEach(function(producto){
-
-        const boton =
-            producto.querySelector(".favorito");
-
-        const id =
-            producto.dataset.id;
-
-
-        if(favoritos.includes(id)){
-
-            boton.classList.add("activo");
-
-            boton.textContent = "♥";
-
-        }else{
-
-            boton.classList.remove("activo");
-
-            boton.textContent = "♡";
-
-        }
-
-    });
-
-    actualizarContadores();
-
-}
-
-
-/* ========================================================
-   GUARDAR CARRITO FIREBASE
-   ======================================================== */
-
-async function sincronizarCarritoFirebase(){
-
-    if(
-        !firebaseActivo ||
-        !usuarioActual
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-        await setDoc(
-            doc(
-                db,
-                "carritos",
-                usuarioActual.uid
-            ),
-            {
-                productos:carrito
-            }
-        );
-
-    }catch(error){
-
-        console.error(
-            "Error guardando carrito:",
-            error
-        );
-
-    }
-
-}
-
-
-/* ========================================================
-   SCROLL TOP
-   ======================================================== */
-
-window.addEventListener(
-    "scroll",
-    function(){
-
-        if(window.scrollY > 500){
-
-            arriba.classList.add(
-                "visible"
-            );
-
-        }else{
-
-            arriba.classList.remove(
-                "visible"
-            );
-
-        }
-
-    }
-);
-
-
-arriba.addEventListener(
-    "click",
-    function(){
-
-        window.scrollTo({
-            top:0,
-            behavior:"smooth"
-        });
-
-    }
-);
-
-
-/* ========================================================
-   REVEAL
-   ======================================================== */
-
-const elementosReveal =
-    document.querySelectorAll(
-        ".reveal"
-    );
-
-
-const observer =
-    new IntersectionObserver(
-        function(entries){
-
-            entries.forEach(
-                function(entry){
-
-                    if(entry.isIntersecting){
-
-                        entry.target.classList.add(
-                            "visible"
-                        );
-
-                    }
-
-                }
-            );
 
         },
         {
@@ -7000,79 +2988,145 @@ const observer =
     );
 
 
-elementosReveal.forEach(
-    elemento =>
-        observer.observe(elemento)
-);
+revealElements.forEach(element => {
 
-
-/* ========================================================
-   CARRITO INICIAL
-   ======================================================== */
-
-renderizarCarrito();
-
-actualizarContadores();
-
-
-/* ========================================================
-   CERRAR MENÚ AL ESCAPAR
-   ======================================================== */
-
-document.addEventListener(
-    "keydown",
-    function(event){
-
-        if(event.key === "Escape"){
-
-            usuarioMenu.classList.remove(
-                "activo"
-            );
-
-            cerrarPanelCarrito();
-
-            document.querySelectorAll(
-                ".modal-backdrop.activo"
-            ).forEach(
-                modal =>
-                    modal.classList.remove("activo")
-            );
-
-            document.body.classList.remove(
-                "no-scroll"
-            );
-
-        }
-
-    }
-);
-
-
-/* ========================================================
-   CATEGORÍA DESDE HERO
-   ======================================================== */
-
-document.querySelectorAll(
-    ".slide-btn"
-).forEach(function(boton){
-
-    boton.addEventListener(
-        "click",
-        function(){
-
-            nav.classList.remove(
-                "activo"
-            );
-
-        }
-    );
+    revealObserver.observe(element);
 
 });
 
 
-/* ========================================================
-   FIN
-   ======================================================== */
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* =========================================================
+   PRODUCTOS
+========================================================= */
+
+document.querySelectorAll(".add-cart")
+.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const product =
+            button.dataset.product;
+
+        showToast(
+            product + " agregado ✨"
+        );
+
+    });
+
+});
+
+
+/* =========================================================
+   FORMULARIO DE CONTACTO
+========================================================= */
+
+document.getElementById("contactForm")
+.addEventListener("submit",(event) => {
+
+    event.preventDefault();
+
+    showToast(
+        "¡Mensaje enviado! 💕"
+    );
+
+    event.target.reset();
+
+});
+
+
+/* =========================================================
+   NEWSLETTER
+========================================================= */
+
+document.getElementById("newsletterForm")
+.addEventListener("submit",(event) => {
+
+    event.preventDefault();
+
+    showToast(
+        "¡Te has suscrito! 🍰"
+    );
+
+    event.target.reset();
+
+});
+
+
+/* =========================================================
+   EVITAR QUE LOS LINKS # VACÍOS SALTEN
+========================================================= */
+
+document.querySelectorAll('a[href="#"]')
+.forEach(link => {
+
+    link.addEventListener("click",(event) => {
+
+        event.preventDefault();
+
+    });
+
+});
+
+
+/* =========================================================
+   PREVENIR QUE LA PÁGINA HAGA SCROLL DETRÁS DEL INTRO
+========================================================= */
+
+document.body.classList.add("no-scroll");
+
+
+/* =========================================================
+   TECLADO:
+   ESC CIERRA MENÚ
+========================================================= */
+
+document.addEventListener("keydown",(event) => {
+
+    if(event.key === "Escape"){
+
+        nav.classList.remove("active");
+
+        mobileMenu.textContent = "☰";
+
+    }
+
+});
+
+
+/* =========================================================
+   DETECTAR FIN DE CARGA
+========================================================= */
+
+window.addEventListener("load", () => {
+
+    document.body.classList.add("loaded");
+
+});
+
 
 </script>
 
