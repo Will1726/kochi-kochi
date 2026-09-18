@@ -8,32 +8,22 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 :root{
-    --rosa:#f39ab9;
-    --rosa-claro:#ffdce8;
-    --rosa-suave:#fff1f6;
-    --rosa-oscuro:#c85c83;
-    --rosa-profundo:#a94069;
-    --crema:#fffaf7;
+    --rosa:#e85b83;
+    --rosa-claro:#fff0f4;
+    --rosa-medio:#f6a0b7;
+    --crema:#fffaf4;
+    --cafe:#39252c;
+    --texto:#4d363d;
+    --gris:#856d74;
     --blanco:#ffffff;
-    --texto:#49373e;
-    --texto-suave:#806d74;
-    --sombra:0 15px 45px rgba(150,75,100,.13);
-    --radio:24px;
-    --transicion:.35s ease;
+    --sombra:0 20px 60px rgba(70,30,45,.14);
 }
-
-/* =========================================================
-   RESET
-========================================================= */
 
 *{
     margin:0;
@@ -46,1645 +36,1024 @@ html{
 }
 
 body{
-    font-family:'Montserrat',sans-serif;
-    background:var(--crema);
+    font-family:Poppins,sans-serif;
     color:var(--texto);
+    background:#fff;
     overflow-x:hidden;
 }
 
-body.no-scroll{
-    overflow:hidden;
-}
-
-button,
-input,
-textarea{
-    font-family:inherit;
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
 button{
-    cursor:pointer;
+    font-family:inherit;
 }
 
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-img{
-    max-width:100%;
-    display:block;
-}
-
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar{
-    width:9px;
-}
-
-::-webkit-scrollbar-track{
-    background:#fff0f5;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#e995b1;
-    border-radius:20px;
-}
-
-::-webkit-scrollbar-thumb:hover{
-    background:#c85c83;
-}
-
-/* =========================================================
-   INTRO
-========================================================= */
+/* ==============================
+   PANTALLA DE ENTRADA
+============================== */
 
 #intro{
     position:fixed;
     inset:0;
     z-index:99999;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(255,255,255,.9),transparent 25%),
-        radial-gradient(circle at 80% 80%,rgba(255,191,213,.5),transparent 30%),
-        linear-gradient(135deg,#ffeef4,#ffd4e3,#fff7fa);
     display:flex;
-    align-items:center;
     justify-content:center;
-    transition:opacity .8s ease,visibility .8s ease;
+    align-items:center;
+
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.55),transparent 25%),
+        radial-gradient(circle at 80% 80%,rgba(255,255,255,.45),transparent 25%),
+        #f5a2b8;
+
+    transition:.8s ease;
 }
 
-#intro.hide{
+#intro.oculto{
     opacity:0;
     visibility:hidden;
     pointer-events:none;
 }
 
-.intro-decor{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,.45);
-    filter:blur(2px);
-}
-
-.intro-decor.one{
-    width:250px;
-    height:250px;
-    top:-80px;
-    left:-80px;
-}
-
-.intro-decor.two{
-    width:330px;
-    height:330px;
-    bottom:-130px;
-    right:-100px;
-}
-
-.intro-card{
-    width:min(500px,90%);
+.intro-contenido{
     text-align:center;
-    position:relative;
-    z-index:2;
-    animation:introUp 1s ease;
+    padding:25px;
+    animation:entrada .9s ease;
 }
 
-@keyframes introUp{
+.logo-intro{
+    width:min(330px,75vw);
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:50%;
+    border:8px solid rgba(255,255,255,.7);
+    box-shadow:0 30px 80px rgba(65,25,40,.25);
+}
+
+.intro-contenido h1{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(3rem,8vw,5rem);
+    margin-top:25px;
+}
+
+.intro-contenido p{
+    margin:8px 0 25px;
+    color:#5c3d46;
+}
+
+.btn-entrar{
+    border:none;
+    padding:15px 30px;
+    border-radius:50px;
+    background:var(--cafe);
+    color:#fff;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-entrar:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 30px rgba(57,37,44,.2);
+}
+
+@keyframes entrada{
     from{
         opacity:0;
-        transform:translateY(35px);
+        transform:translateY(30px) scale(.95);
     }
     to{
         opacity:1;
-        transform:translateY(0);
+        transform:none;
     }
 }
 
-.intro-logo{
-    width:230px;
-    height:230px;
-    object-fit:cover;
-    border-radius:50%;
-    margin:0 auto 28px;
-    box-shadow:
-        0 25px 60px rgba(170,75,105,.2),
-        0 0 0 10px rgba(255,255,255,.5);
-}
-
-.intro-title{
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(3rem,8vw,5rem);
-    color:var(--rosa-profundo);
-    line-height:.95;
-    margin-bottom:15px;
-}
-
-.intro-subtitle{
-    color:#765c65;
-    font-size:.95rem;
-    letter-spacing:3px;
-    text-transform:uppercase;
-    margin-bottom:35px;
-}
-
-#enterBtn{
-    border:none;
-    background:var(--rosa-profundo);
-    color:white;
-    padding:16px 38px;
-    border-radius:50px;
-    font-size:.9rem;
-    font-weight:700;
-    letter-spacing:1px;
-    box-shadow:0 12px 30px rgba(169,64,105,.28);
-    transition:var(--transicion);
-}
-
-#enterBtn:hover{
-    transform:translateY(-4px) scale(1.03);
-    background:#8f3158;
-    box-shadow:0 18px 38px rgba(169,64,105,.35);
-}
-
-/* =========================================================
+/* ==============================
    HEADER
-========================================================= */
+============================== */
 
 header{
     position:fixed;
     top:0;
     left:0;
     width:100%;
-    height:82px;
     z-index:5000;
-    background:rgba(255,250,247,.9);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(200,92,131,.1);
-    transition:.3s ease;
+
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(70,30,45,.08);
 }
 
-.header-inner{
-    max-width:1250px;
-    height:100%;
+.navbar{
+    height:78px;
+    max-width:1200px;
     margin:auto;
-    padding:0 25px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:25px;
+
+    padding:0 22px;
 }
 
-.logo-text{
+.logo-texto{
     display:flex;
     align-items:center;
     gap:10px;
-    font-family:'DM Serif Display',serif;
-    color:var(--rosa-profundo);
-    font-size:1.7rem;
-    white-space:nowrap;
+
+    font-family:"DM Serif Display",serif;
+    font-size:1.6rem;
 }
 
-.logo-icon{
-    width:43px;
-    height:43px;
+.logo-punto{
+    width:12px;
+    height:12px;
     border-radius:50%;
-    background:var(--rosa-claro);
-    display:grid;
-    place-items:center;
-    font-size:1.25rem;
+    background:var(--rosa);
+
+    box-shadow:0 0 0 6px #ffe1e9;
 }
 
 nav{
     display:flex;
-    align-items:center;
     gap:25px;
 }
 
 nav a{
+    font-size:.88rem;
     position:relative;
-    font-size:.78rem;
-    font-weight:600;
-    letter-spacing:1px;
-    text-transform:uppercase;
-    color:#634d55;
     padding:8px 0;
-    transition:.3s;
 }
 
 nav a::after{
     content:"";
     position:absolute;
+    left:0;
     bottom:0;
-    left:50%;
+
     width:0;
     height:2px;
-    background:var(--rosa-profundo);
-    transition:.3s;
-    transform:translateX(-50%);
-}
 
-nav a:hover{
-    color:var(--rosa-profundo);
+    background:var(--rosa);
+    transition:.3s;
 }
 
 nav a:hover::after{
     width:100%;
 }
 
-.mobile-menu{
-    display:none;
-    width:45px;
-    height:45px;
-    border:none;
-    border-radius:50%;
-    background:var(--rosa-claro);
-    color:var(--rosa-profundo);
-    font-size:1.2rem;
+.acciones{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-/* =========================================================
+.btn-musica,
+.btn-menu{
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+    border:1px solid #efdce2;
+
+    background:#fff;
+    cursor:pointer;
+
+    display:grid;
+    place-items:center;
+}
+
+.btn-menu{
+    display:none;
+}
+
+/* ==============================
    HERO
-========================================================= */
+============================== */
 
 .hero{
     min-height:100vh;
-    padding-top:82px;
-    position:relative;
-    overflow:hidden;
+    padding-top:78px;
+
     background:
-        radial-gradient(circle at 10% 20%,#ffe5ee,transparent 30%),
-        radial-gradient(circle at 90% 80%,#ffdce8,transparent 30%),
-        #fffaf7;
+        radial-gradient(circle at 85% 25%,#f9c7d5,transparent 25%),
+        linear-gradient(110deg,#fffaf5,#fff0f4,#fbd4df);
+
+    overflow:hidden;
 }
 
-.hero-inner{
-    min-height:calc(100vh - 82px);
-    max-width:1250px;
+.hero-contenido{
+    max-width:1200px;
+    min-height:calc(100vh - 78px);
+
     margin:auto;
-    padding:70px 30px;
+    padding:70px 25px;
+
     display:grid;
     grid-template-columns:1fr 1fr;
+
     align-items:center;
-    gap:60px;
+    gap:50px;
 }
 
-.hero-small{
-    color:var(--rosa-profundo);
-    text-transform:uppercase;
-    letter-spacing:4px;
-    font-size:.72rem;
+.etiqueta{
+    color:var(--rosa);
+    font-size:.75rem;
     font-weight:700;
-    margin-bottom:20px;
+    letter-spacing:4px;
+    text-transform:uppercase;
 }
 
 .hero h1{
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(4rem,7vw,7.2rem);
-    line-height:.86;
-    font-weight:400;
-    color:#4e3941;
-    margin-bottom:25px;
+    font-family:"DM Serif Display",serif;
+
+    font-size:clamp(3.3rem,6vw,6rem);
+    line-height:.95;
+
+    margin:18px 0 25px;
 }
 
 .hero h1 span{
-    color:var(--rosa-profundo);
-    display:block;
+    color:var(--rosa);
 }
 
-.hero-description{
-    max-width:520px;
-    color:var(--texto-suave);
+.hero p{
+    max-width:570px;
+
+    color:var(--gris);
     line-height:1.9;
-    font-size:.95rem;
-    margin-bottom:32px;
 }
 
-.hero-buttons{
+.botones{
     display:flex;
-    gap:14px;
+    gap:12px;
+    margin-top:30px;
     flex-wrap:wrap;
 }
 
 .btn{
     display:inline-flex;
-    align-items:center;
     justify-content:center;
-    padding:15px 28px;
-    border-radius:50px;
-    border:1px solid transparent;
-    font-size:.78rem;
-    font-weight:700;
-    letter-spacing:1px;
-    transition:.35s;
-}
-
-.btn-primary{
-    background:var(--rosa-profundo);
-    color:#fff;
-    box-shadow:0 12px 30px rgba(169,64,105,.2);
-}
-
-.btn-primary:hover{
-    transform:translateY(-4px);
-    background:#8f3158;
-}
-
-.btn-outline{
-    border-color:#dba1b5;
-    color:var(--rosa-profundo);
-    background:rgba(255,255,255,.5);
-}
-
-.btn-outline:hover{
-    background:#fff;
-    transform:translateY(-4px);
-}
-
-.hero-art{
-    min-height:550px;
-    position:relative;
-    display:grid;
-    place-items:center;
-}
-
-.hero-circle{
-    width:min(510px,90vw);
-    height:min(510px,90vw);
-    border-radius:50%;
-    background:
-        radial-gradient(circle at 35% 30%,#fff,#ffe1eb 45%,#f5b1c7);
-    box-shadow:var(--sombra);
-    position:relative;
-    animation:floatCake 5s ease-in-out infinite;
-}
-
-@keyframes floatCake{
-    0%,100%{
-        transform:translateY(0) rotate(-2deg);
-    }
-    50%{
-        transform:translateY(-15px) rotate(2deg);
-    }
-}
-
-.cake{
-    position:absolute;
-    left:50%;
-    top:52%;
-    transform:translate(-50%,-50%);
-    width:260px;
-}
-
-.cake-top{
-    height:70px;
-    background:#fff;
-    border-radius:50%;
-    border:5px solid #e8b0bf;
-    position:relative;
-    z-index:3;
-}
-
-.cake-top::before,
-.cake-top::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    background:#f7c7d7;
-}
-
-.cake-top::before{
-    width:25px;
-    height:25px;
-    left:40px;
-    top:15px;
-}
-
-.cake-top::after{
-    width:18px;
-    height:18px;
-    right:55px;
-    top:20px;
-}
-
-.cake-middle{
-    height:90px;
-    margin-top:-20px;
-    background:linear-gradient(#f8aec5,#fff);
-    border:5px solid #e8b0bf;
-    border-top:none;
-    position:relative;
-    z-index:2;
-}
-
-.cake-bottom{
-    height:80px;
-    margin-top:-20px;
-    background:#f49db9;
-    border:5px solid #d9809e;
-    border-top:none;
-    border-radius:0 0 25px 25px;
-}
-
-.cake-cream{
-    position:absolute;
-    top:53px;
-    left:0;
-    width:100%;
-    height:35px;
-    background:#fff;
-    border-radius:0 0 50% 50%;
-    z-index:4;
-}
-
-.cherry{
-    position:absolute;
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    background:#d44e77;
-    top:-45px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:5;
-}
-
-.cherry::before{
-    content:"";
-    position:absolute;
-    width:35px;
-    height:18px;
-    border-top:3px solid #73966a;
-    border-radius:50%;
-    top:-12px;
-    left:-5px;
-    transform:rotate(-25deg);
-}
-
-.floating-spark{
-    position:absolute;
-    color:white;
-    font-size:1.5rem;
-    animation:spark 3s ease-in-out infinite;
-}
-
-.spark1{
-    top:13%;
-    left:18%;
-}
-
-.spark2{
-    top:30%;
-    right:13%;
-    animation-delay:1s;
-}
-
-.spark3{
-    bottom:18%;
-    left:15%;
-    animation-delay:2s;
-}
-
-@keyframes spark{
-    0%,100%{
-        transform:translateY(0) rotate(0);
-        opacity:.6;
-    }
-    50%{
-        transform:translateY(-15px) rotate(20deg);
-        opacity:1;
-    }
-}
-
-/* =========================================================
-   MUSIC DISC
-========================================================= */
-
-.music-player{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    z-index:6000;
-    display:flex;
     align-items:center;
-    gap:13px;
-    padding:9px 15px 9px 9px;
-    border-radius:60px;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(15px);
-    box-shadow:0 15px 45px rgba(100,50,70,.18);
-    border:1px solid rgba(200,92,131,.12);
+
+    padding:14px 25px;
+
+    border-radius:50px;
+    border:1px solid var(--cafe);
+
+    transition:.3s;
 }
 
-.disc{
-    width:55px;
-    height:55px;
-    flex:none;
+.btn:hover{
+    transform:translateY(-4px);
+}
+
+.btn-principal{
+    background:var(--cafe);
+    color:white;
+}
+
+.btn-secundario{
+    background:white;
+}
+
+.hero-imagen{
+    display:flex;
+    justify-content:center;
+}
+
+.hero-imagen img{
+    width:min(520px,85vw);
+    aspect-ratio:1;
+
+    object-fit:cover;
+
     border-radius:50%;
-    background:
-        radial-gradient(circle,#fff 0 9%,transparent 10%),
-        radial-gradient(circle,#222 0 16%,transparent 17%),
-        repeating-radial-gradient(circle,#252025 0 3px,#111 4px 6px);
-    box-shadow:0 7px 18px rgba(0,0,0,.25);
-    position:relative;
-    cursor:pointer;
-    animation:spin 4s linear infinite;
-    animation-play-state:paused;
+
+    border:10px solid rgba(255,255,255,.8);
+
+    box-shadow:var(--sombra);
+
+    animation:flotar 5s ease-in-out infinite;
 }
 
-.disc.playing{
-    animation-play-state:running;
-}
-
-.disc::after{
-    content:"";
-    position:absolute;
-    width:10px;
-    height:10px;
-    background:#f5a0bb;
-    border-radius:50%;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    border:2px solid #fff;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
+@keyframes flotar{
+    50%{
+        transform:translateY(-12px) rotate(1deg);
     }
 }
 
-.music-info{
-    min-width:145px;
-}
-
-.music-label{
-    font-size:.65rem;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    color:#a14a6d;
-    font-weight:700;
-}
-
-.music-name{
-    font-size:.72rem;
-    font-weight:600;
-    margin-top:3px;
-}
-
-.music-status{
-    font-size:.62rem;
-    color:#98858c;
-    margin-top:2px;
-}
-
-/* =========================================================
-   SECTIONS
-========================================================= */
+/* ==============================
+   SECCIONES
+============================== */
 
 section{
-    padding:110px 25px;
+    padding:105px 22px;
 }
 
-.section-container{
-    max-width:1150px;
+.contenedor{
+    max-width:1120px;
     margin:auto;
 }
 
-.section-heading{
+.cabecera-seccion{
     text-align:center;
-    margin-bottom:60px;
+    margin-bottom:50px;
 }
 
-.section-tag{
-    text-transform:uppercase;
-    color:var(--rosa-profundo);
-    letter-spacing:4px;
-    font-size:.7rem;
-    font-weight:700;
-    margin-bottom:13px;
+.cabecera-seccion h2{
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(2.3rem,5vw,4rem);
+    margin:10px 0;
 }
 
-.section-title{
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(2.8rem,5vw,4.5rem);
-    font-weight:400;
-    color:#4b383f;
-}
+.cabecera-seccion p{
+    max-width:650px;
+    margin:auto;
 
-.section-text{
-    max-width:620px;
-    margin:15px auto 0;
-    color:#806d74;
+    color:var(--gris);
     line-height:1.8;
-    font-size:.9rem;
 }
 
-/* =========================================================
-   SLOGAN
-========================================================= */
+/* ==============================
+   CATEGORIAS
+============================== */
 
-.slogan{
-    background:var(--rosa-profundo);
-    color:#fff;
-    text-align:center;
-    padding:80px 25px;
-    position:relative;
-    overflow:hidden;
+.categorias{
+    background:var(--rosa-claro);
 }
 
-.slogan::before,
-.slogan::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:50%;
+.categorias-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
 }
 
-.slogan::before{
-    left:-150px;
-    top:-150px;
-}
-
-.slogan::after{
-    right:-150px;
-    bottom:-150px;
-}
-
-.slogan p{
-    position:relative;
-    z-index:2;
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(2.2rem,5vw,4.4rem);
-}
-
-/* =========================================================
-   FEATURES
-========================================================= */
-
-.features{
+.categoria{
     background:#fff;
+    border-radius:25px;
+    padding:35px 20px;
+
+    text-align:center;
+
+    box-shadow:0 10px 35px rgba(80,30,45,.08);
+
+    transition:.3s;
 }
 
-.feature-grid{
+.categoria:hover{
+    transform:translateY(-10px);
+}
+
+.categoria-icono{
+    font-size:3.5rem;
+    margin-bottom:15px;
+}
+
+.categoria h3{
+    font-family:"DM Serif Display",serif;
+    font-size:1.5rem;
+}
+
+.categoria p{
+    color:var(--gris);
+    font-size:.82rem;
+    margin-top:7px;
+}
+
+/* ==============================
+   PRODUCTOS CON FOTOS REALES
+============================== */
+
+.productos{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:25px;
 }
 
-.feature-card{
-    background:#fffafc;
-    border:1px solid #f4dce5;
-    padding:40px 30px;
-    border-radius:var(--radio);
-    text-align:center;
-    transition:.4s;
-}
+.producto{
+    background:white;
 
-.feature-card:hover{
-    transform:translateY(-10px);
-    box-shadow:var(--sombra);
-}
+    border:1px solid #f0e2e6;
 
-.feature-icon{
-    width:75px;
-    height:75px;
-    margin:0 auto 23px;
-    border-radius:50%;
-    background:#ffe2eb;
-    display:grid;
-    place-items:center;
-    font-size:2rem;
-}
+    border-radius:25px;
 
-.feature-card h3{
-    font-family:'DM Serif Display',serif;
-    font-size:1.7rem;
-    font-weight:400;
-    margin-bottom:12px;
-}
-
-.feature-card p{
-    color:#806d74;
-    font-size:.82rem;
-    line-height:1.8;
-}
-
-/* =========================================================
-   PRODUCTS
-========================================================= */
-
-.products{
-    background:#fff6f9;
-}
-
-.product-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:22px;
-}
-
-.product-card{
-    background:#fff;
-    border-radius:var(--radio);
     overflow:hidden;
-    box-shadow:0 8px 30px rgba(150,75,100,.07);
-    transition:.4s;
+
+    box-shadow:0 8px 30px rgba(50,25,35,.05);
+
+    transition:.35s;
 }
 
-.product-card:hover{
+.producto:hover{
     transform:translateY(-8px);
     box-shadow:var(--sombra);
 }
 
-.product-image{
-    height:230px;
-    position:relative;
+.producto-imagen{
+    height:280px;
     overflow:hidden;
-    background:linear-gradient(145deg,#ffeef4,#ffd3e1);
-    display:grid;
-    place-items:center;
-}
-
-.product-image::before{
-    content:"";
-    width:145px;
-    height:145px;
-    border-radius:50%;
-    background:rgba(255,255,255,.5);
-    position:absolute;
-}
-
-.product-cake{
-    width:110px;
-    height:95px;
-    background:#fff;
-    border-radius:10px 10px 25px 25px;
     position:relative;
-    z-index:2;
-    box-shadow:0 12px 20px rgba(130,65,85,.13);
+    background:#fff0f4;
 }
 
-.product-cake::before{
-    content:"";
-    position:absolute;
+.producto-imagen img{
     width:100%;
-    height:35px;
-    background:#f5aec4;
-    border-radius:50%;
-    top:-15px;
-    left:0;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
 }
 
-.product-cake::after{
-    content:"♥";
-    position:absolute;
-    color:#d25b82;
-    font-size:1.5rem;
-    left:50%;
-    top:38px;
-    transform:translateX(-50%);
+.producto:hover .producto-imagen img{
+    transform:scale(1.08);
 }
 
-.product-badge{
+.etiqueta-nuevo{
     position:absolute;
+
     top:15px;
     left:15px;
-    background:#fff;
-    color:#b14a70;
-    padding:6px 11px;
-    border-radius:20px;
-    font-size:.58rem;
-    font-weight:800;
-    letter-spacing:1px;
-    z-index:3;
+
+    padding:7px 12px;
+
+    border-radius:30px;
+
+    background:var(--rosa);
+    color:white;
+
+    font-size:.7rem;
+    font-weight:700;
 }
 
-.product-info{
+.producto-info{
     padding:23px;
 }
 
-.product-info h3{
-    font-family:'DM Serif Display',serif;
-    font-size:1.45rem;
-    font-weight:400;
-    margin-bottom:7px;
+.producto-info h3{
+    font-family:"DM Serif Display",serif;
+    font-size:1.5rem;
 }
 
-.product-info p{
-    color:#89767d;
-    font-size:.75rem;
-    line-height:1.6;
-    margin-bottom:17px;
-}
-
-.product-bottom{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.price{
-    color:var(--rosa-profundo);
-    font-weight:800;
-    font-size:.9rem;
-}
-
-.add-cart{
-    border:none;
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#ffe0ea;
-    color:#a94069;
+.precio{
+    color:var(--rosa);
+    font-weight:700;
     font-size:1.1rem;
+
+    margin:8px 0 15px;
+}
+
+.btn-agregar{
+    width:100%;
+
+    border:none;
+
+    padding:13px;
+
+    border-radius:13px;
+
+    background:var(--cafe);
+    color:white;
+
+    cursor:pointer;
+
     transition:.3s;
 }
 
-.add-cart:hover{
-    background:#a94069;
-    color:white;
-    transform:rotate(10deg) scale(1.1);
+.btn-agregar:hover{
+    background:var(--rosa);
 }
 
-/* =========================================================
-   STORY
-========================================================= */
+/* ==============================
+   HISTORIA
+============================== */
 
-.story{
-    background:#fff;
+.historia{
+    background:var(--crema);
 }
 
-.story-grid{
+.historia-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:70px;
+    gap:60px;
+
     align-items:center;
 }
 
-.story-art{
-    min-height:500px;
-    position:relative;
-    display:grid;
-    place-items:center;
-}
-
-.story-frame{
-    width:82%;
-    height:420px;
-    border-radius:150px 150px 25px 25px;
-    background:linear-gradient(145deg,#f8b1c7,#ffe4ed);
-    position:relative;
-    overflow:hidden;
-}
-
-.story-frame::before{
-    content:"";
-    position:absolute;
-    width:230px;
-    height:230px;
-    border-radius:50%;
-    background:rgba(255,255,255,.45);
-    left:50%;
-    top:45%;
-    transform:translate(-50%,-50%);
-}
-
-.story-cake{
-    position:absolute;
-    width:190px;
-    height:150px;
-    left:50%;
-    top:52%;
-    transform:translate(-50%,-50%);
-}
-
-.story-cake .layer1{
-    position:absolute;
-    bottom:0;
+.historia-imagen img{
     width:100%;
-    height:70px;
-    background:#fff;
-    border:5px solid #e7a4b9;
-    border-radius:10px 10px 25px 25px;
-}
+    height:520px;
 
-.story-cake .layer2{
-    position:absolute;
-    bottom:60px;
-    left:20px;
-    width:150px;
-    height:65px;
-    background:#f7bfd0;
-    border:5px solid #e4a0b7;
-    border-radius:10px 10px 22px 22px;
-}
+    object-fit:cover;
 
-.story-cake .top{
-    position:absolute;
-    bottom:112px;
-    left:35px;
-    width:120px;
-    height:45px;
-    background:#fff;
-    border:5px solid #e5a5b9;
-    border-radius:50%;
-}
-
-.story-copy h2{
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(2.8rem,5vw,4.5rem);
-    line-height:1;
-    font-weight:400;
-    margin-bottom:25px;
-}
-
-.story-copy h2 span{
-    color:var(--rosa-profundo);
-}
-
-.story-copy p{
-    color:#806d74;
-    font-size:.9rem;
-    line-height:2;
-    margin-bottom:18px;
-}
-
-.story-list{
-    list-style:none;
-    margin-top:25px;
-}
-
-.story-list li{
-    margin-bottom:14px;
-    display:flex;
-    gap:10px;
-    align-items:center;
-    font-size:.8rem;
-    font-weight:600;
-}
-
-.story-list span{
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    background:#ffe0ea;
-    display:grid;
-    place-items:center;
-    color:#a94069;
-}
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery{
-    background:#fff6f9;
-}
-
-.gallery-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    grid-auto-rows:180px;
-    gap:15px;
-}
-
-.gallery-item{
-    border-radius:22px;
-    overflow:hidden;
-    position:relative;
-    background:linear-gradient(135deg,#ffdbe7,#f4a7c0);
-    display:grid;
-    place-items:center;
-}
-
-.gallery-item:nth-child(1){
-    grid-row:span 2;
-}
-
-.gallery-item:nth-child(4){
-    grid-row:span 2;
-}
-
-.gallery-art{
-    font-size:5rem;
-    filter:drop-shadow(0 15px 10px rgba(100,50,70,.12));
-    transition:.4s;
-}
-
-.gallery-item:hover .gallery-art{
-    transform:scale(1.15) rotate(5deg);
-}
-
-.gallery-overlay{
-    position:absolute;
-    inset:0;
-    background:rgba(170,70,105,.7);
-    color:#fff;
-    display:grid;
-    place-items:center;
-    opacity:0;
-    transition:.3s;
-    font-family:'DM Serif Display',serif;
-    font-size:1.7rem;
-}
-
-.gallery-item:hover .gallery-overlay{
-    opacity:1;
-}
-
-/* =========================================================
-   REVIEWS
-========================================================= */
-
-.reviews{
-    background:#fff;
-}
-
-.review-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.review{
-    padding:32px;
-    border-radius:var(--radio);
-    background:#fff7fa;
-    border:1px solid #f4dce5;
-}
-
-.stars{
-    color:#d96d91;
-    letter-spacing:3px;
-    margin-bottom:17px;
-}
-
-.review p{
-    font-family:'DM Serif Display',serif;
-    font-size:1.3rem;
-    line-height:1.5;
-    margin-bottom:20px;
-}
-
-.review-name{
-    color:#8b747c;
-    font-size:.7rem;
-    font-weight:700;
-    letter-spacing:1px;
-    text-transform:uppercase;
-}
-
-/* =========================================================
-   CONTACT
-========================================================= */
-
-.contact{
-    background:#fff3f7;
-}
-
-.contact-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:50px;
-    align-items:start;
-}
-
-.contact-info h2{
-    font-family:'DM Serif Display',serif;
-    font-size:3.5rem;
-    font-weight:400;
-    line-height:1;
-    margin-bottom:20px;
-}
-
-.contact-info > p{
-    color:#806d74;
-    line-height:1.8;
-    font-size:.85rem;
-    margin-bottom:30px;
-}
-
-.contact-detail{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-bottom:17px;
-    font-size:.8rem;
-}
-
-.contact-icon{
-    width:42px;
-    height:42px;
-    border-radius:50%;
-    background:#ffe0ea;
-    display:grid;
-    place-items:center;
-    flex:none;
-}
-
-.contact-form{
-    background:#fff;
     border-radius:30px;
-    padding:35px;
+
     box-shadow:var(--sombra);
 }
 
-.form-row{
+.historia-texto h2{
+    font-family:"DM Serif Display",serif;
+    font-size:3.5rem;
+    margin:12px 0 20px;
+}
+
+.historia-texto p{
+    color:var(--gris);
+    line-height:1.9;
+    margin-bottom:15px;
+}
+
+/* ==============================
+   GALERIA
+============================== */
+
+.galeria-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.galeria-item{
+    height:270px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+}
+
+.galeria-item img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:.5s;
+}
+
+.galeria-item:hover img{
+    transform:scale(1.1);
+}
+
+/* ==============================
+   MUSICA
+============================== */
+
+.musica{
+    background:#fbe0e8;
+    text-align:center;
+}
+
+.disco{
+    width:190px;
+    height:190px;
+
+    margin:0 auto 30px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(circle,#fff 0 9%,#e85b83 10% 14%,transparent 15%),
+        repeating-radial-gradient(
+            circle,
+            #9e3657 0 2px,
+            #d25073 3px 6px
+        );
+
+    border:8px solid white;
+
+    box-shadow:0 20px 50px rgba(80,25,45,.2);
+
+    cursor:pointer;
+
+    animation:girar 8s linear infinite;
+}
+
+.disco.pausado{
+    animation-play-state:paused;
+}
+
+@keyframes girar{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.musica h2{
+    font-family:"DM Serif Display",serif;
+    font-size:2.8rem;
+}
+
+.estado-musica{
+    color:var(--rosa);
+    font-size:.85rem;
+    font-weight:600;
+    margin-top:15px;
+}
+
+/* ==============================
+   RESEÑAS
+============================== */
+
+.resenas{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.resena{
+    border:1px solid #f0e1e5;
+    border-radius:22px;
+
+    padding:30px;
+
+    background:white;
+}
+
+.estrellas{
+    color:#e5a33a;
+    letter-spacing:3px;
+    margin-bottom:12px;
+}
+
+.resena p{
+    color:var(--gris);
+    line-height:1.8;
+}
+
+/* ==============================
+   CONTACTO
+============================== */
+
+.contacto{
+    background:var(--rosa-claro);
+}
+
+.contacto-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
+    gap:30px;
 }
 
-.form-group{
-    margin-bottom:17px;
+.contacto-card{
+    background:white;
+
+    border-radius:25px;
+
+    padding:35px;
+
+    box-shadow:0 10px 30px rgba(80,30,45,.06);
 }
 
-.form-group label{
-    display:block;
-    font-size:.68rem;
-    font-weight:700;
-    color:#715b63;
-    text-transform:uppercase;
-    letter-spacing:1px;
-    margin-bottom:8px;
+.contacto-card h3{
+    font-family:"DM Serif Display",serif;
+    font-size:2.3rem;
+    margin:10px 0 15px;
 }
 
-.form-group input,
-.form-group textarea{
+.contacto-card p{
+    color:var(--gris);
+    line-height:1.8;
+}
+
+.formulario{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+
+.formulario input,
+.formulario textarea{
     width:100%;
-    border:1px solid #eed9e1;
-    background:#fffafc;
-    padding:13px 15px;
-    border-radius:12px;
+
+    border:1px solid #eadde1;
+
+    border-radius:13px;
+
+    padding:14px;
+
+    font-family:inherit;
+
     outline:none;
-    font-size:.8rem;
-    color:var(--texto);
-    transition:.3s;
 }
 
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:#d77e9d;
-    box-shadow:0 0 0 3px rgba(215,126,157,.1);
-}
-
-.form-group textarea{
+.formulario textarea{
     min-height:130px;
     resize:vertical;
 }
 
-/* =========================================================
-   NEWSLETTER
-========================================================= */
-
-.newsletter{
-    background:#a94069;
-    color:white;
-    text-align:center;
-    padding:75px 25px;
+.formulario input:focus,
+.formulario textarea:focus{
+    border-color:var(--rosa);
 }
 
-.newsletter h2{
-    font-family:'DM Serif Display',serif;
-    font-size:3rem;
-    font-weight:400;
-    margin-bottom:12px;
-}
-
-.newsletter p{
-    opacity:.8;
-    font-size:.8rem;
-    margin-bottom:25px;
-}
-
-.newsletter-form{
-    max-width:500px;
-    margin:auto;
-    display:flex;
-    gap:10px;
-}
-
-.newsletter-form input{
-    flex:1;
-    border:none;
-    outline:none;
-    border-radius:50px;
-    padding:15px 20px;
-}
-
-.newsletter-form button{
-    border:none;
-    border-radius:50px;
-    padding:15px 25px;
-    background:#fff;
-    color:#a94069;
-    font-weight:800;
-}
-
-/* =========================================================
+/* ==============================
    FOOTER
-========================================================= */
+============================== */
 
 footer{
-    background:#382b30;
-    color:#fff;
-    padding:65px 25px 25px;
+    background:var(--cafe);
+    color:white;
+
+    padding:60px 22px 25px;
 }
 
 .footer-grid{
-    max-width:1150px;
+    max-width:1120px;
     margin:auto;
+
     display:grid;
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    grid-template-columns:1.5fr 1fr 1fr;
+
     gap:40px;
 }
 
-.footer-brand h2{
-    font-family:'DM Serif Display',serif;
-    font-size:2.4rem;
-    font-weight:400;
-    color:#f5b0c6;
-    margin-bottom:15px;
+.footer-logo{
+    font-family:"DM Serif Display",serif;
+    font-size:2.3rem;
 }
 
-.footer-brand p{
-    color:#b9a9af;
-    font-size:.76rem;
-    line-height:1.8;
-    max-width:280px;
+footer p,
+footer a{
+    color:#d9c9ce;
+    font-size:.86rem;
+    line-height:1.9;
 }
 
-.footer-col h3{
-    font-size:.7rem;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    margin-bottom:20px;
-    color:#f4c2d3;
-}
-
-.footer-col a{
-    display:block;
-    color:#b9a9af;
-    font-size:.75rem;
+.footer-titulo{
+    font-weight:700;
     margin-bottom:12px;
-    transition:.3s;
 }
 
-.footer-col a:hover{
-    color:white;
-    transform:translateX(4px);
-}
-
-.socials{
+.sociales{
     display:flex;
     gap:10px;
+    margin-top:18px;
 }
 
-.social{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#49373e;
+.sociales a{
+    width:40px;
+    height:40px;
+
     display:grid;
     place-items:center;
+
+    border:1px solid #665159;
+
+    border-radius:50%;
+
     transition:.3s;
 }
 
-.social:hover{
-    background:#c85c83;
-    transform:translateY(-4px);
+.sociales a:hover{
+    background:var(--rosa);
+    border-color:var(--rosa);
+    color:white;
 }
 
-.footer-bottom{
-    max-width:1150px;
-    margin:50px auto 0;
+.copyright{
+    max-width:1120px;
+    margin:40px auto 0;
+
     padding-top:20px;
-    border-top:1px solid rgba(255,255,255,.1);
-    display:flex;
-    justify-content:space-between;
-    gap:20px;
-    color:#93858a;
-    font-size:.65rem;
+
+    border-top:1px solid #624d55;
+
+    text-align:center;
+
+    color:#bba9ae;
+    font-size:.75rem;
 }
 
-/* =========================================================
+/* ==============================
    TOAST
-========================================================= */
+============================== */
 
 #toast{
     position:fixed;
+
     left:50%;
-    bottom:30px;
-    transform:translate(-50%,120px);
-    background:#382b30;
+    bottom:25px;
+
+    transform:translate(-50%,30px);
+
+    background:var(--cafe);
     color:white;
+
     padding:14px 22px;
+
     border-radius:50px;
-    font-size:.75rem;
-    z-index:99990;
-    box-shadow:0 12px 30px rgba(0,0,0,.2);
+
     opacity:0;
-    transition:.4s ease;
     pointer-events:none;
-}
 
-#toast.show{
-    transform:translate(-50%,0);
-    opacity:1;
-}
+    z-index:9999;
 
-/* =========================================================
-   BACK TO TOP
-========================================================= */
-
-#topBtn{
-    position:fixed;
-    right:25px;
-    bottom:95px;
-    width:45px;
-    height:45px;
-    border:none;
-    border-radius:50%;
-    background:#fff;
-    color:#a94069;
-    box-shadow:0 10px 25px rgba(80,40,55,.15);
-    z-index:5000;
-    opacity:0;
-    visibility:hidden;
-    transform:translateY(15px);
     transition:.3s;
 }
 
-#topBtn.show{
+#toast.mostrar{
     opacity:1;
-    visibility:visible;
-    transform:translateY(0);
+    transform:translate(-50%,0);
 }
 
-#topBtn:hover{
-    background:#a94069;
+/* ==============================
+   BOTON ARRIBA
+============================== */
+
+#arriba{
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    width:45px;
+    height:45px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:var(--rosa);
     color:white;
-}
 
-/* =========================================================
-   REVEAL
-========================================================= */
+    cursor:pointer;
 
-.reveal{
     opacity:0;
-    transform:translateY(35px);
-    transition:opacity .8s ease,transform .8s ease;
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:3000;
 }
 
-.reveal.visible{
+#arriba.visible{
     opacity:1;
-    transform:translateY(0);
+    pointer-events:auto;
 }
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+/* ==============================
+   ANIMACIONES
+============================== */
 
-@media(max-width:1050px){
+.revelar{
+    opacity:0;
+    transform:translateY(30px);
+
+    transition:.8s ease;
+}
+
+.revelar.visible{
+    opacity:1;
+    transform:none;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media(max-width:900px){
 
     nav{
-        gap:15px;
+        position:absolute;
+
+        top:78px;
+        left:0;
+        right:0;
+
+        background:white;
+
+        display:none;
+
+        flex-direction:column;
+
+        gap:0;
+
+        padding:10px 22px;
+
+        box-shadow:0 15px 30px rgba(50,20,30,.08);
+    }
+
+    nav.abierto{
+        display:flex;
     }
 
     nav a{
-        font-size:.68rem;
+        padding:15px 5px;
+        border-bottom:1px solid #f0e3e6;
     }
 
-    .product-grid{
+    .btn-menu{
+        display:grid;
+    }
+
+    .hero-contenido{
+        grid-template-columns:1fr;
+        text-align:center;
+    }
+
+    .hero p{
+        margin:auto;
+    }
+
+    .botones{
+        justify-content:center;
+    }
+
+    .categorias-grid{
         grid-template-columns:repeat(2,1fr);
+    }
+
+    .productos{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .galeria-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .historia-grid{
+        grid-template-columns:1fr;
+    }
+
+    .resenas{
+        grid-template-columns:1fr;
+    }
+
+    .contacto-grid{
+        grid-template-columns:1fr;
     }
 
     .footer-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:800px){
-
-    header{
-        height:72px;
-    }
-
-    .header-inner{
-        padding:0 18px;
-    }
-
-    .logo-text{
-        font-size:1.4rem;
-    }
-
-    .logo-icon{
-        width:38px;
-        height:38px;
-    }
-
-    nav{
-        position:fixed;
-        top:72px;
-        right:-100%;
-        width:280px;
-        height:calc(100vh - 72px);
-        background:#fffafc;
-        display:flex;
-        flex-direction:column;
-        align-items:flex-start;
-        padding:35px 30px;
-        gap:10px;
-        box-shadow:-15px 0 40px rgba(100,50,70,.12);
-        transition:.4s ease;
-    }
-
-    nav.active{
-        right:0;
-    }
-
-    nav a{
-        width:100%;
-        padding:14px 0;
-        font-size:.75rem;
-        border-bottom:1px solid #f3e1e7;
-    }
-
-    nav a::after{
-        display:none;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .hero{
-        padding-top:72px;
-    }
-
-    .hero-inner{
-        min-height:auto;
-        grid-template-columns:1fr;
-        text-align:center;
-        gap:30px;
-        padding-top:75px;
-    }
-
-    .hero-description{
-        margin-left:auto;
-        margin-right:auto;
-    }
-
-    .hero-buttons{
-        justify-content:center;
-    }
-
-    .hero-art{
-        min-height:420px;
-    }
-
-    .hero-circle{
-        width:380px;
-        height:380px;
-    }
-
-    .feature-grid,
-    .review-grid{
-        grid-template-columns:1fr;
-    }
-
-    .story-grid,
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .story-copy{
-        text-align:center;
-    }
-
-    .story-list{
-        display:inline-block;
-        text-align:left;
-    }
-
-    .gallery-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .contact-info{
-        text-align:center;
-    }
-
-    .contact-detail{
-        justify-content:center;
-    }
-
-    .music-player{
-        right:15px;
-        bottom:15px;
+        grid-template-columns:1fr 1fr;
     }
 }
 
 @media(max-width:550px){
 
-    section{
-        padding:80px 18px;
+    .navbar{
+        height:68px;
+        padding:0 15px;
     }
 
-    .intro-logo{
-        width:180px;
-        height:180px;
+    nav{
+        top:68px;
     }
 
-    .intro-title{
-        font-size:3.4rem;
+    .logo-texto{
+        font-size:1.3rem;
     }
 
-    .hero-inner{
-        padding-left:18px;
-        padding-right:18px;
+    .btn-musica,
+    .btn-menu{
+        width:38px;
+        height:38px;
+    }
+
+    .hero{
+        padding-top:68px;
+    }
+
+    .hero-contenido{
+        min-height:calc(100vh - 68px);
+        padding:50px 17px;
     }
 
     .hero h1{
-        font-size:4rem;
+        font-size:3.4rem;
     }
 
-    .hero-art{
-        min-height:340px;
+    section{
+        padding:75px 16px;
     }
 
-    .hero-circle{
-        width:310px;
-        height:310px;
-    }
-
-    .cake{
-        transform:translate(-50%,-50%) scale(.8);
-    }
-
-    .product-grid{
+    .categorias-grid,
+    .productos{
         grid-template-columns:1fr;
     }
 
-    .gallery-grid{
+    .galeria-grid{
         grid-template-columns:1fr 1fr;
-        grid-auto-rows:145px;
     }
 
-    .gallery-item:nth-child(1),
-    .gallery-item:nth-child(4){
-        grid-row:span 1;
+    .galeria-item{
+        height:190px;
     }
 
-    .gallery-art{
-        font-size:3.5rem;
+    .historia-texto h2{
+        font-size:2.7rem;
     }
 
-    .form-row{
-        grid-template-columns:1fr;
-    }
-
-    .contact-form{
-        padding:25px;
-    }
-
-    .newsletter-form{
-        flex-direction:column;
+    .historia-imagen img{
+        height:400px;
     }
 
     .footer-grid{
         grid-template-columns:1fr;
     }
 
-    .footer-bottom{
-        flex-direction:column;
-        text-align:center;
-    }
-
-    .music-info{
-        min-width:110px;
-    }
-
-    .music-name{
-        max-width:110px;
-        white-space:nowrap;
-        overflow:hidden;
-        text-overflow:ellipsis;
-    }
-
-    .music-player{
-        padding-right:10px;
-    }
-
-    #topBtn{
-        right:15px;
-        bottom:90px;
-    }
 }
 
 </style>
@@ -1693,45 +1062,38 @@ footer{
 <body>
 
 <!-- =====================================================
-     AUDIO DE FONDO
-====================================================== -->
+     AUDIO
+     La canción se reproduce después de pulsar ENTRAR.
+===================================================== -->
 
-<audio
-    id="bgMusic"
-    src="intro-kochi.ogg"
-    loop
-    preload="auto"
-    playsinline>
+<audio id="musicaFondo" loop preload="auto" playsinline>
+    <source src="intro-kochi.ogg" type="audio/ogg">
 </audio>
 
 
 <!-- =====================================================
-     INTRO
-====================================================== -->
+     PANTALLA DE ENTRADA
+===================================================== -->
 
 <div id="intro">
 
-    <div class="intro-decor one"></div>
-    <div class="intro-decor two"></div>
+    <div class="intro-contenido">
 
-    <div class="intro-card">
-
+        <!-- TU LOGO -->
         <img
-            src="img/logo-kochi-kochi.png"
+            class="logo-intro"
+            src="logo-kochi-kochi.png"
             alt="Kochi Kochi Bakery"
-            class="intro-logo"
         >
 
-        <h1 class="intro-title">
-            Kochi Kochi
-        </h1>
+        <h1>Kochi Kochi</h1>
 
-        <p class="intro-subtitle">
-            El postre te lo dice
+        <p>
+            Kochi kochi, el postre te lo dice ♡
         </p>
 
-        <button id="enterBtn">
-            ENTRAR A LA BAKERY
+        <button class="btn-entrar" id="entrar">
+            Entrar a la pastelería →
         </button>
 
     </div>
@@ -1741,37 +1103,56 @@ footer{
 
 <!-- =====================================================
      HEADER
-====================================================== -->
+===================================================== -->
 
 <header>
 
-    <div class="header-inner">
+    <div class="navbar">
 
-        <a href="#inicio" class="logo-text">
+        <a href="#inicio" class="logo-texto">
 
-            <span class="logo-icon">🍰</span>
+            <span class="logo-punto"></span>
 
             Kochi Kochi
 
         </a>
 
-        <button
-            class="mobile-menu"
-            id="mobileMenu"
-            aria-label="Abrir menú">
-            ☰
-        </button>
 
-        <nav id="nav">
+        <nav id="menu">
 
             <a href="#inicio">Inicio</a>
-            <a href="#especialidades">Especialidades</a>
+
             <a href="#productos">Postres</a>
+
             <a href="#historia">Nosotros</a>
+
             <a href="#galeria">Galería</a>
+
+            <a href="#musica">Música</a>
+
             <a href="#contacto">Contacto</a>
 
         </nav>
+
+
+        <div class="acciones">
+
+            <button
+                class="btn-musica"
+                id="controlMusica"
+                title="Reproducir / pausar"
+            >
+                ♫
+            </button>
+
+            <button
+                class="btn-menu"
+                id="botonMenu"
+            >
+                ☰
+            </button>
+
+        </div>
 
     </div>
 
@@ -1780,40 +1161,46 @@ footer{
 
 <!-- =====================================================
      HERO
-====================================================== -->
+===================================================== -->
 
 <main>
 
 <section class="hero" id="inicio">
 
-    <div class="hero-inner">
+    <div class="hero-contenido">
 
-        <div class="hero-copy reveal">
+        <div class="revelar">
 
-            <div class="hero-small">
-                Bakery · Pastelería · Amor
+            <div class="etiqueta">
+                Bakery artesanal · Kochi Kochi
             </div>
 
             <h1>
-                Hecho
-                <span>con amor.</span>
+                Pequeños postres,
+                <br>
+                <span>grandes momentos.</span>
             </h1>
 
-            <p class="hero-description">
-                Bienvenido a Kochi Kochi, un pequeño rincón
-                donde cada pastel, cada galleta y cada postre
-                está preparado para convertir un momento normal
-                en uno especial.
+            <p>
+                Bienvenido a Kochi Kochi, un rincón dulce donde
+                cada pastel, cupcake y galleta está pensado para
+                convertir un momento normal en uno especial.
             </p>
 
-            <div class="hero-buttons">
+            <div class="botones">
 
-                <a href="#productos" class="btn btn-primary">
-                    VER POSTRES
+                <a
+                    href="#productos"
+                    class="btn btn-principal"
+                >
+                    Ver nuestros postres
                 </a>
 
-                <a href="#historia" class="btn btn-outline">
-                    CONOCERNOS
+                <a
+                    href="#historia"
+                    class="btn btn-secundario"
+                >
+                    Conócenos
                 </a>
 
             </div>
@@ -1821,29 +1208,12 @@ footer{
         </div>
 
 
-        <div class="hero-art reveal">
+        <div class="hero-imagen revelar">
 
-            <div class="hero-circle">
-
-                <span class="floating-spark spark1">✦</span>
-                <span class="floating-spark spark2">♡</span>
-                <span class="floating-spark spark3">✧</span>
-
-                <div class="cake">
-
-                    <div class="cherry"></div>
-
-                    <div class="cake-top"></div>
-
-                    <div class="cake-middle"></div>
-
-                    <div class="cake-bottom"></div>
-
-                    <div class="cake-cream"></div>
-
-                </div>
-
-            </div>
+            <img
+                src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+                alt="Pastel de chocolate"
+            >
 
         </div>
 
@@ -1853,100 +1223,91 @@ footer{
 
 
 <!-- =====================================================
-     SLOGAN
-====================================================== -->
+     CATEGORIAS
+===================================================== -->
 
-<section class="slogan">
+<section class="categorias">
 
-    <p>
-        “Kochi kochi, el postre te lo dice.”
-    </p>
+    <div class="contenedor">
 
-</section>
+        <div class="cabecera-seccion revelar">
 
-
-<!-- =====================================================
-     ESPECIALIDADES
-====================================================== -->
-
-<section class="features" id="especialidades">
-
-    <div class="section-container">
-
-        <div class="section-heading reveal">
-
-            <div class="section-tag">
-                Lo que hacemos
+            <div class="etiqueta">
+                Dulce selección
             </div>
 
-            <h2 class="section-title">
-                Pequeños detalles,
-                grandes sabores.
+            <h2>
+                Hecho para antojarte
             </h2>
 
-            <p class="section-text">
-                Cada creación está pensada para verse bonita,
-                saber increíble y hacer que quieras volver.
+            <p>
+                Descubre algunos de los sabores que forman
+                parte del mundo Kochi Kochi.
             </p>
 
         </div>
 
 
-        <div class="feature-grid">
+        <div class="categorias-grid">
 
-            <article class="feature-card reveal">
+            <div class="categoria revelar">
 
-                <div class="feature-icon">
-                    🎂
+                <div class="categoria-icono">
+                    🍰
                 </div>
 
-                <h3>
-                    Pasteles
-                </h3>
+                <h3>Pasteles</h3>
 
                 <p>
-                    Pasteles para cumpleaños, celebraciones
-                    y esos días en los que simplemente quieres
-                    algo dulce.
+                    Para celebraciones y días especiales.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="feature-card reveal">
+            <div class="categoria revelar">
 
-                <div class="feature-icon">
+                <div class="categoria-icono">
+                    🧁
+                </div>
+
+                <h3>Cupcakes</h3>
+
+                <p>
+                    Pequeños, bonitos y deliciosos.
+                </p>
+
+            </div>
+
+
+            <div class="categoria revelar">
+
+                <div class="categoria-icono">
                     🍪
                 </div>
 
-                <h3>
-                    Galletas
-                </h3>
+                <h3>Galletas</h3>
 
                 <p>
-                    Galletas suaves, crujientes y llenas de
-                    pequeños detalles que hacen la diferencia.
+                    Perfectas para acompañar tu tarde.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="feature-card reveal">
+            <div class="categoria revelar">
 
-                <div class="feature-icon">
-                    🍓
+                <div class="categoria-icono">
+                    🍫
                 </div>
 
-                <h3>
-                    Especiales
-                </h3>
+                <h3>Chocolate</h3>
 
                 <p>
-                    Postres de temporada y creaciones especiales
-                    para sorprender a alguien.
+                    Dulces detalles para regalar.
                 </p>
 
-            </article>
+            </div>
 
         </div>
 
@@ -1957,188 +1318,245 @@ footer{
 
 <!-- =====================================================
      PRODUCTOS
-====================================================== -->
+     FOTOS REALES
+===================================================== -->
 
-<section class="products" id="productos">
+<section id="productos">
 
-    <div class="section-container">
+    <div class="contenedor">
 
-        <div class="section-heading reveal">
+        <div class="cabecera-seccion revelar">
 
-            <div class="section-tag">
-                Nuestro menú
+            <div class="etiqueta">
+                Nuestros favoritos
             </div>
 
-            <h2 class="section-title">
-                Favoritos de Kochi
+            <h2>
+                Postres Kochi Kochi
             </h2>
 
-            <p class="section-text">
-                Una selección de nuestros postres favoritos.
+            <p>
+                Una selección de nuestros favoritos.
             </p>
 
         </div>
 
 
-        <div class="product-grid">
+        <div class="productos">
 
 
-            <article class="product-card reveal">
+            <!-- PRODUCTO 1 -->
 
-                <div class="product-image">
+            <article class="producto revelar">
 
-                    <span class="product-badge">
+                <div class="producto-imagen">
+
+                    <span class="etiqueta-nuevo">
                         FAVORITO
                     </span>
 
-                    <div class="product-cake"></div>
+                    <img
+                        src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
+                        alt="Pastel de chocolate"
+                    >
 
                 </div>
 
-                <div class="product-info">
+                <div class="producto-info">
 
                     <h3>
-                        Strawberry Cake
+                        Pastel de chocolate
                     </h3>
 
-                    <p>
-                        Pastel suave con crema y fresas.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            $320 MXN
-                        </span>
-
-                        <button class="add-cart"
-                                data-product="Strawberry Cake">
-                            +
-                        </button>
-
+                    <div class="precio">
+                        $320 MXN
                     </div>
+
+                    <button
+                        class="btn-agregar"
+                        data-producto="Pastel de chocolate"
+                    >
+                        Agregar a favoritos ♡
+                    </button>
 
                 </div>
 
             </article>
 
 
-            <article class="product-card reveal">
+            <!-- PRODUCTO 2 -->
 
-                <div class="product-image">
+            <article class="producto revelar">
 
-                    <span class="product-badge">
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=900&q=85"
+                        alt="Cupcakes"
+                    >
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Cupcakes de vainilla
+                    </h3>
+
+                    <div class="precio">
+                        $55 MXN
+                    </div>
+
+                    <button
+                        class="btn-agregar"
+                        data-producto="Cupcakes de vainilla"
+                    >
+                        Agregar a favoritos ♡
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 3 -->
+
+            <article class="producto revelar">
+
+                <div class="producto-imagen">
+
+                    <span class="etiqueta-nuevo">
                         NUEVO
                     </span>
 
-                    <div class="product-cake"
-                         style="transform:rotate(-3deg);">
-                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=85"
+                        alt="Galletas con chispas"
+                    >
 
                 </div>
 
-                <div class="product-info">
+                <div class="producto-info">
 
                     <h3>
-                        Pink Dream
+                        Galletas con chispas
                     </h3>
 
-                    <p>
-                        Pastel rosado con decoración especial.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            $380 MXN
-                        </span>
-
-                        <button class="add-cart"
-                                data-product="Pink Dream">
-                            +
-                        </button>
-
+                    <div class="precio">
+                        $45 MXN
                     </div>
+
+                    <button
+                        class="btn-agregar"
+                        data-producto="Galletas con chispas"
+                    >
+                        Agregar a favoritos ♡
+                    </button>
 
                 </div>
 
             </article>
 
 
-            <article class="product-card reveal">
+            <!-- PRODUCTO 4 -->
 
-                <div class="product-image">
+            <article class="producto revelar">
 
-                    <div class="product-cake"
-                         style="background:#f6d2a9;">
-                    </div>
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476a?auto=format&fit=crop&w=900&q=85"
+                        alt="Brownie de chocolate"
+                    >
 
                 </div>
 
-                <div class="product-info">
+                <div class="producto-info">
 
                     <h3>
-                        Kochi Cookies
+                        Brownie especial
                     </h3>
 
-                    <p>
-                        Galletas caseras recién horneadas.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            $120 MXN
-                        </span>
-
-                        <button class="add-cart"
-                                data-product="Kochi Cookies">
-                            +
-                        </button>
-
+                    <div class="precio">
+                        $70 MXN
                     </div>
+
+                    <button
+                        class="btn-agregar"
+                        data-producto="Brownie especial"
+                    >
+                        Agregar a favoritos ♡
+                    </button>
 
                 </div>
 
             </article>
 
 
-            <article class="product-card reveal">
+            <!-- PRODUCTO 5 -->
 
-                <div class="product-image">
+            <article class="producto revelar">
 
-                    <span class="product-badge">
-                        ESPECIAL
-                    </span>
+                <div class="producto-imagen">
 
-                    <div class="product-cake"
-                         style="background:#f7c7d7;">
-                    </div>
+                    <img
+                        src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=900&q=85"
+                        alt="Pastel decorado"
+                    >
 
                 </div>
 
-                <div class="product-info">
+                <div class="producto-info">
 
                     <h3>
-                        Sweet Box
+                        Pastel rosa Kochi
                     </h3>
 
-                    <p>
-                        Caja con una selección de postres.
-                    </p>
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            $250 MXN
-                        </span>
-
-                        <button class="add-cart"
-                                data-product="Sweet Box">
-                            +
-                        </button>
-
+                    <div class="precio">
+                        $390 MXN
                     </div>
+
+                    <button
+                        class="btn-agregar"
+                        data-producto="Pastel rosa Kochi"
+                    >
+                        Agregar a favoritos ♡
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- PRODUCTO 6 -->
+
+            <article class="producto revelar">
+
+                <div class="producto-imagen">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=900&q=85"
+                        alt="Postre dulce"
+                    >
+
+                </div>
+
+                <div class="producto-info">
+
+                    <h3>
+                        Especial de frutos rojos
+                    </h3>
+
+                    <div class="precio">
+                        $65 MXN
+                    </div>
+
+                    <button
+                        class="btn-agregar"
+                        data-producto="Especial de frutos rojos"
+                    >
+                        Agregar a favoritos ♡
+                    </button>
 
                 </div>
 
@@ -2154,78 +1572,141 @@ footer{
 
 <!-- =====================================================
      HISTORIA
-====================================================== -->
+===================================================== -->
 
-<section class="story" id="historia">
+<section
+    class="historia"
+    id="historia"
+>
 
-    <div class="section-container">
+    <div class="contenedor historia-grid">
 
-        <div class="story-grid">
+        <div class="historia-imagen revelar">
 
-            <div class="story-art reveal">
+            <img
+                src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=1000&q=85"
+                alt="Pastelería artesanal"
+            >
 
-                <div class="story-frame">
+        </div>
 
-                    <div class="story-cake">
 
-                        <div class="top"></div>
-                        <div class="layer2"></div>
-                        <div class="layer1"></div>
+        <div class="historia-texto revelar">
 
-                    </div>
-
-                </div>
-
+            <div class="etiqueta">
+                Nuestra historia
             </div>
 
+            <h2>
+                Una bakery hecha con cariño.
+            </h2>
 
-            <div class="story-copy reveal">
+            <p>
+                Kochi Kochi nace de una idea sencilla:
+                que un postre pueda decir lo que a veces
+                las palabras no pueden.
+            </p>
 
-                <div class="section-tag">
-                    Nuestra historia
-                </div>
+            <p>
+                Cada detalle está pensado para crear una
+                experiencia bonita, desde la presentación
+                hasta ese primer bocado.
+            </p>
 
-                <h2>
-                    Una bakery
-                    <span>hecha con cariño.</span>
-                </h2>
+            <p>
+                <strong>
+                    Kochi kochi, el postre te lo dice.
+                </strong>
+            </p>
 
-                <p>
-                    Kochi Kochi nació de una idea sencilla:
-                    hacer postres bonitos, ricos y capaces
-                    de alegrarle el día a alguien.
-                </p>
+        </div>
 
-                <p>
-                    Nos gusta cuidar los pequeños detalles,
-                    desde la presentación hasta ese primer
-                    bocado que hace que todo valga la pena.
-                </p>
+    </div>
 
-                <ul class="story-list">
+</section>
 
-                    <li>
-                        <span>✓</span>
-                        Ingredientes seleccionados
-                    </li>
 
-                    <li>
-                        <span>✓</span>
-                        Preparado con cariño
-                    </li>
+<!-- =====================================================
+     GALERIA REAL
+===================================================== -->
 
-                    <li>
-                        <span>✓</span>
-                        Diseños personalizados
-                    </li>
+<section id="galeria">
 
-                    <li>
-                        <span>✓</span>
-                        Mucho amor en cada postre
-                    </li>
+    <div class="contenedor">
 
-                </ul>
+        <div class="cabecera-seccion revelar">
 
+            <div class="etiqueta">
+                Galería
+            </div>
+
+            <h2>
+                Un poquito de Kochi Kochi
+            </h2>
+
+            <p>
+                Dulces, colores y momentos para disfrutar.
+            </p>
+
+        </div>
+
+
+        <div class="galeria-grid">
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=85"
+                    alt="Pastel"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=85"
+                    alt="Cupcakes"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=85"
+                    alt="Galletas"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85"
+                    alt="Pastel de chocolate"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1606313564200-e75d5e30476a?auto=format&fit=crop&w=800&q=85"
+                    alt="Brownie"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=800&q=85"
+                    alt="Pastel decorado"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=800&q=85"
+                    alt="Postre"
+                >
+            </div>
+
+            <div class="galeria-item revelar">
+                <img
+                    src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=800&q=85"
+                    alt="Bakery"
+                >
             </div>
 
         </div>
@@ -2236,105 +1717,38 @@ footer{
 
 
 <!-- =====================================================
-     GALERÍA
-====================================================== -->
+     MUSICA
+===================================================== -->
 
-<section class="gallery" id="galeria">
+<section
+    class="musica"
+    id="musica"
+>
 
-    <div class="section-container">
+    <div class="contenedor">
 
-        <div class="section-heading reveal">
-
-            <div class="section-tag">
-                Sweet moments
-            </div>
-
-            <h2 class="section-title">
-                Un poquito de Kochi
-            </h2>
+        <div class="disco pausado" id="disco">
 
         </div>
 
+        <div class="etiqueta">
+            Sonando en Kochi Kochi
+        </div>
 
-        <div class="gallery-grid">
+        <h2>
+            Konnichiwa Sayonara ♡
+        </h2>
 
-            <div class="gallery-item reveal">
+        <p>
+            La canción comienza al pulsar "Entrar".
+            Puedes pausarla o reanudarla desde el disco.
+        </p>
 
-                <div class="gallery-art">
-                    🎂
-                </div>
-
-                <div class="gallery-overlay">
-                    Cakes
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <div class="gallery-art">
-                    🧁
-                </div>
-
-                <div class="gallery-overlay">
-                    Cupcakes
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <div class="gallery-art">
-                    🍓
-                </div>
-
-                <div class="gallery-overlay">
-                    Fresh
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <div class="gallery-art">
-                    🍪
-                </div>
-
-                <div class="gallery-overlay">
-                    Cookies
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <div class="gallery-art">
-                    🍰
-                </div>
-
-                <div class="gallery-overlay">
-                    Sweet
-                </div>
-
-            </div>
-
-
-            <div class="gallery-item reveal">
-
-                <div class="gallery-art">
-                    🍒
-                </div>
-
-                <div class="gallery-overlay">
-                    Love
-                </div>
-
-            </div>
-
+        <div
+            class="estado-musica"
+            id="estadoMusica"
+        >
+            ♫ Música lista
         </div>
 
     </div>
@@ -2343,82 +1757,86 @@ footer{
 
 
 <!-- =====================================================
-     REVIEWS
-====================================================== -->
+     RESEÑAS
+===================================================== -->
 
-<section class="reviews">
+<section>
 
-    <div class="section-container">
+    <div class="contenedor">
 
-        <div class="section-heading reveal">
+        <div class="cabecera-seccion revelar">
 
-            <div class="section-tag">
-                Sweet words
+            <div class="etiqueta">
+                Amor de nuestros clientes
             </div>
 
-            <h2 class="section-title">
-                Lo que dicen de nosotros
+            <h2>
+                Un poquito de amor ♡
             </h2>
 
         </div>
 
 
-        <div class="review-grid">
+        <div class="resenas">
 
+            <div class="resena revelar">
 
-            <article class="review reveal">
-
-                <div class="stars">
+                <div class="estrellas">
                     ★★★★★
                 </div>
 
                 <p>
-                    “El pastel estaba precioso y además
-                    estaba buenísimo. Definitivamente volvería.”
+                    "El concepto de Kochi Kochi se siente
+                    súper dulce y especial."
                 </p>
 
-                <div class="review-name">
+                <br>
+
+                <strong>
                     — Cliente Kochi
-                </div>
+                </strong>
 
-            </article>
+            </div>
 
 
-            <article class="review reveal">
+            <div class="resena revelar">
 
-                <div class="stars">
+                <div class="estrellas">
                     ★★★★★
                 </div>
 
                 <p>
-                    “Todo se siente muy cuidado y bonito.
-                    Las galletas fueron mis favoritas.”
+                    "La presentación hace que cada postre
+                    se sienta todavía más especial."
                 </p>
 
-                <div class="review-name">
+                <br>
+
+                <strong>
                     — Cliente Kochi
-                </div>
+                </strong>
 
-            </article>
+            </div>
 
 
-            <article class="review reveal">
+            <div class="resena revelar">
 
-                <div class="stars">
+                <div class="estrellas">
                     ★★★★★
                 </div>
 
                 <p>
-                    “Un lugar perfecto para comprar algo
-                    dulce para alguien especial.”
+                    "Un lugar para disfrutar despacito,
+                    con algo dulce y música de fondo."
                 </p>
 
-                <div class="review-name">
+                <br>
+
+                <strong>
                     — Cliente Kochi
-                </div>
+                </strong>
 
-            </article>
-
+            </div>
 
         </div>
 
@@ -2429,144 +1847,89 @@ footer{
 
 <!-- =====================================================
      CONTACTO
-====================================================== -->
+===================================================== -->
 
-<section class="contact" id="contacto">
+<section
+    class="contacto"
+    id="contacto"
+>
 
-    <div class="section-container">
+    <div class="contenedor contacto-grid">
 
-        <div class="contact-grid">
+        <div class="contacto-card revelar">
 
-
-            <div class="contact-info reveal">
-
-                <div class="section-tag">
-                    Escríbenos
-                </div>
-
-                <h2>
-                    Hagamos algo
-                    dulce.
-                </h2>
-
-                <p>
-                    ¿Quieres hacer un pedido, preguntar por
-                    un pastel personalizado o simplemente
-                    decir hola? Mándanos un mensaje.
-                </p>
-
-
-                <div class="contact-detail">
-
-                    <div class="contact-icon">
-                        📍
-                    </div>
-
-                    <span>
-                        Kochi Kochi Bakery
-                    </span>
-
-                </div>
-
-
-                <div class="contact-detail">
-
-                    <div class="contact-icon">
-                        ✉
-                    </div>
-
-                    <span>
-                        hola@kochikochi.com
-                    </span>
-
-                </div>
-
-
-                <div class="contact-detail">
-
-                    <div class="contact-icon">
-                        ☎
-                    </div>
-
-                    <span>
-                        +52 000 000 0000
-                    </span>
-
-                </div>
-
+            <div class="etiqueta">
+                Contacto
             </div>
 
+            <h3>
+                ¿Hacemos algo dulce?
+            </h3>
 
-            <form class="contact-form reveal"
-                  id="contactForm">
+            <p>
+                Escríbenos para preguntar por pedidos,
+                celebraciones, pasteles personalizados
+                o cualquier detalle de Kochi Kochi.
+            </p>
 
-                <div class="form-row">
+            <br>
 
-                    <div class="form-group">
+            <p>
+                <strong>
+                    ♡ Horario
+                </strong>
+                <br>
+                Lunes a sábado · 10:00 — 19:00
+            </p>
 
-                        <label>
-                            Nombre
-                        </label>
+            <p>
+                <strong>
+                    ♡ Instagram
+                </strong>
+                <br>
+                @kochi.kochi.bakery
+            </p>
 
-                        <input
-                            type="text"
-                            placeholder="Tu nombre"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            Email
-                        </label>
-
-                        <input
-                            type="email"
-                            placeholder="tu@email.com"
-                            required
-                        >
-
-                    </div>
-
-                </div>
+        </div>
 
 
-                <div class="form-group">
+        <div class="contacto-card revelar">
 
-                    <label>
-                        Asunto
-                    </label>
+            <div class="etiqueta">
+                Mensaje
+            </div>
 
-                    <input
-                        type="text"
-                        placeholder="¿En qué podemos ayudarte?"
-                        required
-                    >
+            <h3>
+                Cuéntanos
+            </h3>
 
-                </div>
+            <form
+                class="formulario"
+                id="formulario"
+            >
 
+                <input
+                    type="text"
+                    placeholder="Tu nombre"
+                    required
+                >
 
-                <div class="form-group">
+                <input
+                    type="email"
+                    placeholder="Tu correo"
+                    required
+                >
 
-                    <label>
-                        Mensaje
-                    </label>
-
-                    <textarea
-                        placeholder="Cuéntanos..."
-                        required>
-                    </textarea>
-
-                </div>
-
+                <textarea
+                    placeholder="¿Qué postre tienes en mente?"
+                    required
+                ></textarea>
 
                 <button
+                    class="btn btn-principal"
                     type="submit"
-                    class="btn btn-primary">
-                    ENVIAR MENSAJE
+                >
+                    Enviar mensaje
                 </button>
 
             </form>
@@ -2577,165 +1940,43 @@ footer{
 
 </section>
 
-
-<!-- =====================================================
-     NEWSLETTER
-====================================================== -->
-
-<section class="newsletter">
-
-    <div class="section-container reveal">
-
-        <h2>
-            Algo dulce está por llegar.
-        </h2>
-
-        <p>
-            Recibe novedades y nuevos postres de Kochi Kochi.
-        </p>
-
-        <form class="newsletter-form"
-              id="newsletterForm">
-
-            <input
-                type="email"
-                placeholder="Tu correo electrónico"
-                required
-            >
-
-            <button type="submit">
-                SUSCRIBIRME
-            </button>
-
-        </form>
-
-    </div>
-
-</section>
-
 </main>
 
 
 <!-- =====================================================
-     MUSIC PLAYER
-====================================================== -->
-
-<div class="music-player">
-
-    <button
-        class="disc"
-        id="musicDisc"
-        aria-label="Reproducir o pausar música">
-    </button>
-
-    <div class="music-info">
-
-        <div class="music-label">
-            Ahora sonando
-        </div>
-
-        <div class="music-name">
-            Konnichiwa Sayonara
-        </div>
-
-        <div class="music-status"
-             id="musicStatus">
-            Presiona el disco para pausar
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     TOP BUTTON
-====================================================== -->
-
-<button id="topBtn">
-    ↑
-</button>
-
-
-<!-- =====================================================
-     TOAST
-====================================================== -->
-
-<div id="toast">
-    ¡Listo!
-</div>
-
-
-<!-- =====================================================
      FOOTER
-====================================================== -->
+===================================================== -->
 
 <footer>
 
     <div class="footer-grid">
 
+        <div>
 
-        <div class="footer-brand">
-
-            <h2>
+            <div class="footer-logo">
                 Kochi Kochi
-            </h2>
+            </div>
 
             <p>
-                Kochi kochi, el postre te lo dice.
-                Una bakery creada para compartir
-                pequeños momentos dulces.
+                Kochi kochi, el postre te lo dice ♡
             </p>
 
-        </div>
+            <div class="sociales">
 
-
-        <div class="footer-col">
-
-            <h3>
-                Explora
-            </h3>
-
-            <a href="#inicio">Inicio</a>
-            <a href="#productos">Postres</a>
-            <a href="#historia">Nosotros</a>
-            <a href="#galeria">Galería</a>
-
-        </div>
-
-
-        <div class="footer-col">
-
-            <h3>
-                Ayuda
-            </h3>
-
-            <a href="#contacto">Contacto</a>
-            <a href="#">Pedidos</a>
-            <a href="#">Preguntas frecuentes</a>
-            <a href="#">Términos</a>
-
-        </div>
-
-
-        <div class="footer-col">
-
-            <h3>
-                Síguenos
-            </h3>
-
-            <div class="socials">
-
-                <a href="#" class="social">
-                    f
-                </a>
-
-                <a href="#" class="social">
+                <a href="#" aria-label="Instagram">
                     ◎
                 </a>
 
-                <a href="#" class="social">
+                <a href="#" aria-label="Facebook">
+                    f
+                </a>
+
+                <a href="#" aria-label="TikTok">
                     ♪
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    ◔
                 </a>
 
             </div>
@@ -2743,390 +1984,375 @@ footer{
         </div>
 
 
+        <div>
+
+            <div class="footer-titulo">
+                Explora
+            </div>
+
+            <p>
+                <a href="#inicio">
+                    Inicio
+                </a>
+            </p>
+
+            <p>
+                <a href="#productos">
+                    Postres
+                </a>
+            </p>
+
+            <p>
+                <a href="#historia">
+                    Nosotros
+                </a>
+            </p>
+
+            <p>
+                <a href="#galeria">
+                    Galería
+                </a>
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-titulo">
+                Kochi Kochi
+            </div>
+
+            <p>
+                Hecho con cariño.
+            </p>
+
+            <p>
+                Pasteles · Cupcakes · Galletas
+            </p>
+
+            <p>
+                ♡ El postre te lo dice
+            </p>
+
+        </div>
+
     </div>
 
 
-    <div class="footer-bottom">
+    <div class="copyright">
 
-        <span>
-            © 2026 Kochi Kochi Bakery
-        </span>
-
-        <span>
-            Hecho con ♡ y mucho azúcar
-        </span>
+        © 2026 Kochi Kochi Bakery
+        · Todos los derechos reservados.
 
     </div>
 
 </footer>
 
 
+<!-- TOAST -->
+
+<div id="toast">
+    ♡ <span id="textoToast">Agregado</span>
+</div>
+
+
+<!-- ARRIBA -->
+
+<button id="arriba">
+    ↑
+</button>
+
+
 <script>
 
-/* =========================================================
+/* =====================================================
    ELEMENTOS
-========================================================= */
+===================================================== */
 
-const intro = document.getElementById("intro");
-const enterBtn = document.getElementById("enterBtn");
+const intro =
+document.getElementById("intro");
 
-const bgMusic = document.getElementById("bgMusic");
-const musicDisc = document.getElementById("musicDisc");
-const musicStatus = document.getElementById("musicStatus");
+const entrar =
+document.getElementById("entrar");
 
-const mobileMenu = document.getElementById("mobileMenu");
-const nav = document.getElementById("nav");
+const musica =
+document.getElementById("musicaFondo");
 
-const topBtn = document.getElementById("topBtn");
-const toast = document.getElementById("toast");
+const disco =
+document.getElementById("disco");
 
+const controlMusica =
+document.getElementById("controlMusica");
 
-/* =========================================================
-   MÚSICA
-   IMPORTANTE:
-   La canción NO comienza hasta pulsar "ENTRAR".
-   Esto permite que el navegador autorice el audio.
-========================================================= */
+const estadoMusica =
+document.getElementById("estadoMusica");
 
-bgMusic.volume = 0.45;
+const botonMenu =
+document.getElementById("botonMenu");
 
+const menu =
+document.getElementById("menu");
 
-/* =========================================================
-   ENTRAR A LA PÁGINA + INICIAR CANCIÓN
-========================================================= */
+const toast =
+document.getElementById("toast");
 
-enterBtn.addEventListener("click", async () => {
+const textoToast =
+document.getElementById("textoToast");
 
-    try{
-
-        bgMusic.currentTime = 0;
-
-        bgMusic.volume = 0.45;
-
-        await bgMusic.play();
-
-        musicDisc.classList.add("playing");
-
-        musicStatus.textContent =
-            "Sonando de fondo";
-
-    }catch(error){
-
-        console.log(
-            "El navegador no pudo iniciar el audio:",
-            error
-        );
-
-    }
-
-    intro.classList.add("hide");
-
-    document.body.classList.remove("no-scroll");
-
-});
+const arriba =
+document.getElementById("arriba");
 
 
-/* =========================================================
-   DISCO:
-   PAUSAR / REANUDAR
-========================================================= */
+/* =====================================================
+   MUSICA
+===================================================== */
 
-musicDisc.addEventListener("click", async () => {
+function actualizarMusica(){
 
-    if(bgMusic.paused){
+    if(musica.paused){
 
-        try{
+        disco.classList.add("pausado");
 
-            await bgMusic.play();
-
-            musicDisc.classList.add("playing");
-
-            musicStatus.textContent =
-                "Sonando de fondo";
-
-        }catch(error){
-
-            console.log(error);
-
-        }
+        estadoMusica.textContent =
+        "Ⅱ Música pausada";
 
     }else{
 
-        bgMusic.pause();
+        disco.classList.remove("pausado");
 
-        musicDisc.classList.remove("playing");
-
-        musicStatus.textContent =
-            "Música pausada";
+        estadoMusica.textContent =
+        "♫ Reproduciendo";
 
     }
-
-});
-
-
-/* =========================================================
-   ACTUALIZAR ESTADO SI EL AUDIO CAMBIA
-========================================================= */
-
-bgMusic.addEventListener("play", () => {
-
-    musicDisc.classList.add("playing");
-
-    musicStatus.textContent =
-        "Sonando de fondo";
-
-});
-
-
-bgMusic.addEventListener("pause", () => {
-
-    musicDisc.classList.remove("playing");
-
-    musicStatus.textContent =
-        "Música pausada";
-
-});
-
-
-/* =========================================================
-   MENÚ MÓVIL
-========================================================= */
-
-mobileMenu.addEventListener("click", () => {
-
-    nav.classList.toggle("active");
-
-    if(nav.classList.contains("active")){
-
-        mobileMenu.textContent = "×";
-
-    }else{
-
-        mobileMenu.textContent = "☰";
-
-    }
-
-});
-
-
-/* =========================================================
-   CERRAR MENÚ AL TOCAR UN ENLACE
-========================================================= */
-
-document.querySelectorAll("nav a").forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        nav.classList.remove("active");
-
-        mobileMenu.textContent = "☰";
-
-    });
-
-});
-
-
-/* =========================================================
-   SCROLL TOP
-========================================================= */
-
-window.addEventListener("scroll", () => {
-
-    if(window.scrollY > 500){
-
-        topBtn.classList.add("show");
-
-    }else{
-
-        topBtn.classList.remove("show");
-
-    }
-
-});
-
-
-topBtn.addEventListener("click", () => {
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-});
-
-
-/* =========================================================
-   ANIMACIONES REVEAL
-========================================================= */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-const revealObserver =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if(entry.isIntersecting){
-
-                    entry.target.classList.add("visible");
-
-                    revealObserver.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-        {
-            threshold:.12
-        }
-    );
-
-
-revealElements.forEach(element => {
-
-    revealObserver.observe(element);
-
-});
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-let toastTimer;
-
-
-function showToast(message){
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(() => {
-
-        toast.classList.remove("show");
-
-    },3000);
 
 }
 
 
-/* =========================================================
-   PRODUCTOS
-========================================================= */
+async function reproducir(){
 
-document.querySelectorAll(".add-cart")
-.forEach(button => {
+    try{
 
-    button.addEventListener("click", () => {
+        await musica.play();
 
-        const product =
-            button.dataset.product;
+        actualizarMusica();
 
-        showToast(
-            product + " agregado ✨"
-        );
+    }catch(error){
+
+        estadoMusica.textContent =
+        "▶ Pulsa el disco para reproducir";
+
+    }
+
+}
+
+
+/* =====================================================
+   ENTRAR
+===================================================== */
+
+entrar.addEventListener("click",async()=>{
+
+    await reproducir();
+
+    intro.classList.add("oculto");
+
+    document.body.style.overflow="";
+
+});
+
+
+/* =====================================================
+   DISCO
+===================================================== */
+
+disco.addEventListener("click",async()=>{
+
+    if(musica.paused){
+
+        await musica.play();
+
+    }else{
+
+        musica.pause();
+
+    }
+
+    actualizarMusica();
+
+});
+
+
+/* =====================================================
+   BOTON DE MUSICA
+===================================================== */
+
+controlMusica.addEventListener("click",async()=>{
+
+    if(musica.paused){
+
+        await musica.play();
+
+    }else{
+
+        musica.pause();
+
+    }
+
+    actualizarMusica();
+
+});
+
+
+/* =====================================================
+   MENU MOVIL
+===================================================== */
+
+botonMenu.addEventListener("click",()=>{
+
+    menu.classList.toggle("abierto");
+
+});
+
+
+document.querySelectorAll("nav a")
+.forEach(enlace=>{
+
+    enlace.addEventListener("click",()=>{
+
+        menu.classList.remove("abierto");
 
     });
 
 });
 
 
-/* =========================================================
-   FORMULARIO DE CONTACTO
-========================================================= */
+/* =====================================================
+   FAVORITOS
+===================================================== */
 
-document.getElementById("contactForm")
-.addEventListener("submit",(event) => {
+document
+.querySelectorAll(".btn-agregar")
+.forEach(boton=>{
 
-    event.preventDefault();
+    boton.addEventListener("click",()=>{
 
-    showToast(
-        "¡Mensaje enviado! 💕"
-    );
+        textoToast.textContent =
+        boton.dataset.producto +
+        " · guardado ♡";
 
-    event.target.reset();
+        toast.classList.add("mostrar");
 
-});
+        setTimeout(()=>{
 
+            toast.classList.remove("mostrar");
 
-/* =========================================================
-   NEWSLETTER
-========================================================= */
-
-document.getElementById("newsletterForm")
-.addEventListener("submit",(event) => {
-
-    event.preventDefault();
-
-    showToast(
-        "¡Te has suscrito! 🍰"
-    );
-
-    event.target.reset();
-
-});
-
-
-/* =========================================================
-   EVITAR QUE LOS LINKS # VACÍOS SALTEN
-========================================================= */
-
-document.querySelectorAll('a[href="#"]')
-.forEach(link => {
-
-    link.addEventListener("click",(event) => {
-
-        event.preventDefault();
+        },2200);
 
     });
 
 });
 
 
-/* =========================================================
-   PREVENIR QUE LA PÁGINA HAGA SCROLL DETRÁS DEL INTRO
-========================================================= */
+/* =====================================================
+   FORMULARIO
+===================================================== */
 
-document.body.classList.add("no-scroll");
+document
+.getElementById("formulario")
+.addEventListener("submit",(e)=>{
+
+    e.preventDefault();
+
+    textoToast.textContent =
+    "Mensaje preparado ♡";
+
+    toast.classList.add("mostrar");
+
+    e.target.reset();
+
+    setTimeout(()=>{
+
+        toast.classList.remove("mostrar");
+
+    },2200);
+
+});
 
 
-/* =========================================================
-   TECLADO:
-   ESC CIERRA MENÚ
-========================================================= */
+/* =====================================================
+   BOTON ARRIBA
+===================================================== */
 
-document.addEventListener("keydown",(event) => {
+window.addEventListener("scroll",()=>{
 
-    if(event.key === "Escape"){
+    if(window.scrollY>500){
 
-        nav.classList.remove("active");
+        arriba.classList.add("visible");
 
-        mobileMenu.textContent = "☰";
+    }else{
+
+        arriba.classList.remove("visible");
 
     }
 
 });
 
 
-/* =========================================================
-   DETECTAR FIN DE CARGA
-========================================================= */
+arriba.addEventListener("click",()=>{
 
-window.addEventListener("load", () => {
+    window.scrollTo({
 
-    document.body.classList.add("loaded");
+        top:0,
+
+        behavior:"smooth"
+
+    });
 
 });
 
+
+/* =====================================================
+   ANIMACIONES AL HACER SCROLL
+===================================================== */
+
+const observador =
+new IntersectionObserver(
+    entradas=>{
+
+        entradas.forEach(entrada=>{
+
+            if(entrada.isIntersecting){
+
+                entrada.target.classList.add("visible");
+
+            }
+
+        });
+
+    },
+    {
+        threshold:.12
+    }
+);
+
+
+document
+.querySelectorAll(".revelar")
+.forEach(elemento=>{
+
+    observador.observe(elemento);
+
+});
+
+
+/* =====================================================
+   ESTADO INICIAL
+===================================================== */
+
+document.body.style.overflow="hidden";
+
+actualizarMusica();
 
 </script>
 
