@@ -1,537 +1,1005 @@
-**Kochi Kochi — Edición Día de Muertos**
 
-Guarda el siguiente código como `index.html`:
-
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#170d19">
-<meta name="description" content="Kochi Kochi Bakery: postres hechos con cariño. Edición especial de Día de Muertos.">
-<title>Kochi Kochi | Día de Muertos</title>
+<meta name="theme-color" content="#24152d">
+<meta name="description" content="Kochi Kochi: postres hechos con amor. Edición especial de octubre y Día de Muertos.">
+<title>Kochi Kochi | Octubre de sabores</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
-    --rosa:#e85b83;
-    --rosa-claro:#fff0f4;
-    --rosa-medio:#f6a0b7;
-    --crema:#fffaf4;
-    --cafe:#39252c;
-    --texto:#4d363d;
-    --gris:#856d74;
-    --blanco:#fff;
-    --noche:#170d19;
-    --noche2:#251329;
-    --naranja:#ff9b35;
-    --morado:#a77bd1;
-    --sombra:0 20px 60px rgba(70,30,45,.14);
+    --bg:#1c1422;
+    --bg2:#26182c;
+    --panel:#302039;
+    --panel2:#392440;
+    --orange:#ff9d42;
+    --orange2:#ffbd70;
+    --purple:#b58ad8;
+    --cream:#fff0d8;
+    --text:#fff5e9;
+    --muted:#c9b6c9;
+    --border:rgba(255,190,120,.17);
+    --shadow:0 18px 50px rgba(0,0,0,.3);
 }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    scroll-padding-top:100px;
+}
+
 body{
-    font-family:Poppins,sans-serif;
-    color:var(--texto);
-    background:#fff;
+    font-family:'DM Sans',sans-serif;
+    background:var(--bg);
+    color:var(--text);
     overflow-x:hidden;
 }
-body.bloqueado{overflow:hidden}
-a{text-decoration:none;color:inherit}
-button,input,textarea{font:inherit}
+
+body.locked{overflow:hidden}
+
+button,input,textarea{
+    font:inherit;
+}
+
+button,a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
 button{cursor:pointer}
-img{display:block;max-width:100%}
-section{padding:100px 22px}
-.contenedor{max-width:1120px;margin:auto}
-.etiqueta{
-    color:var(--rosa);
-    font-size:.75rem;
-    font-weight:700;
+
+::selection{
+    background:var(--orange);
+    color:#24152d;
+}
+
+.container{
+    width:min(1160px,90%);
+    margin:auto;
+}
+
+.section{
+    padding:100px 0;
+    position:relative;
+}
+
+.section-heading{
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 48px;
+}
+
+.eyebrow{
+    color:var(--orange);
+    font-size:.78rem;
+    font-weight:800;
     letter-spacing:3px;
     text-transform:uppercase;
+    display:inline-block;
+    margin-bottom:13px;
 }
-.cabecera-seccion{text-align:center;margin-bottom:48px}
-.cabecera-seccion h2{
-    font-family:"DM Serif Display",serif;
-    font-size:clamp(2.3rem,5vw,4rem);
-    margin:10px 0;
+
+.section-heading h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.1rem,5vw,3.5rem);
+    line-height:1.15;
+    margin-bottom:14px;
 }
-.cabecera-seccion p{
-    max-width:650px;
-    margin:auto;
-    color:var(--gris);
+
+.section-heading p{
+    color:var(--muted);
     line-height:1.8;
 }
-.btn{
+
+.highlight{color:var(--orange)}
+
+/* INTRO */
+
+.intro{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:
+        radial-gradient(circle at 50% 40%,rgba(255,157,66,.16),transparent 35%),
+        linear-gradient(145deg,#1b1222,#33203b 65%,#17101c);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:25px;
+    transition:opacity .8s,visibility .8s;
+}
+
+.intro.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-content{
+    max-width:550px;
+    animation:appear 1s ease both;
+}
+
+.intro-logo{
+    width:155px;
+    height:155px;
+    object-fit:contain;
+    margin-bottom:20px;
+    filter:drop-shadow(0 0 25px rgba(255,157,66,.3));
+}
+
+.logo-fallback{
+    display:none;
+    font-family:'Playfair Display',serif;
+    color:var(--orange);
+    font-size:2.4rem;
+    margin-bottom:20px;
+}
+
+.intro h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.7rem,8vw,5rem);
+    color:var(--cream);
+    margin-bottom:10px;
+}
+
+.intro p{
+    color:#ddc9dc;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
+.intro-decoration{
+    font-size:2rem;
+    letter-spacing:12px;
+    margin:18px 0;
+}
+
+.primary-btn{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:8px;
-    padding:14px 25px;
-    border-radius:50px;
-    border:1px solid var(--cafe);
-    transition:.3s;
-    font-weight:600;
-}
-.btn:hover{transform:translateY(-3px)}
-.btn-principal{background:var(--cafe);color:#fff}
-.btn-secundario{background:#fff;color:var(--cafe)}
-:focus-visible{outline:3px solid var(--naranja);outline-offset:4px}
-
-/* INTRO */
-#intro{
-    position:fixed;
-    inset:0;
-    z-index:99999;
-    display:grid;
-    place-items:center;
-    padding:20px;
-    background:
-      radial-gradient(circle at 15% 20%,rgba(255,255,255,.45),transparent 25%),
-      radial-gradient(circle at 85% 75%,rgba(255,255,255,.3),transparent 25%),
-      linear-gradient(135deg,#f7a5bd,#f9c1a1);
-    transition:opacity .7s,visibility .7s;
-}
-#intro.oculto{opacity:0;visibility:hidden;pointer-events:none}
-.intro-contenido{text-align:center;animation:entrada .9s ease}
-.logo-marco{
-    width:min(300px,70vw);
-    aspect-ratio:1;
-    margin:auto;
-    border:8px solid rgba(255,255,255,.75);
-    border-radius:50%;
-    overflow:hidden;
-    background:#ffe8ef;
-    box-shadow:0 25px 70px #54283b35;
-    display:grid;
-    place-items:center;
-}
-.logo-marco img{width:100%;height:100%;object-fit:cover}
-.logo-respaldo{
-    font-family:"DM Serif Display",serif;
-    color:var(--rosa);
-    font-size:2.6rem;
-}
-.intro-contenido h1{
-    font-family:"DM Serif Display",serif;
-    font-size:clamp(3rem,8vw,5rem);
-    margin-top:22px;
-    color:var(--cafe);
-}
-.intro-contenido p{margin:8px 0 24px;color:#67434e}
-.btn-entrar{
+    gap:10px;
+    padding:15px 27px;
     border:0;
     border-radius:50px;
-    padding:15px 30px;
-    background:var(--cafe);
-    color:#fff;
-    font-weight:600;
+    color:#2a1729;
+    background:linear-gradient(135deg,var(--orange2),var(--orange));
+    font-weight:800;
+    box-shadow:0 8px 30px rgba(255,157,66,.22);
     transition:.3s;
 }
-.btn-entrar:hover{transform:translateY(-4px);background:#593746}
 
-/* DECORACIÓN DE TEMPORADA */
-.decoracion-fija{
-    position:fixed;
-    z-index:3;
-    pointer-events:none;
-    font-size:25px;
-    opacity:.8;
-    filter:drop-shadow(0 3px 5px #0002);
+.primary-btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 35px rgba(255,157,66,.35);
 }
-.decoracion-fija.izquierda{left:12px;top:35%;animation:flotar 5s infinite}
-.decoracion-fija.derecha{right:12px;top:65%;animation:flotar 6s infinite reverse}
-@keyframes flotar{50%{transform:translateY(-13px) rotate(8deg)}}
+
+/* PARTICULAS */
+
+.falling-decoration{
+    position:fixed;
+    top:-40px;
+    z-index:5;
+    pointer-events:none;
+    opacity:.75;
+    animation:fall linear forwards;
+    filter:drop-shadow(0 0 7px rgba(255,160,65,.3));
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* PAPEL PICADO */
 
 .papel-picado{
-    height:35px;
     position:absolute;
-    top:0;left:0;right:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:26px;
     display:flex;
     justify-content:space-around;
     overflow:hidden;
     pointer-events:none;
 }
+
 .papel-picado span{
-    width:34px;height:25px;
-    background:var(--naranja);
-    opacity:.8;
-    clip-path:polygon(0 0,100% 0,100% 75%,75% 75%,50% 100%,25% 75%,0 75%);
+    width:35px;
+    height:24px;
+    background:var(--orange);
+    clip-path:polygon(0 0,100% 0,100% 75%,85% 100%,70% 75%,50% 100%,30% 75%,15% 100%,0 75%);
+    opacity:.85;
 }
-.papel-picado span:nth-child(3n){background:#b77bd1}
-.papel-picado span:nth-child(3n + 1){background:#f17da3}
-.papel-picado span:nth-child(3n + 2){background:#ffd36e}
+
+.papel-picado span:nth-child(3n){background:#b58ad8}
+.papel-picado span:nth-child(3n + 1){background:#e6b5a0}
 
 /* HEADER */
+
 header{
-    position:fixed;
-    top:0;left:0;width:100%;
-    z-index:5000;
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid #eadde2;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(28,20,34,.91);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
 }
+
 .navbar{
-    height:76px;
-    max-width:1200px;
-    margin:auto;
-    padding:0 22px;
+    min-height:78px;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:20px;
+    gap:25px;
 }
-.logo-texto{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-family:"DM Serif Display",serif;
-    font-size:1.6rem;
+
+.brand{
+    font-family:'Playfair Display',serif;
+    font-size:1.7rem;
+    font-weight:800;
+    color:var(--orange2);
     white-space:nowrap;
 }
-.logo-punto{
-    width:12px;height:12px;
+
+.brand span{color:var(--cream)}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:27px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#e7d7e8;
+    font-size:.9rem;
+    transition:.25s;
+}
+
+.nav-links a:hover{color:var(--orange)}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.music-toggle,.menu-toggle{
+    width:42px;
+    height:42px;
+    border:1px solid var(--border);
     border-radius:50%;
-    background:var(--rosa);
-    box-shadow:0 0 0 6px #ffe1e9;
+    background:var(--panel);
+    color:var(--orange2);
+    font-size:1.1rem;
 }
-nav{display:flex;align-items:center;gap:22px}
-nav a{font-size:.86rem;position:relative;padding:9px 0}
-nav a::after{
-    content:"";position:absolute;left:0;bottom:0;
-    width:0;height:2px;background:var(--rosa);transition:.3s;
-}
-nav a:hover::after{width:100%}
-.acciones{display:flex;align-items:center;gap:9px}
-.btn-musica,.btn-menu{
-    width:42px;height:42px;
-    border-radius:50%;
-    border:1px solid #efdce2;
-    background:#fff;
-    display:grid;place-items:center;
-    color:var(--cafe);
-}
-.btn-menu{display:none}
+
+.menu-toggle{display:none}
 
 /* HERO */
+
 .hero{
-    min-height:100vh;
-    padding-top:76px;
-    position:relative;
-    overflow:hidden;
-    background:
-      radial-gradient(circle at 85% 25%,#f9c7d5,transparent 25%),
-      linear-gradient(110deg,#fffaf5,#fff0f4,#fbd4df);
-}
-.hero-contenido{
-    max-width:1200px;
-    min-height:calc(100vh - 76px);
-    margin:auto;
-    padding:75px 25px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    min-height:690px;
+    display:flex;
     align-items:center;
-    gap:50px;
-}
-.hero h1{
-    font-family:"DM Serif Display",serif;
-    font-size:clamp(3.3rem,6vw,6rem);
-    line-height:.98;
-    margin:18px 0 25px;
-}
-.hero h1 span{color:var(--rosa)}
-.hero p{max-width:570px;color:var(--gris);line-height:1.9}
-.botones{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
-.hero-imagen{display:flex;justify-content:center}
-.hero-imagen img{
-    width:min(520px,85vw);
-    aspect-ratio:1;
-    object-fit:cover;
-    border-radius:50%;
-    border:10px solid #ffffffcc;
-    box-shadow:var(--sombra);
-    animation:flotar 5s ease-in-out infinite;
-}
-
-/* BANNER DÍA DE MUERTOS */
-.temporada{
     position:relative;
     overflow:hidden;
-    color:#fff;
     background:
-      radial-gradient(circle at 15% 20%,#693b70 0,transparent 35%),
-      radial-gradient(circle at 85% 80%,#773b35 0,transparent 35%),
-      var(--noche);
+        linear-gradient(90deg,rgba(25,15,29,.96) 0%,rgba(25,15,29,.82) 48%,rgba(25,15,29,.15) 100%),
+        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=2000&q=85') center/cover;
 }
-.temporada::before,.temporada::after{
-    content:"✿";
-    position:absolute;
-    color:#ff9b35;
-    font-size:150px;
-    opacity:.12;
-}
-.temporada::before{top:-35px;left:3%}
-.temporada::after{bottom:-55px;right:4%}
-.temporada-contenido{
-    position:relative;z-index:1;
-    max-width:950px;margin:auto;text-align:center;
-}
-.temporada .etiqueta{color:#ffc16c}
-.temporada h2{
-    font-family:"DM Serif Display",serif;
-    font-size:clamp(2.6rem,6vw,4.5rem);
-    margin:15px 0;
-}
-.temporada p{color:#f0dce9;line-height:1.9;max-width:750px;margin:auto}
-.temporada-flores{font-size:2rem;margin:20px 0}
 
-/* CATEGORÍAS */
-.categorias{background:var(--rosa-claro)}
-.categorias-grid{
+.hero::before{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    border:1px solid rgba(255,157,66,.13);
+    border-radius:50%;
+    right:-120px;
+    top:50px;
+    box-shadow:0 0 0 35px rgba(255,157,66,.025),0 0 0 70px rgba(255,157,66,.02);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:650px;
+    padding:100px 0;
+}
+
+.hero-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    color:var(--orange2);
+    border:1px solid rgba(255,157,66,.35);
+    background:rgba(255,157,66,.09);
+    padding:9px 15px;
+    border-radius:30px;
+    font-size:.8rem;
+    font-weight:700;
+    margin-bottom:25px;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(3rem,7vw,5.8rem);
+    line-height:1.05;
+    margin-bottom:23px;
+}
+
+.hero h1 span{color:var(--orange)}
+
+.hero p{
+    max-width:510px;
+    color:#e0d0df;
+    line-height:1.9;
+    font-size:1.05rem;
+    margin-bottom:32px;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:13px;
+}
+
+.secondary-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(255,255,255,.3);
+    border-radius:50px;
+    padding:14px 24px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.secondary-btn:hover{
+    background:rgba(255,255,255,.1);
+    border-color:var(--orange);
+}
+
+/* FRANJA */
+
+.season-strip{
+    background:linear-gradient(90deg,#a84f2c,#d77a39,#a84f2c);
+    padding:15px 10px;
+    text-align:center;
+    color:#fff5e5;
+    font-weight:800;
+    letter-spacing:1px;
+    font-size:.85rem;
+}
+
+/* CATEGORIAS */
+
+.categories{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:20px;
 }
-.categoria{
-    background:#fff;border-radius:25px;padding:32px 20px;
-    text-align:center;box-shadow:0 10px 35px #50202d12;
+
+.category{
+    position:relative;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:30px 18px;
+    text-align:center;
+    overflow:hidden;
     transition:.3s;
 }
-.categoria:hover{transform:translateY(-8px)}
-.categoria-icono{font-size:3rem;margin-bottom:13px}
-.categoria h3{font-family:"DM Serif Display",serif;font-size:1.5rem}
-.categoria p{color:var(--gris);font-size:.82rem;margin-top:7px}
+
+.category:hover{
+    transform:translateY(-8px);
+    border-color:var(--orange);
+    background:var(--panel2);
+}
+
+.category-icon{
+    font-size:2.7rem;
+    display:block;
+    margin-bottom:15px;
+}
+
+.category h3{
+    font-family:'Playfair Display',serif;
+    font-size:1.2rem;
+    margin-bottom:7px;
+}
+
+.category p{
+    color:var(--muted);
+    font-size:.85rem;
+}
 
 /* PRODUCTOS */
-.productos{
+
+.products-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:25px;
 }
-.producto{
-    background:#fff;border:1px solid #f0e2e6;
-    border-radius:25px;overflow:hidden;
-    box-shadow:0 8px 30px #3219230d;
+
+.product-card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:22px;
+    overflow:hidden;
     transition:.35s;
+    position:relative;
 }
-.producto:hover{transform:translateY(-7px);box-shadow:var(--sombra)}
-.producto-imagen{height:260px;overflow:hidden;position:relative;background:#fff0f4}
-.producto-imagen img{width:100%;height:100%;object-fit:cover;transition:.5s}
-.producto:hover .producto-imagen img{transform:scale(1.07)}
-.etiqueta-nuevo{
-    position:absolute;top:14px;left:14px;
-    padding:7px 12px;border-radius:30px;
-    background:var(--rosa);color:#fff;
-    font-size:.7rem;font-weight:700;
-}
-.etiqueta-temporada{background:var(--naranja);color:#28151c}
-.producto-info{padding:22px}
-.producto-info h3{font-family:"DM Serif Display",serif;font-size:1.45rem}
-.precio{color:var(--rosa);font-weight:700;font-size:1.05rem;margin:8px 0 15px}
-.btn-agregar{
-    width:100%;border:0;padding:13px;border-radius:13px;
-    background:var(--cafe);color:#fff;transition:.3s;
-}
-.btn-agregar:hover{background:var(--rosa)}
-.btn-agregar.guardado{background:#4f805d}
 
-/* HISTORIA */
-.historia{background:var(--crema)}
-.historia-grid{
-    display:grid;grid-template-columns:1fr 1fr;
-    gap:55px;align-items:center;
+.product-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+    border-color:rgba(255,157,66,.5);
 }
-.historia-imagen img{
-    width:100%;height:500px;object-fit:cover;
-    border-radius:30px;box-shadow:var(--sombra);
-}
-.historia-texto h2{
-    font-family:"DM Serif Display",serif;
-    font-size:clamp(2.5rem,5vw,3.5rem);
-    margin:12px 0 20px;
-}
-.historia-texto p{color:var(--gris);line-height:1.9;margin-bottom:15px}
 
-/* OFRENDA */
-.ofrenda{
-    background:linear-gradient(180deg,#1a1020,#08070b);
-    color:#fff;
+.product-image{
+    height:240px;
     position:relative;
     overflow:hidden;
+    background:#3a293e;
 }
-.ofrenda .cabecera-seccion p{color:#d6c4d7}
-.ofrenda .cabecera-seccion h2{color:#fff}
-.ofrenda-grid{
-    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
-}
-.ofrenda-card{
-    background:#ffffff0c;
-    border:1px solid #ffffff1c;
-    border-radius:22px;padding:28px;text-align:center;
-    backdrop-filter:blur(8px);
-}
-.ofrenda-card .icono{font-size:3rem;margin-bottom:12px}
-.ofrenda-card h3{
-    font-family:"DM Serif Display",serif;
-    font-size:1.5rem;color:#ffc16c;margin-bottom:8px;
-}
-.ofrenda-card p{color:#dfd1df;line-height:1.7;font-size:.9rem}
 
-/* GALERÍA */
-.galeria-grid{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .6s;
 }
-.galeria-item{height:250px;overflow:hidden;border-radius:20px;background:#fce5eb}
-.galeria-item img{width:100%;height:100%;object-fit:cover;transition:.5s}
-.galeria-item:hover img{transform:scale(1.08)}
 
-/* MÚSICA */
-.musica{background:#fbe0e8;text-align:center}
-.disco{
-    width:180px;height:180px;margin:0 auto 28px;
+.product-card:hover .product-image img{transform:scale(1.08)}
+
+.product-label{
+    position:absolute;
+    top:15px;
+    left:15px;
+    padding:7px 12px;
+    border-radius:20px;
+    background:var(--orange);
+    color:#2a1729;
+    font-size:.7rem;
+    font-weight:800;
+}
+
+.favorite{
+    position:absolute;
+    top:13px;
+    right:13px;
+    width:40px;
+    height:40px;
     border-radius:50%;
-    background:
-      radial-gradient(circle,#fff 0 8%,#e85b83 9% 13%,#222 14% 15%,transparent 16%),
-      repeating-radial-gradient(circle,#9e3657 0 2px,#d25073 3px 6px);
-    border:8px solid #fff;
-    box-shadow:0 20px 50px #50192d33;
-    cursor:pointer;animation:girar 8s linear infinite;
+    border:0;
+    background:rgba(28,20,34,.85);
+    color:white;
+    font-size:1.2rem;
+    transition:.2s;
 }
-.disco.pausado{animation-play-state:paused}
-.musica h2{font-family:"DM Serif Display",serif;font-size:2.7rem}
-.estado-musica{color:var(--rosa);font-size:.85rem;font-weight:600;margin-top:15px}
-@keyframes girar{to{transform:rotate(360deg)}}
 
-/* RESEÑAS */
-.resenas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.resena{border:1px solid #f0e1e5;border-radius:22px;padding:28px;background:#fff}
-.estrellas{color:#e5a33a;letter-spacing:3px;margin-bottom:12px}
-.resena p{color:var(--gris);line-height:1.8}
+.favorite.active{
+    color:#ff7d91;
+    background:#fff0e9;
+}
+
+.product-info{padding:22px}
+
+.product-info h3{
+    font-family:'Playfair Display',serif;
+    font-size:1.3rem;
+    margin-bottom:8px;
+}
+
+.product-info p{
+    color:var(--muted);
+    font-size:.88rem;
+    line-height:1.7;
+    min-height:48px;
+}
+
+.product-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:20px;
+}
+
+.price{
+    font-weight:800;
+    color:var(--orange2);
+    font-size:1.15rem;
+}
+
+.add-btn{
+    border:1px solid rgba(255,157,66,.45);
+    background:rgba(255,157,66,.1);
+    color:var(--orange2);
+    border-radius:30px;
+    padding:10px 15px;
+    font-size:.8rem;
+    font-weight:800;
+    transition:.25s;
+}
+
+.add-btn:hover{
+    background:var(--orange);
+    color:#26182c;
+}
+
+/* ALTAR */
+
+.altar-section{
+    background:
+        radial-gradient(circle at 50% 40%,rgba(255,157,66,.12),transparent 55%),
+        #24172b;
+    overflow:hidden;
+}
+
+.altar-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:55px;
+    align-items:center;
+    background:linear-gradient(140deg,#38233d,#25172d);
+    border:1px solid var(--border);
+    border-radius:30px;
+    padding:45px;
+    box-shadow:var(--shadow);
+}
+
+.altar-visual{
+    min-height:370px;
+    border-radius:23px;
+    background:
+        linear-gradient(0deg,rgba(20,10,20,.35),transparent),
+        url('https://images.unsplash.com/photo-1509644851169-2acc08aa25b5?auto=format&fit=crop&w=1000&q=85') center/cover;
+    display:flex;
+    align-items:end;
+    justify-content:center;
+    padding:25px;
+    font-size:2.5rem;
+    box-shadow:inset 0 -100px 100px rgba(0,0,0,.4);
+}
+
+.altar-copy h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,4vw,3rem);
+    margin-bottom:20px;
+}
+
+.altar-copy p{
+    color:var(--muted);
+    line-height:1.9;
+    margin-bottom:17px;
+}
+
+.altar-icons{
+    display:flex;
+    gap:15px;
+    font-size:1.8rem;
+    margin:20px 0;
+}
+
+/* HISTORIA */
+
+.history-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:55px;
+}
+
+.history-image{
+    height:430px;
+    border-radius:25px;
+    overflow:hidden;
+    border:1px solid var(--border);
+}
+
+.history-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.history-copy h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,4vw,3rem);
+    margin-bottom:20px;
+}
+
+.history-copy p{
+    color:var(--muted);
+    line-height:1.9;
+    margin-bottom:16px;
+}
+
+/* GALERIA */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.gallery-item{
+    height:250px;
+    overflow:hidden;
+    border-radius:18px;
+    position:relative;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.gallery-item:hover img{transform:scale(1.1)}
+
+/* MUSICA */
+
+.music-section{
+    background:linear-gradient(135deg,#38223d,#1e1426);
+    border-block:1px solid var(--border);
+}
+
+.music-card{
+    max-width:700px;
+    margin:auto;
+    padding:35px;
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--border);
+    border-radius:25px;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.vinyl{
+    width:110px;
+    height:110px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:repeating-radial-gradient(circle,#171219 0 3px,#332639 4px 5px);
+    display:grid;
+    place-items:center;
+    animation:spin 5s linear infinite;
+    animation-play-state:paused;
+}
+
+.vinyl.playing{animation-play-state:running}
+
+.vinyl::after{
+    content:"";
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--orange);
+    border:5px solid #24172b;
+}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.music-info{flex:1}
+
+.music-info h3{
+    font-family:'Playfair Display',serif;
+    font-size:1.5rem;
+    margin-bottom:7px;
+}
+
+.music-info p{
+    color:var(--muted);
+    font-size:.9rem;
+    margin-bottom:15px;
+}
+
+.music-controls{
+    display:flex;
+    gap:10px;
+}
+
+.music-controls button{
+    border:0;
+    background:var(--orange);
+    color:#25172b;
+    padding:10px 18px;
+    border-radius:30px;
+    font-weight:800;
+}
+
+/* OPINIONES */
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.review{
+    padding:28px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:20px;
+}
+
+.stars{
+    color:var(--orange);
+    letter-spacing:4px;
+    margin-bottom:14px;
+}
+
+.review p{
+    color:var(--muted);
+    line-height:1.8;
+    margin-bottom:18px;
+}
+
+.review strong{color:var(--cream)}
 
 /* CONTACTO */
-.contacto{background:var(--rosa-claro)}
-.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.contacto-card{
-    background:#fff;border-radius:25px;padding:32px;
-    box-shadow:0 10px 30px #501e2d0f;
+
+.contact-section{
+    background:
+        radial-gradient(circle at 20% 30%,rgba(255,157,66,.09),transparent 35%),
+        #24172b;
 }
-.contacto-card h3{
-    font-family:"DM Serif Display",serif;
-    font-size:2.2rem;margin:10px 0 15px;
+
+.contact-box{
+    max-width:750px;
+    margin:auto;
+    padding:40px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:25px;
+    box-shadow:var(--shadow);
 }
-.contacto-card p{color:var(--gris);line-height:1.8}
-.formulario{display:grid;gap:12px;margin-top:18px}
-.formulario input,.formulario textarea{
-    width:100%;border:1px solid #eadde1;border-radius:13px;
-    padding:14px;outline:none;background:#fff;
+
+.contact-box form{
+    display:grid;
+    gap:16px;
 }
-.formulario textarea{min-height:120px;resize:vertical}
-.formulario input:focus,.formulario textarea:focus{border-color:var(--rosa)}
-.formulario button{width:100%}
-.nota-formulario{font-size:.75rem;margin-top:10px;color:var(--gris)}
+
+.contact-box input,.contact-box textarea{
+    width:100%;
+    padding:15px 17px;
+    background:#211629;
+    border:1px solid var(--border);
+    border-radius:12px;
+    color:var(--text);
+    outline:none;
+    transition:.2s;
+}
+
+.contact-box input:focus,.contact-box textarea:focus{
+    border-color:var(--orange);
+    box-shadow:0 0 0 3px rgba(255,157,66,.1);
+}
+
+.contact-box textarea{
+    resize:vertical;
+    min-height:130px;
+}
+
+.contact-box button{
+    justify-self:start;
+}
+
+.contact-note{
+    color:var(--muted);
+    font-size:.82rem;
+    margin-top:15px;
+    line-height:1.6;
+}
 
 /* FOOTER */
-footer{background:var(--cafe);color:#fff;padding:55px 22px 24px}
-.footer-grid{
-    max-width:1120px;margin:auto;
-    display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;
-}
-.footer-logo{font-family:"DM Serif Display",serif;font-size:2.3rem}
-footer p,footer a{color:#d9c9ce;font-size:.86rem;line-height:1.9}
-.footer-titulo{font-weight:700;margin-bottom:12px;color:#fff}
-.sociales{display:flex;gap:10px;margin-top:15px}
-.sociales a{
-    width:40px;height:40px;display:grid;place-items:center;
-    border:1px solid #665159;border-radius:50%;transition:.3s;
-}
-.sociales a:hover{background:var(--rosa);border-color:var(--rosa);color:#fff}
-.copyright{
-    max-width:1120px;margin:35px auto 0;padding-top:20px;
-    border-top:1px solid #624d55;text-align:center;
-    color:#bba9ae;font-size:.75rem;
+
+footer{
+    padding:55px 0 25px;
+    background:#160f1c;
+    border-top:1px solid var(--border);
 }
 
-/* TOAST Y BOTÓN ARRIBA */
-#toast{
-    position:fixed;left:50%;bottom:25px;
-    transform:translate(-50%,25px);
-    background:var(--cafe);color:#fff;
-    padding:13px 21px;border-radius:50px;
-    opacity:0;pointer-events:none;z-index:99999;
-    transition:.3s;width:max-content;max-width:90vw;text-align:center;
+.footer-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+    flex-wrap:wrap;
+    padding-bottom:30px;
 }
-#toast.mostrar{opacity:1;transform:translate(-50%,0)}
-#arriba{
-    position:fixed;right:20px;bottom:20px;
-    width:45px;height:45px;border:0;border-radius:50%;
-    background:var(--rosa);color:#fff;cursor:pointer;
-    opacity:0;pointer-events:none;transition:.3s;z-index:3000;
+
+.footer-brand{
+    font-family:'Playfair Display',serif;
+    font-size:1.8rem;
+    color:var(--orange);
 }
-#arriba.visible{opacity:1;pointer-events:auto}
+
+.footer-content p{
+    color:var(--muted);
+    font-size:.85rem;
+    margin-top:8px;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    color:var(--muted);
+    font-size:.9rem;
+}
+
+.footer-links a:hover{color:var(--orange)}
+
+.copyright{
+    border-top:1px solid var(--border);
+    padding-top:22px;
+    text-align:center;
+    color:#98889b;
+    font-size:.8rem;
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translate(-50%,30px);
+    background:#fff0d8;
+    color:#29172b;
+    padding:14px 22px;
+    border-radius:30px;
+    box-shadow:var(--shadow);
+    font-weight:800;
+    z-index:9998;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    text-align:center;
+    max-width:90%;
+}
+
+.toast.show{
+    opacity:1;
+    visibility:visible;
+    transform:translate(-50%,0);
+}
+
+.back-top{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:var(--orange);
+    color:#25172b;
+    font-size:1.2rem;
+    z-index:90;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+
+.back-top.visible{
+    opacity:1;
+    visibility:visible;
+}
 
 /* ANIMACIONES */
-.revelar{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}
-.revelar.visible{opacity:1;transform:none}
-@keyframes entrada{
-    from{opacity:0;transform:translateY(25px) scale(.96)}
-    to{opacity:1;transform:none}
+
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:opacity .7s ease,transform .7s ease;
 }
 
-/* IMÁGENES QUE NO CARGAN */
-img.imagen-error{visibility:hidden}
-.producto-imagen:has(img.imagen-error)::after,
-.galeria-item:has(img.imagen-error)::after,
-.hero-imagen:has(img.imagen-error)::after,
-.historia-imagen:has(img.imagen-error)::after{
-    content:"Kochi Kochi ♡";
-    display:grid;place-items:center;
-    width:100%;height:100%;
-    color:var(--rosa);font-family:"DM Serif Display",serif;
-    font-size:1.5rem;background:linear-gradient(135deg,#ffe5ed,#fff5e8);
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@keyframes appear{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
 /* RESPONSIVE */
+
 @media(max-width:900px){
-    nav{
-        position:absolute;top:76px;left:0;right:0;
-        background:#fff;display:none;flex-direction:column;
-        align-items:stretch;gap:0;padding:10px 22px;
-        box-shadow:0 15px 30px #32141e14;
+    .nav-links{gap:15px}
+    .nav-links a{font-size:.82rem}
+    .categories{grid-template-columns:repeat(2,1fr)}
+    .products-grid{grid-template-columns:repeat(2,1fr)}
+    .altar-box{gap:30px;padding:30px}
+    .gallery{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:700px){
+    .navbar{min-height:70px}
+    .menu-toggle{display:block}
+    .nav-links{
+        position:absolute;
+        top:70px;
+        left:0;
+        right:0;
+        display:none;
+        flex-direction:column;
+        align-items:stretch;
+        gap:0;
+        background:#24172b;
+        padding:12px 5% 20px;
+        border-bottom:1px solid var(--border);
     }
-    nav.abierto{display:flex}
-    nav a{padding:14px 5px;border-bottom:1px solid #f0e3e6}
-    .btn-menu{display:grid}
-    .hero-contenido{grid-template-columns:1fr;text-align:center}
-    .hero p{margin:auto}
-    .botones{justify-content:center}
-    .categorias-grid{grid-template-columns:repeat(2,1fr)}
-    .productos{grid-template-columns:repeat(2,1fr)}
-    .historia-grid{grid-template-columns:1fr}
-    .ofrenda-grid{grid-template-columns:1fr 1fr}
-    .galeria-grid{grid-template-columns:repeat(2,1fr)}
-    .resenas{grid-template-columns:1fr}
-    .contacto-grid{grid-template-columns:1fr}
+    .nav-links.open{display:flex}
+    .nav-links a{
+        display:block;
+        padding:14px 5px;
+        font-size:1rem;
+    }
+    .hero{min-height:620px;background-position:60% center}
+    .hero-content{padding:80px 0}
+    .history-grid,.altar-box{grid-template-columns:1fr}
+    .history-image{height:300px}
+    .altar-visual{min-height:280px}
+    .reviews{grid-template-columns:1fr}
+    .music-card{flex-direction:column;text-align:center}
+    .music-controls{justify-content:center}
+    .contact-box{padding:25px}
 }
-@media(max-width:550px){
-    .navbar{height:68px;padding:0 14px}
-    nav{top:68px}
-    .logo-texto{font-size:1.3rem}
-    .btn-musica,.btn-menu{width:38px;height:38px}
-    .hero{padding-top:68px}
-    .hero-contenido{min-height:calc(100vh - 68px);padding:55px 17px}
-    .hero h1{font-size:3.3rem}
-    section{padding:75px 16px}
-    .categorias-grid,.productos,.ofrenda-grid{grid-template-columns:1fr}
-    .galeria-item{height:180px}
-    .historia-imagen img{height:350px}
-    .footer-grid{grid-template-columns:1fr}
-    .temporada-flores{font-size:1.5rem}
+
+@media(max-width:480px){
+    .container{width:90%}
+    .section{padding:75px 0}
+    .products-grid{grid-template-columns:1fr}
+    .product-image{height:260px}
+    .categories{gap:12px}
+    .category{padding:23px 10px}
+    .category-icon{font-size:2.2rem}
+    .hero h1{font-size:3.2rem}
+    .hero-buttons{flex-direction:column;align-items:stretch}
+    .hero-buttons a{width:100%}
+    .gallery-item{height:170px}
+    .footer-content{flex-direction:column;text-align:center}
+    .footer-links{justify-content:center}
 }
+
+/* ACCESIBILIDAD */
+
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
+    outline:3px solid var(--orange2);
+    outline-offset:3px;
+}
+
 @media(prefers-reduced-motion:reduce){
     *,*::before,*::after{
         scroll-behavior:auto!important;
@@ -539,535 +1007,618 @@ img.imagen-error{visibility:hidden}
         animation-iteration-count:1!important;
         transition-duration:.01ms!important;
     }
-    .revelar{opacity:1;transform:none}
+    .reveal{opacity:1;transform:none}
 }
 </style>
 </head>
 
-<body class="bloqueado">
+<body class="locked">
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+    <div class="intro-content">
+        <img class="intro-logo" src="logo-kochi-kochi.png" alt="Kochi Kochi"
+             onerror="this.style.display='none';document.getElementById('logoFallback').style.display='block'">
+        <div class="logo-fallback" id="logoFallback">Kochi Kochi ♡</div>
+
+        <div class="intro-decoration">🌼 🕯️ 🎃</div>
+        <h1>Octubre mágico</h1>
+        <p>Una temporada de recuerdos, colores cálidos y postres preparados con muchísimo amor.</p>
+        <button class="primary-btn" id="startButton" type="button">
+            Entrar a Kochi Kochi ✨
+        </button>
+        <p style="font-size:.75rem;margin-top:22px">Una dulce tradición comienza aquí ♡</p>
+    </div>
+</div>
 
 <audio id="musicaFondo" loop preload="auto" playsinline>
     <source src="intro-kochi.ogg" type="audio/ogg">
 </audio>
 
-<div id="intro">
-    <div class="intro-contenido">
-        <div class="logo-marco">
-            <img src="logo-kochi-kochi.png" alt="Logo de Kochi Kochi"
-                 onerror="this.style.display='none';this.nextElementSibling.hidden=false">
-            <span class="logo-respaldo" hidden>Kochi Kochi ♡</span>
-        </div>
-        <h1>Kochi Kochi</h1>
-        <p>Kochi kochi, el postre te lo dice ♡</p>
-        <button class="btn-entrar" id="entrar">Entrar a la pastelería →</button>
-    </div>
-</div>
-
-<div class="decoracion-fija izquierda" aria-hidden="true">🌼</div>
-<div class="decoracion-fija derecha" aria-hidden="true">🕯️</div>
-
+<!-- HEADER -->
 <header>
-    <div class="navbar">
-        <a href="#inicio" class="logo-texto"><span class="logo-punto"></span>Kochi Kochi</a>
+    <nav class="navbar container">
+        <a href="#inicio" class="brand">Kochi <span>Kochi</span> ♡</a>
 
-        <nav id="menu">
-            <a href="#inicio">Inicio</a>
-            <a href="#temporada">Temporada</a>
-            <a href="#productos">Postres</a>
-            <a href="#historia">Nosotros</a>
-            <a href="#ofrenda">Tradición</a>
-            <a href="#galeria">Galería</a>
-            <a href="#musica">Música</a>
-            <a href="#contacto">Contacto</a>
-        </nav>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#categorias">Categorías</a></li>
+            <li><a href="#productos">Postres</a></li>
+            <li><a href="#tradicion">Tradición</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
 
-        <div class="acciones">
-            <button class="btn-musica" id="controlMusica" aria-label="Pausar o reproducir música" title="Música">♫</button>
-            <button class="btn-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+        <div class="nav-actions">
+            <button class="music-toggle" id="musicToggle" type="button" aria-label="Reproducir o pausar música">♫</button>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">☰</button>
         </div>
-    </div>
+    </nav>
 </header>
 
 <main>
+<!-- HERO -->
 <section class="hero" id="inicio">
-    <div class="papel-picado" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-    </div>
-
-    <div class="hero-contenido">
-        <div class="revelar">
-            <div class="etiqueta">Bakery artesanal · Kochi Kochi</div>
-            <h1>Pequeños postres,<br><span>grandes momentos.</span></h1>
+    <div class="container">
+        <div class="hero-content">
+            <span class="hero-tag">🌼 EDICIÓN ESPECIAL · OCTUBRE</span>
+            <h1>Un octubre<br>lleno de <span>dulzura.</span></h1>
             <p>
-                Bienvenido a Kochi Kochi, un rincón dulce donde cada pastel,
-                cupcake y galleta está pensado para convertir un momento
-                normal en uno especial.
+                Los días se llenan de colores cálidos, flores y recuerdos.
+                En Kochi Kochi celebramos esta temporada con postres
+                hechos para compartir momentos especiales.
             </p>
-            <div class="botones">
-                <a href="#productos" class="btn btn-principal">Ver nuestros postres</a>
-                <a href="#historia" class="btn btn-secundario">Conócenos</a>
+            <div class="hero-buttons">
+                <a href="#productos" class="primary-btn">Descubrir postres ♡</a>
+                <a href="#tradicion" class="secondary-btn">Conocer la tradición</a>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="hero-imagen revelar">
-            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85"
-                 alt="Pastel de chocolate" loading="eager">
+<div class="season-strip">
+    🌼 CEMPASÚCHIL · CHOCOLATE · PAN DE MUERTO · RECUERDOS BONITOS · CEMPASÚCHIL 🌼
+</div>
+
+<!-- CATEGORÍAS -->
+<section class="section" id="categorias">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Un mundo de sabores</span>
+            <h2>¿Qué se te <span class="highlight">antoja?</span></h2>
+            <p>Encuentra algo delicioso para acompañar esta temporada.</p>
+        </div>
+
+        <div class="categories">
+            <a href="#productos" class="category reveal">
+                <span class="category-icon">🎂</span>
+                <h3>Pasteles</h3>
+                <p>Momentos para celebrar.</p>
+            </a>
+            <a href="#productos" class="category reveal">
+                <span class="category-icon">🧁</span>
+                <h3>Cupcakes</h3>
+                <p>Pequeños detalles dulces.</p>
+            </a>
+            <a href="#productos" class="category reveal">
+                <span class="category-icon">🍪</span>
+                <h3>Galletas</h3>
+                <p>Un clásico irresistible.</p>
+            </a>
+            <a href="#productos" class="category reveal">
+                <span class="category-icon">🍫</span>
+                <h3>Chocolate</h3>
+                <p>Para los amantes del cacao.</p>
+            </a>
         </div>
     </div>
 </section>
 
-<section class="temporada" id="temporada">
-    <div class="temporada-contenido revelar">
-        <div class="etiqueta">Edición especial · Tradición mexicana</div>
-        <div class="temporada-flores">🌼 🕯️ 💀 🕯️ 🌼</div>
-        <h2>Un dulce recuerdo que florece.</h2>
-        <p>
-            En Kochi Kochi celebramos el Día de Muertos recordando con cariño
-            a quienes siguen viviendo en nuestros corazones. Entre flores de
-            cempasúchil, luces y sabores, cada detalle nos recuerda que el
-            amor nunca se olvida.
-        </p>
-        <div class="temporada-flores">🧡 💜 🩷</div>
-        <a href="#ofrenda" class="btn btn-secundario">Descubre esta tradición</a>
-    </div>
-</section>
-
-<section class="categorias">
-    <div class="contenedor">
-        <div class="cabecera-seccion revelar">
-            <div class="etiqueta">Dulce selección</div>
-            <h2>Hecho para antojarte</h2>
-            <p>Descubre algunos de los sabores que forman parte del mundo Kochi Kochi.</p>
+<!-- PRODUCTOS -->
+<section class="section" id="productos" style="background:#211629">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Hechos con amor</span>
+            <h2>Nuestros <span class="highlight">favoritos</span></h2>
+            <p>Un poquito de felicidad en cada bocado. Guarda tus favoritos presionando el corazón.</p>
         </div>
 
-        <div class="categorias-grid">
-            <article class="categoria revelar"><div class="categoria-icono">🍰</div><h3>Pasteles</h3><p>Para celebraciones y días especiales.</p></article>
-            <article class="categoria revelar"><div class="categoria-icono">🧁</div><h3>Cupcakes</h3><p>Pequeños, bonitos y deliciosos.</p></article>
-            <article class="categoria revelar"><div class="categoria-icono">🍪</div><h3>Galletas</h3><p>Perfectas para acompañar tu tarde.</p></article>
-            <article class="categoria revelar"><div class="categoria-icono">🍫</div><h3>Chocolate</h3><p>Dulces detalles para regalar.</p></article>
-        </div>
-    </div>
-</section>
+        <div class="products-grid">
 
-<section id="productos">
-    <div class="contenedor">
-        <div class="cabecera-seccion revelar">
-            <div class="etiqueta">Nuestros favoritos</div>
-            <h2>Postres Kochi Kochi</h2>
-            <p>Una selección de nuestros favoritos. Guarda los que más te gusten.</p>
-        </div>
-
-        <div class="productos">
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <span class="etiqueta-nuevo">FAVORITO</span>
+            <article class="product-card reveal">
+                <div class="product-image">
                     <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=85" alt="Pastel de chocolate" loading="lazy">
+                    <span class="product-label">Favorito</span>
+                    <button class="favorite" type="button" aria-label="Agregar pastel de chocolate a favoritos" data-favorite="Pastel de chocolate">♡</button>
                 </div>
-                <div class="producto-info">
-                    <h3>Pastel de chocolate</h3><div class="precio">$320 MXN</div>
-                    <button class="btn-agregar" data-producto="Pastel de chocolate">Agregar a favoritos ♡</button>
-                </div>
-            </article>
-
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=900&q=85" alt="Cupcakes" loading="lazy">
-                </div>
-                <div class="producto-info">
-                    <h3>Cupcakes de vainilla</h3><div class="precio">$55 MXN</div>
-                    <button class="btn-agregar" data-producto="Cupcakes de vainilla">Agregar a favoritos ♡</button>
+                <div class="product-info">
+                    <h3>Pastel de chocolate</h3>
+                    <p>Suave, cremoso y lleno de sabor. Un clásico que nunca falla.</p>
+                    <div class="product-bottom">
+                        <span class="price">$320 MXN</span>
+                        <button class="add-btn" type="button" data-product="Pastel de chocolate">Me encanta ♡</button>
+                    </div>
                 </div>
             </article>
 
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <span class="etiqueta-nuevo">NUEVO</span>
-                    <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=900&q=85" alt="Galletas con chispas" loading="lazy">
+            <article class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85" alt="Cupcakes de vainilla" loading="lazy">
+                    <span class="product-label">Delicioso</span>
+                    <button class="favorite" type="button" aria-label="Agregar cupcakes a favoritos" data-favorite="Cupcakes de vainilla">♡</button>
                 </div>
-                <div class="producto-info">
-                    <h3>Galletas con chispas</h3><div class="precio">$45 MXN</div>
-                    <button class="btn-agregar" data-producto="Galletas con chispas">Agregar a favoritos ♡</button>
-                </div>
-            </article>
-
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476a?auto=format&fit=crop&w=900&q=85" alt="Brownie de chocolate" loading="lazy">
-                </div>
-                <div class="producto-info">
-                    <h3>Brownie especial</h3><div class="precio">$70 MXN</div>
-                    <button class="btn-agregar" data-producto="Brownie especial">Agregar a favoritos ♡</button>
+                <div class="product-info">
+                    <h3>Cupcakes de vainilla</h3>
+                    <p>Esponjositos, delicados y decorados con mucho cariño.</p>
+                    <div class="product-bottom">
+                        <span class="price">$55 MXN</span>
+                        <button class="add-btn" type="button" data-product="Cupcakes de vainilla">Me encanta ♡</button>
+                    </div>
                 </div>
             </article>
 
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=900&q=85" alt="Pastel rosa" loading="lazy">
+            <article class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=900&q=85" alt="Galletas con chispas" loading="lazy">
+                    <span class="product-label">Tradicional</span>
+                    <button class="favorite" type="button" aria-label="Agregar galletas a favoritos" data-favorite="Galletas con chispas">♡</button>
                 </div>
-                <div class="producto-info">
-                    <h3>Pastel rosa Kochi</h3><div class="precio">$390 MXN</div>
-                    <button class="btn-agregar" data-producto="Pastel rosa Kochi">Agregar a favoritos ♡</button>
-                </div>
-            </article>
-
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=900&q=85" alt="Postre de frutos rojos" loading="lazy">
-                </div>
-                <div class="producto-info">
-                    <h3>Especial de frutos rojos</h3><div class="precio">$65 MXN</div>
-                    <button class="btn-agregar" data-producto="Especial de frutos rojos">Agregar a favoritos ♡</button>
+                <div class="product-info">
+                    <h3>Galletas con chispas</h3>
+                    <p>Doraditas por fuera, suaves por dentro y con mucho chocolate.</p>
+                    <div class="product-bottom">
+                        <span class="price">$45 MXN</span>
+                        <button class="add-btn" type="button" data-product="Galletas con chispas">Me encanta ♡</button>
+                    </div>
                 </div>
             </article>
 
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <span class="etiqueta-nuevo etiqueta-temporada">TEMPORADA</span>
-                    <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=85" alt="Pan artesanal" loading="lazy">
+            <article class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=900&q=85" alt="Brownie de chocolate" loading="lazy">
+                    <span class="product-label">Chocolate</span>
+                    <button class="favorite" type="button" aria-label="Agregar brownie a favoritos" data-favorite="Brownie especial">♡</button>
                 </div>
-                <div class="producto-info">
-                    <h3>Pan de temporada</h3><div class="precio">Consultar precio</div>
-                    <button class="btn-agregar" data-producto="Pan de temporada">Agregar a favoritos ♡</button>
-                </div>
-            </article>
-
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <span class="etiqueta-nuevo etiqueta-temporada">TEMPORADA</span>
-                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85" alt="Postre especial" loading="lazy">
-                </div>
-                <div class="producto-info">
-                    <h3>Dulce recuerdo</h3><div class="precio">Consultar precio</div>
-                    <button class="btn-agregar" data-producto="Dulce recuerdo">Agregar a favoritos ♡</button>
+                <div class="product-info">
+                    <h3>Brownie especial</h3>
+                    <p>Un interior suave y chocolatoso para consentirte.</p>
+                    <div class="product-bottom">
+                        <span class="price">$70 MXN</span>
+                        <button class="add-btn" type="button" data-product="Brownie especial">Me encanta ♡</button>
+                    </div>
                 </div>
             </article>
 
-            <article class="producto revelar">
-                <div class="producto-imagen">
-                    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&fit=crop&w=900&q=85" alt="Pastelito decorado" loading="lazy">
+            <article class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1562777717-dc6984f65a63?auto=format&fit=crop&w=900&q=85" alt="Pastel rosa" loading="lazy">
+                    <span class="product-label">Kochi Kochi</span>
+                    <button class="favorite" type="button" aria-label="Agregar pastel rosa a favoritos" data-favorite="Pastel rosa Kochi">♡</button>
                 </div>
-                <div class="producto-info">
-                    <h3>Mini pastel especial</h3><div class="precio">Consultar precio</div>
-                    <button class="btn-agregar" data-producto="Mini pastel especial">Agregar a favoritos ♡</button>
+                <div class="product-info">
+                    <h3>Pastel rosa Kochi</h3>
+                    <p>Un pastel especial con una presentación delicada y dulce.</p>
+                    <div class="product-bottom">
+                        <span class="price">$390 MXN</span>
+                        <button class="add-btn" type="button" data-product="Pastel rosa Kochi">Me encanta ♡</button>
+                    </div>
                 </div>
+            </article>
+
+            <article class="product-card reveal">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=900&q=85" alt="Postre de frutos rojos" loading="lazy">
+                    <span class="product-label">Especial</span>
+                    <button class="favorite" type="button" aria-label="Agregar frutos rojos a favoritos" data-favorite="Especial de frutos rojos">♡</button>
+                </div>
+                <div class="product-info">
+                    <h3>Especial de frutos rojos</h3>
+                    <p>Una combinación deliciosa con un toque frutal.</p>
+                    <div class="product-bottom">
+                        <span class="price">$65 MXN</span>
+                        <button class="add-btn" type="button" data-product="Especial de frutos rojos">Me encanta ♡</button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- TEMPORADA -->
+<section class="section altar-section" id="tradicion">
+    <div class="container">
+        <div class="altar-box reveal">
+            <div class="altar-visual">
+                <span>🌼 🕯️ 🌼</span>
+            </div>
+
+            <div class="altar-copy">
+                <span class="eyebrow">Una temporada especial</span>
+                <h2>Sabores que celebran <span class="highlight">recuerdos.</span></h2>
+                <p>
+                    Octubre y noviembre nos regalan una de las temporadas
+                    más coloridas y especiales de México.
+                </p>
+                <p>
+                    Las flores de cempasúchil, las velas, los colores y
+                    los sabores nos recuerdan la importancia de compartir,
+                    recordar y celebrar las historias que forman parte
+                    de nuestras vidas.
+                </p>
+                <p>
+                    En Kochi Kochi queremos acompañar esos momentos
+                    con un poquito de dulzura.
+                </p>
+                <div class="altar-icons">
+                    <span>🌼</span><span>🕯️</span><span>🧡</span><span>💀</span>
+                </div>
+                <a href="#productos" class="primary-btn">Descubrir nuestros postres</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HISTORIA -->
+<section class="section" id="historia">
+    <div class="container">
+        <div class="history-grid">
+            <div class="history-image reveal">
+                <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1100&q=85" alt="Panadería y postres recién horneados" loading="lazy">
+            </div>
+
+            <div class="history-copy reveal">
+                <span class="eyebrow">Nuestra esencia</span>
+                <h2>Un poquito de amor en <span class="highlight">cada postre.</span></h2>
+                <p>
+                    Kochi Kochi nació de una idea sencilla:
+                    hacer que los pequeños momentos se sientan especiales.
+                </p>
+                <p>
+                    Creemos que un postre puede acompañar una celebración,
+                    alegrar una tarde o convertirse en un bonito recuerdo.
+                </p>
+                <p>
+                    Por eso ponemos cariño en cada detalle.
+                    Porque para nosotros, lo dulce también se comparte.
+                </p>
+                <a href="#contacto" class="secondary-btn">Conócenos más ♡</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALERÍA -->
+<section class="section" id="galeria" style="background:#211629">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Un vistazo dulce</span>
+            <h2>Momentos <span class="highlight">Kochi Kochi</span></h2>
+            <p>Un pequeño rincón lleno de antojos, colores y cosas bonitas.</p>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=700&q=85" alt="Pastel decorado" loading="lazy">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1550617931-e17a7b70dce2?auto=format&fit=crop&w=700&q=85" alt="Pan dulce" loading="lazy">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=700&q=85" alt="Pastel con fresas" loading="lazy">
+            </div>
+            <div class="gallery-item reveal">
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85" alt="Postre dulce" loading="lazy">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MÚSICA -->
+<section class="section music-section" id="musica">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Un momento para disfrutar</span>
+            <h2>Un poquito de <span class="highlight">música.</span></h2>
+            <p>Acompaña tu visita con nuestra melodía.</p>
+        </div>
+
+        <div class="music-card reveal">
+            <div class="vinyl" id="vinyl"></div>
+            <div class="music-info">
+                <h3>Kochi Kochi ♡</h3>
+                <p>Una melodía para acompañar algo dulce.</p>
+                <div class="music-controls">
+                    <button type="button" id="playMusic">▶ Reproducir</button>
+                    <button type="button" id="pauseMusic">Ⅱ Pausar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- OPINIONES -->
+<section class="section" id="opiniones">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Palabras bonitas</span>
+            <h2>Lo que hace especial a <span class="highlight">Kochi Kochi.</span></h2>
+            <p>Los postres saben mejor cuando se comparten.</p>
+        </div>
+
+        <div class="reviews">
+            <article class="review reveal">
+                <div class="stars">★★★★★</div>
+                <p>“Un detalle dulce puede cambiar por completo un día. ¡Qué rico!”</p>
+                <strong>Un momento feliz ♡</strong>
+            </article>
+            <article class="review reveal">
+                <div class="stars">★★★★★</div>
+                <p>“Los postres son perfectos para compartir con las personas que queremos.”</p>
+                <strong>Con cariño ♡</strong>
+            </article>
+            <article class="review reveal">
+                <div class="stars">★★★★★</div>
+                <p>“Un lugar lleno de dulzura, colores y detalles especiales.”</p>
+                <strong>Un antojo feliz ♡</strong>
             </article>
         </div>
     </div>
 </section>
 
-<section class="historia" id="historia">
-    <div class="contenedor historia-grid">
-        <div class="historia-imagen revelar">
-            <img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=1000&q=85" alt="Pastelería artesanal" loading="lazy">
-        </div>
-        <div class="historia-texto revelar">
-            <div class="etiqueta">Nuestra historia</div>
-            <h2>Una bakery hecha con cariño.</h2>
-            <p>Kochi Kochi nace de una idea sencilla: que un postre pueda decir lo que a veces las palabras no pueden.</p>
-            <p>Cada detalle está pensado para crear una experiencia bonita, desde la presentación hasta ese primer bocado.</p>
-            <p><strong>Kochi kochi, el postre te lo dice.</strong></p>
-        </div>
-    </div>
-</section>
-
-<section class="ofrenda" id="ofrenda">
-    <div class="contenedor">
-        <div class="cabecera-seccion revelar">
-            <div class="etiqueta" style="color:#ffc16c">Una tradición que nos une</div>
-            <h2>Un recuerdo lleno de luz</h2>
-            <p>El Día de Muertos es una celebración de memoria, cariño y tradición. Estos elementos representan parte de su significado.</p>
+<!-- CONTACTO -->
+<section class="section contact-section" id="contacto">
+    <div class="container">
+        <div class="section-heading reveal">
+            <span class="eyebrow">Hablemos</span>
+            <h2>¿Se te antojó <span class="highlight">algo?</span></h2>
+            <p>Cuéntanos qué tienes en mente y prepara tu próximo momento dulce.</p>
         </div>
 
-        <div class="ofrenda-grid">
-            <article class="ofrenda-card revelar">
-                <div class="icono">🌼</div>
-                <h3>Cempasúchil</h3>
-                <p>Sus colores y aroma son parte de los caminos simbólicos que recuerdan a nuestros seres queridos.</p>
-            </article>
-            <article class="ofrenda-card revelar">
-                <div class="icono">🕯️</div>
-                <h3>La luz</h3>
-                <p>Las velas representan esperanza y acompañan el recuerdo de quienes siguen presentes en nuestra memoria.</p>
-            </article>
-            <article class="ofrenda-card revelar">
-                <div class="icono">🍞</div>
-                <h3>Compartir</h3>
-                <p>Los alimentos y los sabores forman parte de las ofrendas y de los momentos que compartimos en familia.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section id="galeria">
-    <div class="contenedor">
-        <div class="cabecera-seccion revelar">
-            <div class="etiqueta">Galería</div>
-            <h2>Un poquito de Kochi Kochi</h2>
-            <p>Dulces, colores y momentos para disfrutar.</p>
-        </div>
-
-        <div class="galeria-grid">
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=85" alt="Pastel decorado" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=800&q=85" alt="Cupcakes" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=85" alt="Galletas" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=85" alt="Pastel de chocolate" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476a?auto=format&fit=crop&w=800&q=85" alt="Brownie" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&w=800&q=85" alt="Pastel rosa" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?auto=format&fit=crop&w=800&q=85" alt="Postre dulce" loading="lazy"></div>
-            <div class="galeria-item revelar"><img src="https://images.unsplash.com/photo-1559620192-032c4bc4674e?auto=format&fit=crop&w=800&q=85" alt="Bakery" loading="lazy"></div>
-        </div>
-    </div>
-</section>
-
-<section class="musica" id="musica">
-    <div class="contenedor">
-        <div class="disco pausado" id="disco" role="button" tabindex="0" aria-label="Reproducir o pausar música"></div>
-        <div class="etiqueta">Sonando en Kochi Kochi</div>
-        <h2>Konnichiwa Sayonara ♡</h2>
-        <p>La canción comienza al entrar. Puedes pausarla o reanudarla desde el disco.</p>
-        <div class="estado-musica" id="estadoMusica" aria-live="polite">♫ Música lista</div>
-    </div>
-</section>
-
-<section>
-    <div class="contenedor">
-        <div class="cabecera-seccion revelar">
-            <div class="etiqueta">Amor de nuestros clientes</div>
-            <h2>Un poquito de amor ♡</h2>
-        </div>
-        <div class="resenas">
-            <article class="resena revelar"><div class="estrellas">★★★★★</div><p>"El concepto de Kochi Kochi se siente súper dulce y especial."</p><br><strong>— Cliente Kochi</strong></article>
-            <article class="resena revelar"><div class="estrellas">★★★★★</div><p>"La presentación hace que cada postre se sienta todavía más especial."</p><br><strong>— Cliente Kochi</strong></article>
-            <article class="resena revelar"><div class="estrellas">★★★★★</div><p>"Un lugar para disfrutar despacito, con algo dulce y música de fondo."</p><br><strong>— Cliente Kochi</strong></article>
-        </div>
-    </div>
-</section>
-
-<section class="contacto" id="contacto">
-    <div class="contenedor contacto-grid">
-        <div class="contacto-card revelar">
-            <div class="etiqueta">Contacto</div>
-            <h3>¿Hacemos algo dulce?</h3>
-            <p>Escríbenos para preguntar por pedidos, celebraciones, pasteles personalizados o cualquier detalle de Kochi Kochi.</p>
-            <br>
-            <p><strong>♡ Horario</strong><br>Lunes a sábado · 10:00 — 19:00</p>
-            <p><strong>♡ Instagram</strong><br>@kochi.kochi.bakery</p>
-        </div>
-
-        <div class="contacto-card revelar">
-            <div class="etiqueta">Mensaje</div>
-            <h3>Cuéntanos</h3>
-            <form class="formulario" id="formulario">
-                <input id="nombre" type="text" placeholder="Tu nombre" maxlength="80" required>
-                <input id="correo" type="email" placeholder="Tu correo" maxlength="120" required>
-                <textarea id="mensaje" placeholder="¿Qué postre tienes en mente?" maxlength="1000" required></textarea>
-                <button class="btn btn-principal" type="submit">Enviar por WhatsApp</button>
+        <div class="contact-box reveal">
+            <form id="contactForm">
+                <input type="text" id="nombre" placeholder="Tu nombre" required maxlength="80">
+                <input type="email" id="correo" placeholder="Tu correo electrónico" required maxlength="120">
+                <textarea id="mensaje" placeholder="Cuéntanos qué postre te gustaría..." required maxlength="1000"></textarea>
+                <button type="submit" class="primary-btn">Enviar mensaje ♡</button>
             </form>
-            <p class="nota-formulario">El mensaje se abrirá en WhatsApp para que puedas revisarlo antes de enviarlo.</p>
+            <p class="contact-note">
+                Al enviar, se abrirá WhatsApp con tu mensaje preparado.
+                Recuerda que debes configurar el número de contacto en el código.
+            </p>
         </div>
     </div>
 </section>
 </main>
 
+<!-- FOOTER -->
 <footer>
-    <div class="footer-grid">
-        <div>
-            <div class="footer-logo">Kochi Kochi</div>
-            <p>Kochi kochi, el postre te lo dice ♡</p>
-            <div class="sociales">
-                <a href="#contacto" aria-label="Instagram">◎</a>
-                <a href="#contacto" aria-label="Facebook">f</a>
-                <a href="#contacto" aria-label="TikTok">♪</a>
-                <a href="#contacto" aria-label="WhatsApp">◔</a>
+    <div class="container">
+        <div class="footer-content">
+            <div>
+                <div class="footer-brand">Kochi Kochi ♡</div>
+                <p>El postre te lo dice.</p>
+                <p>Hecho con amor y un poquito de magia.</p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#productos">Postres</a>
+                <a href="#historia">Nosotros</a>
+                <a href="#contacto">Contacto</a>
             </div>
         </div>
-        <div>
-            <div class="footer-titulo">Explora</div>
-            <p><a href="#inicio">Inicio</a></p>
-            <p><a href="#productos">Postres</a></p>
-            <p><a href="#historia">Nosotros</a></p>
-            <p><a href="#galeria">Galería</a></p>
-        </div>
-        <div>
-            <div class="footer-titulo">Kochi Kochi</div>
-            <p>Hecho con cariño.</p>
-            <p>Pasteles · Cupcakes · Galletas</p>
-            <p>♡ El postre te lo dice</p>
+
+        <div class="copyright">
+            © 2026 Kochi Kochi. Todos los derechos reservados. ♡
         </div>
     </div>
-    <div class="copyright">© 2026 Kochi Kochi Bakery · Todos los derechos reservados.</div>
 </footer>
 
-<div id="toast" role="status" aria-live="polite">♡ <span id="textoToast">Agregado</span></div>
-<button id="arriba" aria-label="Volver arriba">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<button class="back-top" id="backTop" type="button" aria-label="Volver arriba">↑</button>
 
 <script>
-"use strict";
+/* =========================================
+   CONFIGURACIÓN
+========================================= */
 
-/* CONFIGURACIÓN: escribe aquí el WhatsApp del negocio.
-   Formato internacional, solo números y código de país.
-   Ejemplo de formato: 521XXXXXXXXXX
-*/
+// Escribe aquí el número de WhatsApp de tu negocio.
+// Ejemplo de formato: 521XXXXXXXXXX
+// Sin +, espacios ni guiones.
 const WHATSAPP_NUMBER = "";
 
-/* ELEMENTOS */
+
+/* =========================================
+   ELEMENTOS
+========================================= */
+
+const audio = document.getElementById("musicaFondo");
 const intro = document.getElementById("intro");
-const entrar = document.getElementById("entrar");
-const musica = document.getElementById("musicaFondo");
-const disco = document.getElementById("disco");
-const controlMusica = document.getElementById("controlMusica");
-const estadoMusica = document.getElementById("estadoMusica");
-const botonMenu = document.getElementById("botonMenu");
-const menu = document.getElementById("menu");
+const startButton = document.getElementById("startButton");
+const musicToggle = document.getElementById("musicToggle");
+const playMusic = document.getElementById("playMusic");
+const pauseMusic = document.getElementById("pauseMusic");
+const vinyl = document.getElementById("vinyl");
 const toast = document.getElementById("toast");
-const textoToast = document.getElementById("textoToast");
-const arriba = document.getElementById("arriba");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+const backTop = document.getElementById("backTop");
 
-let temporizadorToast;
+let toastTimer;
 
-/* AVISOS */
-function mostrarToast(mensaje){
-    textoToast.textContent = mensaje;
-    toast.classList.add("mostrar");
-    clearTimeout(temporizadorToast);
-    temporizadorToast = setTimeout(() => {
-        toast.classList.remove("mostrar");
-    }, 2600);
+
+/* =========================================
+   NOTIFICACIONES
+========================================= */
+
+function showToast(message){
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(()=>{
+        toast.classList.remove("show");
+    },2800);
 }
 
-/* MÚSICA */
-function actualizarMusica(){
-    const pausada = musica.paused;
-    disco.classList.toggle("pausado", pausada);
-    estadoMusica.textContent = pausada ? "Ⅱ Música pausada" : "♫ Reproduciendo";
-    controlMusica.textContent = pausada ? "♫" : "Ⅱ";
-    controlMusica.setAttribute("aria-label", pausada ? "Reproducir música" : "Pausar música");
-}
 
-async function reproducir(){
+/* =========================================
+   INTRO Y MÚSICA
+========================================= */
+
+async function startAudio(){
     try{
-        await musica.play();
-        actualizarMusica();
-        return true;
+        await audio.play();
+        vinyl.classList.add("playing");
+        musicToggle.textContent = "Ⅱ";
+        musicToggle.setAttribute("aria-label","Pausar música");
     }catch(error){
-        actualizarMusica();
-        estadoMusica.textContent = "No se pudo cargar la canción. Revisa intro-kochi.ogg";
-        return false;
+        vinyl.classList.remove("playing");
+        musicToggle.textContent = "♫";
+        musicToggle.setAttribute("aria-label","Reproducir música");
+        showToast("No se pudo reproducir la música. Revisa el archivo de audio.");
     }
 }
 
-function alternarMusica(){
-    if(musica.paused){
-        reproducir();
-    }else{
-        musica.pause();
-        actualizarMusica();
-    }
+function pauseAudio(){
+    audio.pause();
+    vinyl.classList.remove("playing");
+    musicToggle.textContent = "♫";
+    musicToggle.setAttribute("aria-label","Reproducir música");
 }
 
-entrar.addEventListener("click", async () => {
-    document.body.classList.remove("bloqueado");
-    intro.classList.add("oculto");
-    await reproducir();
-});
-
-disco.addEventListener("click", alternarMusica);
-disco.addEventListener("keydown", event => {
-    if(event.key === "Enter" || event.key === " "){
-        event.preventDefault();
-        alternarMusica();
-    }
-});
-controlMusica.addEventListener("click", alternarMusica);
-
-musica.addEventListener("play", actualizarMusica);
-musica.addEventListener("pause", actualizarMusica);
-musica.addEventListener("error", () => {
-    estadoMusica.textContent = "No se encontró intro-kochi.ogg";
-});
-
-/* MENÚ MÓVIL */
-function cerrarMenu(){
-    menu.classList.remove("abierto");
-    botonMenu.setAttribute("aria-expanded", "false");
-    botonMenu.setAttribute("aria-label", "Abrir menú");
-    botonMenu.textContent = "☰";
+function updateAudioState(){
+    const playing = !audio.paused;
+    vinyl.classList.toggle("playing",playing);
+    musicToggle.textContent = playing ? "Ⅱ" : "♫";
+    musicToggle.setAttribute("aria-label",playing ? "Pausar música" : "Reproducir música");
 }
 
-botonMenu.addEventListener("click", () => {
-    const abierto = menu.classList.toggle("abierto");
-    botonMenu.setAttribute("aria-expanded", String(abierto));
-    botonMenu.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
-    botonMenu.textContent = abierto ? "✕" : "☰";
+startButton.addEventListener("click",()=>{
+    intro.classList.add("hidden");
+    document.body.classList.remove("locked");
+    startAudio();
 });
 
-menu.querySelectorAll("a").forEach(enlace => {
-    enlace.addEventListener("click", cerrarMenu);
+musicToggle.addEventListener("click",()=>{
+    if(audio.paused) startAudio();
+    else pauseAudio();
 });
 
-document.addEventListener("click", event => {
-    if(!menu.contains(event.target) && !botonMenu.contains(event.target)){
-        cerrarMenu();
+playMusic.addEventListener("click",startAudio);
+pauseMusic.addEventListener("click",pauseAudio);
+
+audio.addEventListener("play",updateAudioState);
+audio.addEventListener("pause",updateAudioState);
+
+
+/* =========================================
+   MENÚ MÓVIL
+========================================= */
+
+function closeMenu(){
+    navLinks.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded","false");
+    menuToggle.setAttribute("aria-label","Abrir menú");
+    menuToggle.textContent = "☰";
+}
+
+menuToggle.addEventListener("click",()=>{
+    const isOpen = navLinks.classList.toggle("open");
+    menuToggle.setAttribute("aria-expanded",String(isOpen));
+    menuToggle.setAttribute("aria-label",isOpen ? "Cerrar menú" : "Abrir menú");
+    menuToggle.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link=>{
+    link.addEventListener("click",closeMenu);
+});
+
+document.addEventListener("click",(event)=>{
+    if(!navLinks.contains(event.target) && !menuToggle.contains(event.target)){
+        closeMenu();
     }
 });
 
-/* FAVORITOS GUARDADOS EN ESTE DISPOSITIVO */
-const CLAVE_FAVORITOS = "kochiKochiFavoritos";
+document.addEventListener("keydown",(event)=>{
+    if(event.key === "Escape") closeMenu();
+});
 
-function obtenerFavoritos(){
+
+/* =========================================
+   FAVORITOS CON LOCALSTORAGE
+========================================= */
+
+const FAVORITES_KEY = "kochiKochiFavoritos";
+
+function getFavorites(){
     try{
-        const datos = JSON.parse(localStorage.getItem(CLAVE_FAVORITOS) || "[]");
-        return Array.isArray(datos) ? datos : [];
+        return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
     }catch(error){
         return [];
     }
 }
 
-function guardarFavoritos(favoritos){
-    try{
-        localStorage.setItem(CLAVE_FAVORITOS, JSON.stringify(favoritos));
-        return true;
-    }catch(error){
-        mostrarToast("El navegador no permitió guardar favoritos.");
-        return false;
-    }
+function saveFavorites(favorites){
+    localStorage.setItem(FAVORITES_KEY,JSON.stringify(favorites));
 }
 
-function actualizarBotonesFavoritos(){
-    const favoritos = obtenerFavoritos();
-    document.querySelectorAll(".btn-agregar").forEach(boton => {
-        const guardado = favoritos.includes(boton.dataset.producto);
-        boton.classList.toggle("guardado", guardado);
-        boton.textContent = guardado ? "Guardado en favoritos ♥" : "Agregar a favoritos ♡";
-        boton.setAttribute("aria-pressed", String(guardado));
+function updateFavoriteButtons(){
+    const favorites = getFavorites();
+
+    document.querySelectorAll("[data-favorite]").forEach(button=>{
+        const name = button.dataset.favorite;
+        const active = favorites.includes(name);
+
+        button.classList.toggle("active",active);
+        button.textContent = active ? "♥" : "♡";
+        button.setAttribute(
+            "aria-label",
+            active ? "Quitar " + name + " de favoritos" : "Agregar " + name + " a favoritos"
+        );
     });
 }
 
-document.querySelectorAll(".btn-agregar").forEach(boton => {
-    boton.addEventListener("click", () => {
-        const producto = boton.dataset.producto;
-        let favoritos = obtenerFavoritos();
+document.querySelectorAll("[data-favorite]").forEach(button=>{
+    button.addEventListener("click",()=>{
+        const name = button.dataset.favorite;
+        let favorites = getFavorites();
 
-        if(favoritos.includes(producto)){
-            favoritos = favoritos.filter(item => item !== producto);
-            mostrarToast(producto + " eliminado de favoritos.");
+        if(favorites.includes(name)){
+            favorites = favorites.filter(item=>item !== name);
+            showToast("Se quitó de tus favoritos ♡");
         }else{
-            favoritos.push(producto);
-            mostrarToast(producto + " guardado en favoritos ♡");
+            favorites.push(name);
+            showToast("¡Guardado en tus favoritos! ♥");
         }
 
-        if(guardarFavoritos(favoritos)){
-            actualizarBotonesFavoritos();
-        }
+        saveFavorites(favorites);
+        updateFavoriteButtons();
     });
 });
 
-actualizarBotonesFavoritos();
+updateFavoriteButtons();
 
-/* FORMULARIO DE WHATSAPP */
-document.getElementById("formulario").addEventListener("submit", event => {
+
+/* =========================================
+   BOTONES DE PRODUCTOS
+========================================= */
+
+document.querySelectorAll("[data-product]").forEach(button=>{
+    button.addEventListener("click",()=>{
+        const product = button.dataset.product;
+        showToast("¡" + product + " se antoja muchísimo! ♡");
+    });
+});
+
+
+/* =========================================
+   FORMULARIO DE CONTACTO
+========================================= */
+
+document.getElementById("contactForm").addEventListener("submit",(event)=>{
     event.preventDefault();
 
     const nombre = document.getElementById("nombre").value.trim();
@@ -1075,67 +1626,100 @@ document.getElementById("formulario").addEventListener("submit", event => {
     const mensaje = document.getElementById("mensaje").value.trim();
 
     if(!nombre || !correo || !mensaje){
-        mostrarToast("Completa todos los campos.");
+        showToast("Completa todos los campos.");
         return;
     }
 
     if(!WHATSAPP_NUMBER){
-        mostrarToast("Falta configurar el número de WhatsApp del negocio.");
+        showToast("Falta configurar el WhatsApp de pedidos en el código.");
         return;
     }
 
-    const texto = [
-        "¡Hola, Kochi Kochi!",
-        "",
-        "Mi nombre es: " + nombre,
-        "Mi correo: " + correo,
-        "",
-        "Mi mensaje:",
-        mensaje
-    ].join("\n");
+    const texto =
+        "¡Hola! Soy " + nombre +
+        ". Mi correo es " + correo +
+        ". Mi mensaje: " + mensaje;
 
-    const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(texto);
-    window.open(url, "_blank", "noopener,noreferrer");
+    const url = "https://wa.me/" + WHATSAPP_NUMBER +
+        "?text=" + encodeURIComponent(texto);
+
+    window.open(url,"_blank","noopener,noreferrer");
 });
 
-/* BOTÓN VOLVER ARRIBA */
-window.addEventListener("scroll", () => {
-    arriba.classList.toggle("visible", window.scrollY > 500);
-}, {passive:true});
 
-arriba.addEventListener("click", () => {
-    window.scrollTo({top:0, behavior:"smooth"});
-});
+/* =========================================
+   ANIMACIONES AL DESPLAZARSE
+========================================= */
 
-/* ANIMACIONES AL DESPLAZARSE */
+const revealElements = document.querySelectorAll(".reveal");
+
 if("IntersectionObserver" in window){
-    const observador = new IntersectionObserver((entradas, observer) => {
-        entradas.forEach(entrada => {
-            if(entrada.isIntersecting){
-                entrada.target.classList.add("visible");
-                observer.unobserve(entrada.target);
+    const observer = new IntersectionObserver((entries,obs)=>{
+        entries.forEach(entry=>{
+            if(entry.isIntersecting){
+                entry.target.classList.add("visible");
+                obs.unobserve(entry.target);
             }
         });
-    }, {threshold:.12});
+    },{threshold:.12});
 
-    document.querySelectorAll(".revelar").forEach(elemento => {
-        observador.observe(elemento);
-    });
+    revealElements.forEach(element=>observer.observe(element));
 }else{
-    document.querySelectorAll(".revelar").forEach(elemento => {
-        elemento.classList.add("visible");
-    });
+    revealElements.forEach(element=>element.classList.add("visible"));
 }
 
-/* RESPALDO PARA IMÁGENES EXTERNAS */
-document.querySelectorAll("img").forEach(imagen => {
-    imagen.addEventListener("error", () => {
-        imagen.classList.add("imagen-error");
-    });
+
+/* =========================================
+   DECORACIONES FLOTANTES DE OCTUBRE
+========================================= */
+
+const decorations = ["🍂","🌼","✦","🍁"];
+
+function createFallingDecoration(){
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const item = document.createElement("span");
+    item.className = "falling-decoration";
+    item.textContent = decorations[Math.floor(Math.random()*decorations.length)];
+
+    item.style.left = Math.random()*100 + "vw";
+    item.style.fontSize = (12 + Math.random()*13) + "px";
+    item.style.animationDuration = (7 + Math.random()*7) + "s";
+
+    document.body.appendChild(item);
+
+    setTimeout(()=>item.remove(),15000);
+}
+
+if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    setInterval(createFallingDecoration,1100);
+}
+
+
+/* =========================================
+   BOTÓN VOLVER ARRIBA
+========================================= */
+
+window.addEventListener("scroll",()=>{
+    backTop.classList.toggle("visible",window.scrollY > 450);
 });
 
-/* ESTADO INICIAL */
-actualizarMusica();
+backTop.addEventListener("click",()=>{
+    window.scrollTo({top:0,behavior:"smooth"});
+});
+
+
+/* =========================================
+   IMÁGENES: FALLBACK SI UNA NO CARGA
+========================================= */
+
+document.querySelectorAll("img").forEach(img=>{
+    img.addEventListener("error",()=>{
+        img.style.opacity=".25";
+        img.alt = "Imagen no disponible. Revisa tu conexión a internet.";
+    });
+});
 </script>
+
 </body>
 </html>
